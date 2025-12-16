@@ -2,14 +2,18 @@ package model;
 
 public abstract class Erabiltzaile {
 	
-	protected String usuario;
-
-	//getters and setters
-	public String getUsuario() {
-		return usuario;
+	protected String erabiltzaile;
+	
+	public Erabiltzaile(String erabiltzaile) {
+		this.erabiltzaile = erabiltzaile;
 	}
 
-	public void setUsuario(String usuario) {
-		this.usuario = usuario;
+	//getters and setters
+	public String getErabiltzaile() {
+		return erabiltzaile;
+	}
+
+	public void setErabiltzaile(String erabiltzaile) {
+		this.erabiltzaile = erabiltzaile;
 	}
 }

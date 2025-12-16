@@ -5,9 +5,9 @@ import javax.swing.JOptionPane;
 public class ErabiltzailePrezi extends Erabiltzaile{
 	
 	private String pasahitza;
-	
-	public ErabiltzailePrezi(String pasahitza, String usuario) {
-		super();
+
+	public ErabiltzailePrezi(String erabiltzaile, String pasahitza) {
+		super(erabiltzaile);
 		this.pasahitza = pasahitza;
 	}
 

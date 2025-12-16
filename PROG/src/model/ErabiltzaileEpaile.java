@@ -4,8 +4,8 @@ public class ErabiltzaileEpaile extends Erabiltzaile{
 	
 	private String pasahitza;
 
-	public ErabiltzaileEpaile(String pasahitza, String usuario) {
-		super();
+	public ErabiltzaileEpaile(String erabiltzaile, String pasahitza) {
+		super(erabiltzaile);
 		this.pasahitza = pasahitza;
 	}
 
