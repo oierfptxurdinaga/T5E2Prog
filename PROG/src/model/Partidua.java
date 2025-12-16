@@ -1,0 +1,61 @@
+package model;
+
+public class Partidua {
+
+	private Talde etxekoTaldea;
+	private Talde kanpokoTaldea;
+	private int etxekoGolak;
+	private int kanpokoGolak;
+	
+	public Partidua(Talde etxekoTaldea, Talde kanpokoTaldea) {
+		this.etxekoTaldea = etxekoTaldea;
+		this.kanpokoTaldea = kanpokoTaldea;
+		this.etxekoGolak=-1;
+		this.kanpokoGolak=-1;
+	}
+
+	//getters and setters
+	public Talde getEtxekoTaldea() {
+		return etxekoTaldea;
+	}
+
+	public void setEtxekoTaldea(Talde etxekoTaldea) {
+		this.etxekoTaldea = etxekoTaldea;
+	}
+
+	public Talde getKanpokoTaldea() {
+		return kanpokoTaldea;
+	}
+
+	public void setKanpokoTaldea(Talde kanpokoTaldea) {
+		this.kanpokoTaldea = kanpokoTaldea;
+	}
+
+	public int getEtxekoGolak() {
+		return etxekoGolak;
+	}
+
+	public void setEtxekoGolak(int etxekoGolak) {
+		this.etxekoGolak = etxekoGolak;
+	}
+
+	public int getKanpokoGolak() {
+		return kanpokoGolak;
+	}
+
+	public void setKanpokoGolak(int kanpokoGolak) {
+		this.kanpokoGolak = kanpokoGolak;
+	}
+	
+	public Talde erakutziIrabaslea() {
+		Talde irabasle=null;
+		if(this.etxekoGolak<this.kanpokoGolak) {
+			irabasle=this.kanpokoTaldea;
+		}else if(this.etxekoGolak>this.kanpokoGolak) {
+			irabasle=this.etxekoTaldea;
+		}
+		return irabasle;
+	}
+	
+	
+}
