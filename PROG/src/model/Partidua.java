@@ -47,6 +47,10 @@ public class Partidua {
 		this.kanpokoGolak = kanpokoGolak;
 	}
 	
+	/**
+	 * Aukeratutako partidotik nor irabasten duen estendu
+	 * @return Talde modura itsultzen du irabaslea
+	 */
 	public Talde erakutziIrabaslea() {
 		Talde irabasle=null;
 		if(this.etxekoGolak<this.kanpokoGolak) {

@@ -19,6 +19,9 @@ public class Sailkapena {
 		this.sailkapena = sailkapena;
 	}
 
+	/**
+	 * Sailkapen barruna dauden talde guztiak ordenatu egiten ditu haien puntuen arabera
+	 */
 	public void eguneratuSailkapena() {
 	Talde temp=null;	
 	

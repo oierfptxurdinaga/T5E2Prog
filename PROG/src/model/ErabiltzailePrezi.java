@@ -20,6 +20,12 @@ public class ErabiltzailePrezi extends Erabiltzaile{
 		this.pasahitza = pasahitza;
 	}
 	
+	/**
+	 * Jokalari bat talde batetik bestera pasatzeko balio du
+	 * @param jokalari Zein jokalari aldatu nahi duzun taldez
+	 * @param taldeZaharra jokalaria dagoen taldea
+	 * @param taldeBerria jokalria eramango den taldea
+	 */
 	public void aldatuJokalariak(Jokalari jokalari, Talde taldeZaharra, Talde taldeBerria) {
 		if(taldeZaharra.getJokalariak().contains(jokalari)) {
 			taldeZaharra.getJokalariak().remove(jokalari);
