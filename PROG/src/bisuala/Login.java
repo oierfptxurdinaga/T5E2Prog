@@ -31,28 +31,11 @@ public class Login extends JFrame {
 	private JTextField txtErabiltsaileIzena;
 	private JPasswordField passwordField;
 
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					Login frame = new Login();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	/**
-	 * Create the frame.
-	 */
 	public Login() {
 
-		ErabiltzaileArrunta arrunt1 = new ErabiltzaileArrunta("pepe");
+		Erabiltzaile erabiltzailea = null;
+
+		ErabiltzaileArrunta arrunt1 = new ErabiltzaileArrunta("Gonbidatua");
 		ErabiltzaileEpaile epaile1 = new ErabiltzaileEpaile("Jose", "kk");
 		ErabiltzailePrezi prezi1 = new ErabiltzailePrezi("Juan", "12345");
 		ArrayList<Erabiltzaile> erabiltzaileak = new ArrayList<>();
@@ -88,29 +71,42 @@ public class Login extends JFrame {
 		btnSaioaHasi.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 
-				boolean error=true;
+				final Erabiltzaile[] erabiltzaile = new Erabiltzaile[1];
+				boolean error = true;
 				for (int i = 0; i < erabiltzaileak.size(); i++) {
 					if (erabiltzaileak.get(i).getErabiltzaile().equals(txtErabiltsaileIzena.getText())) {
+
 						if (erabiltzaileak.get(i) instanceof ErabiltzaileEpaile) {
-							ErabiltzaileEpaile epaile= (ErabiltzaileEpaile)erabiltzaileak.get(i);
+							ErabiltzaileEpaile epaile = (ErabiltzaileEpaile) erabiltzaileak.get(i);
 							if (epaile.getPasahitza().equals(passwordField.getText())) {
-								JOptionPane.showMessageDialog(null, "Pasahitza Zuzena", "Epaile Modura sartzen",
-										JOptionPane.INFORMATION_MESSAGE);
-								error=false;
+								error = false;
+								erabiltzaile[0] = erabiltzaileak.get(i);
 							}
 						} else if (erabiltzaileak.get(i) instanceof ErabiltzailePrezi) {
-							ErabiltzailePrezi prezi= (ErabiltzailePrezi)erabiltzaileak.get(i);
+							ErabiltzailePrezi prezi = (ErabiltzailePrezi) erabiltzaileak.get(i);
 							if (prezi.getPasahitza().equals(passwordField.getText())) {
-								JOptionPane.showMessageDialog(null, "Pasahitza Zuzena", "Epaile modura sartzen",
-										JOptionPane.INFORMATION_MESSAGE);
-								error=false;
+								error = false;
+								erabiltzaile[0] = erabiltzaileak.get(i);
 							}
 						}
 					}
 				}
-				if(error) {
+
+				if (error) {
 					JOptionPane.showMessageDialog(null, "ERROREA", "Erabiltzailea edo Pashitza EZ da zuzena",
 							JOptionPane.ERROR_MESSAGE);
+				} else {
+					EventQueue.invokeLater(new Runnable() {
+						public void run() {
+							try {
+								APP frame = new APP(erabiltzaile[0]);
+								frame.setVisible(true);
+								dispose();
+							} catch (Exception e) {
+								e.printStackTrace();
+							}
+						}
+					});
 				}
 			}
 		});
@@ -120,12 +116,24 @@ public class Login extends JFrame {
 		JButton btnGonbidatu = new JButton("Sartu Gonbidatu Bezala");
 		btnGonbidatu.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showMessageDialog(null, "Sartzen...", "Gonbidatu modura sartzen",
-						JOptionPane.INFORMATION_MESSAGE);
+				final Erabiltzaile[] erabiltzaile = new Erabiltzaile[1];
+				erabiltzaile[0] = arrunt1;
+				EventQueue.invokeLater(new Runnable() {
+					public void run() {
+						try {
+							APP frame = new APP(erabiltzaile[0]);
+							frame.setVisible(true);
+							dispose();
+						} catch (Exception e) {
+							e.printStackTrace();
+						}
+					}
+
+				});
+
 			}
 		});
 		btnGonbidatu.setBounds(148, 202, 171, 30);
 		contentPane.add(btnGonbidatu);
-
 	}
 }
