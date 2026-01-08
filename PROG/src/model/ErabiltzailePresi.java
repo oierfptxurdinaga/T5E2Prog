@@ -2,24 +2,12 @@ package model;
 
 import javax.swing.JOptionPane;
 
-public class ErabiltzailePrezi extends Erabiltzaile{
-	
-	private String pasahitza;
+public class ErabiltzailePresi extends Erabiltzaile{
 
-	public ErabiltzailePrezi(String erabiltzaile, String pasahitza) {
-		super(erabiltzaile);
-		this.pasahitza = pasahitza;
+	public ErabiltzailePresi(String erabiltzaile, String pasahitza) {
+		super(erabiltzaile, pasahitza);
 	}
 
-	//getters and setters
-	public String getPasahitza() {
-		return pasahitza;
-	}
-
-	public void setPasahitza(String pasahitza) {
-		this.pasahitza = pasahitza;
-	}
-	
 	/**
 	 * Jokalari bat talde batetik bestera pasatzeko balio du
 	 * @param jokalari Zein jokalari aldatu nahi duzun taldez

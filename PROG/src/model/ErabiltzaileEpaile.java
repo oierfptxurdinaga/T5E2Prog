@@ -2,21 +2,11 @@ package model;
 
 public class ErabiltzaileEpaile extends Erabiltzaile{
 	
-	private String pasahitza;
 
 	public ErabiltzaileEpaile(String erabiltzaile, String pasahitza) {
-		super(erabiltzaile);
-		this.pasahitza = pasahitza;
+		super(erabiltzaile, pasahitza);
 	}
 
-	//getters and setters
-	public String getPasahitza() {
-		return pasahitza;
-	}
-
-	public void setPasahitza(String pasahitza) {
-		this.pasahitza = pasahitza;
-	}
 	
 	/**
 	 * Klase honekin nahi duzun partidoen emaitzak sartzen dira
@@ -33,7 +23,7 @@ public class ErabiltzaileEpaile extends Erabiltzaile{
 					denboraldia.getLigakoJardunaldi().get(i).getPartiduak().get(j).getKanpokoTaldea().equals(kanpokoTaldea)) {
 					denboraldia.getLigakoJardunaldi().get(i).getPartiduak().get(j).setEtxekoGolak(etxekoGolak);
 					denboraldia.getLigakoJardunaldi().get(i).getPartiduak().get(j).setKanpokoGolak(kanpokoGolak);
-					break;
+					return;
 				}
 			}
 		}

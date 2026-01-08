@@ -51,14 +51,14 @@ public class Partidua {
 	 * Aukeratutako partidotik nor irabasten duen estendu
 	 * @return Talde modura itsultzen du irabaslea
 	 */
-	public Talde erakutziIrabaslea() {
-		Talde irabasle=null;
+	public Talde erakutziIrabazlea() {
+		Talde irabazle=null;
 		if(this.etxekoGolak<this.kanpokoGolak) {
-			irabasle=this.kanpokoTaldea;
+			irabazle=this.kanpokoTaldea;
 		}else if(this.etxekoGolak>this.kanpokoGolak) {
-			irabasle=this.etxekoTaldea;
+			irabazle=this.etxekoTaldea;
 		}
-		return irabasle;
+		return irabazle;
 	}
 	
 	
