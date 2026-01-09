@@ -39,6 +39,7 @@ public class Login extends JFrame {
         txtPass = new JPasswordField(); txtPass.setBounds(150, 100, 150, 30);
         
         JButton btnLogin = new JButton("Sartu"); btnLogin.setBounds(150, 160, 100, 30);
+        this.getRootPane().setDefaultButton(btnLogin);
 
         add(lblUser); add(txtUser);
         add(lblPass); add(txtPass);
