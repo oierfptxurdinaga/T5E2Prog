@@ -60,4 +60,8 @@ public class Denboraldia {
 		this.denboraldiaHasiDa = denboraldiaHasiDa;
 	}
 
+	@Override
+	public String toString() {
+	    return String.valueOf(urtea); // Urtea testu gisa itzultzeko
+	}
 }

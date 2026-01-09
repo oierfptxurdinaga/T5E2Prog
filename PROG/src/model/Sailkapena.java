@@ -4,6 +4,10 @@ import java.util.ArrayList;
 
 public class Sailkapena {
 	private ArrayList<Talde> sailkapena;
+	
+
+	public Sailkapena() {
+	}
 
 	public Sailkapena(ArrayList<Talde> sailkapena) {
 		super();

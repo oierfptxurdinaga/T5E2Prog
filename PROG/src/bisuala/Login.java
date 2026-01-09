@@ -1,101 +1,67 @@
 package bisuala;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
+import javax.swing.*;
+import java.awt.event.*;
+import java.util.ArrayList;
 import model.*;
 
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
-import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
-
 public class Login extends JFrame {
+    private JTextField txtUser;
+    private JPasswordField txtPass;
+    private ArrayList<Erabiltzaile> erabiltzaileak;
+    private ArrayList<Denboraldia> denboraldiak;
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField txtErabiltzaileIzena;
-	private JPasswordField passwordField;
-	private Erabiltzaile hautatutakoErabiltzailea;
+    public Login() {
+        // 1. Zerrendak hasieratu
+        erabiltzaileak = new ArrayList<>();
+        denboraldiak = new ArrayList<>();
+        
+        // 2. Proba datuak sortu (Denboraldia)
+        // GOGORATU: model/Sailkapena.java-n 'public Sailkapena() {}' eraikitzailea gehitu behar duzula!
+        Denboraldia d1 = new Denboraldia(2025, new ArrayList<>(), new ArrayList<>(), new Sailkapena(), false);
+        denboraldiak.add(d1);
+        
+        // 3. Erabiltzaileak sortu
+        erabiltzaileak.add(new ErabiltzaileAdministraria("admin", "admin123"));
+        erabiltzaileak.add(new ErabiltzaileEpaile("epaile", "epaile123"));
+        erabiltzaileak.add(new ErabiltzailePresi("presi", "presi123"));
 
-	public Login() {
+        // 4. Interfazearen diseinua
+        setTitle("Saioa Hasi");
+        setLayout(null);
+        setBounds(100, 100, 400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-		Erabiltzaile erabiltzailea = null;
-		ErabiltzaileAdministraria administrari1 = new ErabiltzaileAdministraria("administrari", "administrari123");
-		ErabiltzaileEpaile epaile1 = new ErabiltzaileEpaile("epaile", "epaile123");
-		ErabiltzailePresi presi1 = new ErabiltzailePresi("presi", "presi123");
-		ArrayList<Erabiltzaile> erabiltzaileak = new ArrayList<>();
-		erabiltzaileak.add(presi1);
-		erabiltzaileak.add(epaile1);
-		erabiltzaileak.add(administrari1);
+        JLabel lblUser = new JLabel("Erabiltzailea:"); lblUser.setBounds(50, 50, 100, 30);
+        txtUser = new JTextField(); txtUser.setBounds(150, 50, 150, 30);
+        
+        JLabel lblPass = new JLabel("Pasahitza:"); lblPass.setBounds(50, 100, 100, 30);
+        txtPass = new JPasswordField(); txtPass.setBounds(150, 100, 150, 30);
+        
+        JButton btnLogin = new JButton("Sartu"); btnLogin.setBounds(150, 160, 100, 30);
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+        add(lblUser); add(txtUser);
+        add(lblPass); add(txtPass);
+        add(btnLogin);
 
-		txtErabiltzaileIzena = new JTextField();
-		txtErabiltzaileIzena.setBounds(203, 69, 160, 30);
-		contentPane.add(txtErabiltzaileIzena);
-		txtErabiltzaileIzena.setColumns(10);
+        // 5. Botoiaren logika
+        btnLogin.addActionListener(e -> {
+            String u = txtUser.getText();
+            String p = new String(txtPass.getPassword());
 
-		passwordField = new JPasswordField();
-		passwordField.setBounds(203, 109, 160, 30);
-		contentPane.add(passwordField);
-
-		JLabel lblNewLabel = new JLabel("Erabiltzaile izena:");
-		lblNewLabel.setBounds(65, 69, 128, 28);
-		contentPane.add(lblNewLabel);
-
-		JLabel lblPasahitza = new JLabel("Pasahitza:");
-		lblPasahitza.setBounds(98, 109, 95, 28);
-		contentPane.add(lblPasahitza);
-
-		JButton btnSaioaHasi = new JButton("Saioa Hasi");
-		btnSaioaHasi.addActionListener(new ActionListener() {
-            public void actionPerformed(ActionEvent e) {
-                String sartutakoUser = txtErabiltzaileIzena.getText();
-                String sartutakoPass = new String(passwordField.getPassword());
-
-                for (Erabiltzaile erab : erabiltzaileak) {
-                    if (erab.getErabiltzaile().equals(sartutakoUser) && 
-                        erab.getPasahitza().equals(sartutakoPass)) {
-                        hautatutakoErabiltzailea = erab; 
-                        saioaHasi();
-                        return;
-                    }
+            for (Erabiltzaile user : erabiltzaileak) {
+                if (user.getErabiltzaile().equals(u) && user.getPasahitza().equals(p)) {
+                    // HEMEN irekitzen dugu APP leiho nagusia saioa ondo hastean
+                    new APP(user, denboraldiak).setVisible(true); 
+                    dispose(); // Login leihoa itxi
+                    return;
                 }
-                JOptionPane.showMessageDialog(null, "Datuak okerrak dira");
             }
-        });
-		btnSaioaHasi.setBounds(179, 162, 105, 30);
-
-		contentPane.add(btnSaioaHasi);
-    }
-
-    private void saioaHasi() {
-        EventQueue.invokeLater(() -> {
-            APP frame = new APP(hautatutakoErabiltzailea);
-            frame.setVisible(true);
-            dispose();
+            JOptionPane.showMessageDialog(null, "Datu okerrak, saiatu berriro.");
         });
     }
     
+    public static void main(String[] args) {
+        new Login().setVisible(true);
+    }
 }
-
