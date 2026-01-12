@@ -14,12 +14,5 @@ public class ErabiltzailePresi extends Erabiltzaile{
 	 * @param taldeZaharra jokalaria dagoen taldea
 	 * @param taldeBerria jokalria eramango den taldea
 	 */
-	public void aldatuJokalariak(Jokalari jokalari, Talde taldeZaharra, Talde taldeBerria) {
-		if(taldeZaharra.getJokalariak().contains(jokalari)) {
-			taldeZaharra.getJokalariak().remove(jokalari);
-			taldeBerria.getJokalariak().add(jokalari);
-		}else {
-			JOptionPane.showMessageDialog(null, "Jokalari hori ez dago talde horretan", "ERROR", JOptionPane.ERROR_MESSAGE);
-		}
-	}
+
 }
