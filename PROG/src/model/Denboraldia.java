@@ -7,15 +7,15 @@ public class Denboraldia {
 	private int urtea;
 	private ArrayList<Talde> ligakoTaldeak;
 	private ArrayList<Jardunaldi> ligakoJardunaldi;
-	private Sailkapena liagkoSailkapena;
+	private Sailkapena ligakoSailkapena;
 	private boolean denboraldiaHasiDa;
 	
 	public Denboraldia(int urtea, ArrayList<Talde> ligakoTaldeak, ArrayList<Jardunaldi> ligakoJardunaldi,
-			Sailkapena liagkoSailkapena, boolean denboraldiaHasiDa) {
+			Sailkapena ligakoSailkapena, boolean denboraldiaHasiDa) {
 		this.urtea = urtea;
 		this.ligakoTaldeak = ligakoTaldeak;
 		this.ligakoJardunaldi = ligakoJardunaldi;
-		this.liagkoSailkapena = liagkoSailkapena;
+		this.ligakoSailkapena = ligakoSailkapena;
 		this.denboraldiaHasiDa = denboraldiaHasiDa;
 	}
 
@@ -44,12 +44,12 @@ public class Denboraldia {
 		this.ligakoJardunaldi = ligakoJardunaldi;
 	}
 
-	public Sailkapena getLiagkoSailkapena() {
-		return liagkoSailkapena;
+	public Sailkapena getLigakoSailkapena() {
+		return ligakoSailkapena;
 	}
 
-	public void setLiagkoSailkapena(Sailkapena liagkoSailkapena) {
-		this.liagkoSailkapena = liagkoSailkapena;
+	public void setLigakoSailkapena(Sailkapena ligakoSailkapena) {
+		this.ligakoSailkapena = ligakoSailkapena;
 	}
 
 	public boolean isDenboraldiaHasiDa() {
