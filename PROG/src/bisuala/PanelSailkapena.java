@@ -1,22 +1,39 @@
 package bisuala;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
-
-import java.awt.BorderLayout;
-import java.util.ArrayList;
+import java.awt.*;
+import java.util.List;
 import model.*;
 
 public class PanelSailkapena extends JPanel {
-    // KONPONBIDEA: Taldeak eta Jardunaldiak onartu behar ditu
-    public PanelSailkapena(ArrayList<Talde> taldeak, ArrayList<Jardunaldi> jardunaldiak) {
+
+    public PanelSailkapena(Sailkapena sailkapena) {
         setLayout(new BorderLayout());
-        String[] zutabeak = {"Posizioa", "Taldea", "JP", "I", "B", "G", "Puntuak"};
+
+        String[] zutabeak = {"Posizioa", "Taldea", "PJ", "V", "E", "D", "GF", "GC", "Diferentzia", "Puntuak"};
         DefaultTableModel modeloa = new DefaultTableModel(zutabeak, 0);
-        
-        for (Talde t : taldeak) {
-            modeloa.addRow(new Object[]{1, t.getIzena(), 0, 0, 0, 0, 0});
+
+        List<TaldeTemporada> taldeak = sailkapena.getSailkapena();
+        sailkapena.eguneratuSailkapena();
+
+        int pos = 1;
+        for (TaldeTemporada tTemp : taldeak) {
+            int diferentzia = tTemp.getGolesFavor() - tTemp.getGolesContra();
+            modeloa.addRow(new Object[]{
+                    pos++,
+                    tTemp.getTalde().getIzena(),
+                    tTemp.getPartidosJugados(),
+                    tTemp.getVictorias(),
+                    tTemp.getEmpates(),
+                    tTemp.getDerrotas(),
+                    tTemp.getGolesFavor(),
+                    tTemp.getGolesContra(),
+                    diferentzia,
+                    tTemp.getLigakoPuntos()
+            });
         }
-        
+
         add(new JScrollPane(new JTable(modeloa)), BorderLayout.CENTER);
     }
 }

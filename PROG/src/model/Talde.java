@@ -8,22 +8,15 @@ public class Talde {
 	private String eskutua;
 	private String futbolZelaia;
 	private ArrayList<Jokalari> jokalariak;
-	private int sorreraUrtea;
-	private int ligakoPuntuak;
-	private int aldekoGolak;
-	private int kontrakoGolak;
+	private String hiria;
 	private boolean aktiboaDago;
 	
-	public Talde(String izena, String eskutua, String futbolZelaia, ArrayList<Jokalari> jokalariak, int sorreraUrtea,
-			int ligakoPuntuak, int aldekoGolak, int kontrakoGolak, boolean aktiboaDago) {
+	public Talde(String izena, String eskutua, String futbolZelaia, ArrayList<Jokalari> jokalariak, String hiria, boolean aktiboaDago) {
 		this.izena = izena;
 		this.eskutua = eskutua;
 		this.futbolZelaia = futbolZelaia;
 		this.jokalariak = jokalariak;
-		this.sorreraUrtea = sorreraUrtea;
-		this.ligakoPuntuak = ligakoPuntuak;
-		this.aldekoGolak = aldekoGolak;
-		this.kontrakoGolak = kontrakoGolak;
+		this.hiria = hiria;
 		this.aktiboaDago = aktiboaDago;
 	}
 	
@@ -33,10 +26,7 @@ public class Talde {
 		this.eskutua = taldea.eskutua;
 		this.futbolZelaia = taldea.futbolZelaia;
 		this.jokalariak = taldea.jokalariak;
-		this.sorreraUrtea = taldea.sorreraUrtea;
-		this.ligakoPuntuak = taldea.ligakoPuntuak;
-		this.aldekoGolak = taldea.aldekoGolak;
-		this.kontrakoGolak = taldea.kontrakoGolak;
+		this.hiria = taldea.hiria;
 		this.aktiboaDago = taldea.aktiboaDago;
 	}
 	
@@ -72,36 +62,12 @@ public class Talde {
 		this.jokalariak = jokalariak;
 	}
 
-	public int getSorreraUrtea() {
-		return sorreraUrtea;
+	public String getSHiria() {
+		return hiria;
 	}
 
-	public void setSorreraUrtea(int sorreraUrtea) {
-		this.sorreraUrtea = sorreraUrtea;
-	}
-
-	public int getLigakoPuntuak() {
-		return ligakoPuntuak;
-	}
-
-	public void setLigakoPuntuak(int ligakoPuntuak) {
-		this.ligakoPuntuak = ligakoPuntuak;
-	}
-
-	public int getAldekoGolak() {
-		return aldekoGolak;
-	}
-
-	public void setAldekoGolak(int aldekoGolak) {
-		this.aldekoGolak = aldekoGolak;
-	}
-
-	public int getKontrakoGolak() {
-		return kontrakoGolak;
-	}
-
-	public void setKontrakoGolak(int kontrakoGolak) {
-		this.kontrakoGolak = kontrakoGolak;
+	public void setHiria(String hiria) {
+		this.hiria = hiria;
 	}
 
 	public boolean isAktiboaDago() {
