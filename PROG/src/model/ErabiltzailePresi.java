@@ -31,16 +31,20 @@ public class ErabiltzailePresi extends Erabiltzaile {
 	 * @param sartzenDenTaldea		Ligan sartu nahi duzun taldea
 	 * @param ligakoTaldeak			Denboraldiko taldeen ArrayList-a
 	 */
-	public void aldatuTaldeak (Talde ateratzenDenTaldea, Talde sartzenDenTaldea, ArrayList<Talde> ligakoTaldeak) {
-		if (ligakoTaldeak.contains(ateratzenDenTaldea)) {
-			if (!ligakoTaldeak.contains(sartzenDenTaldea)) {
-				ligakoTaldeak.remove(ateratzenDenTaldea);
-				ligakoTaldeak.add(sartzenDenTaldea);
+	public void aldatuTaldeak (Talde ateratzenDenTaldea, Talde sartzenDenTaldea, ArrayList<Talde> ligakoTaldeak, boolean denboraldiaHasiDa) {
+		if (!denboraldiaHasiDa) {
+			if (ligakoTaldeak.contains(ateratzenDenTaldea)) {
+				if (!ligakoTaldeak.contains(sartzenDenTaldea)) {
+					ligakoTaldeak.remove(ateratzenDenTaldea);
+					ligakoTaldeak.add(sartzenDenTaldea);
+				} else {
+					JOptionPane.showMessageDialog(null, "Ligan sartu nahi duzun taldea denboraldi honetan ligan dago", "ERROR", JOptionPane.ERROR_MESSAGE);
+				}
 			} else {
-				JOptionPane.showMessageDialog(null, "Ligan sartu nahi duzun taldea denboraldi honetan ligan dago", "ERROR", JOptionPane.ERROR_MESSAGE);
+				JOptionPane.showMessageDialog(null, "Ligatik atera nahi duzun taldea ez dago denboraldi honetan ligan", "ERROR", JOptionPane.ERROR_MESSAGE);
 			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Ligatik atera nahi duzun taldea ez dago denboraldi honetan ligan", "ERROR", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Ezin dituzu jokalariak aldatu denboraldia hasi delako", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 	

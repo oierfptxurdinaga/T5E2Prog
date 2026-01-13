@@ -9,7 +9,4 @@ public class PanelPresi extends JPanel {
         add(new JLabel("Presidente Panela: " + erab.getErabiltzaile()));
         // Hemen taldea kudeatzeko botoiak...
     }
-	public void aldatuTaldeak(Talde taldeBerria, Talde taldeZaharra) {
-
-		}
 }

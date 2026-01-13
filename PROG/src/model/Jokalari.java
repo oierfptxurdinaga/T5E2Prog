@@ -55,6 +55,4 @@ public class Jokalari {
 	public void setAktiboaDago(boolean aktiboaDago) {
 		this.aktiboaDago = aktiboaDago;
 	}
-	
-	
 }

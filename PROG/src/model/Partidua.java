@@ -60,6 +60,4 @@ public class Partidua {
 		}
 		return irabazle;
 	}
-	
-	
 }

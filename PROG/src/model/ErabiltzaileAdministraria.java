@@ -29,13 +29,16 @@ public class ErabiltzaileAdministraria extends Erabiltzaile {
 	 * @param taldeZaharra jokalaria dagoen taldea
 	 * @param taldeBerria  jokalria eramango den taldea
 	 */
-	public void aldatuJokalariak(Jokalari jokalari, Talde taldeZaharra, Talde taldeBerria) {
-		if (taldeZaharra.getJokalariak().contains(jokalari)) {
-			taldeZaharra.getJokalariak().remove(jokalari);
-			taldeBerria.getJokalariak().add(jokalari);
+	public void aldatuJokalariak(Jokalari jokalari, Talde taldeZaharra, Talde taldeBerria, boolean denboraldiaHasiDa) {
+		if (!denboraldiaHasiDa) {
+			if (taldeZaharra.getJokalariak().contains(jokalari)) {
+				taldeZaharra.getJokalariak().remove(jokalari);
+				taldeBerria.getJokalariak().add(jokalari);
+			} else {
+				JOptionPane.showMessageDialog(null, "Jokalari hori ez dago talde horretan", "ERROR", JOptionPane.ERROR_MESSAGE);
+			}
 		} else {
-			JOptionPane.showMessageDialog(null, "Jokalari hori ez dago talde horretan", "ERROR",
-					JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(null, "Ezin dituzu jokalariak aldatu denboraldia hasi delako", "ERROR", JOptionPane.ERROR_MESSAGE);
 		}
 	}
 }
