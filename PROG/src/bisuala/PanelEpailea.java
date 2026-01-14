@@ -1,12 +1,14 @@
 package bisuala;
 
 import javax.swing.*;
-import java.util.List;
+import java.util.ArrayList; // ArrayList erabiltzen dugu
 import model.*;
 
 public class PanelEpailea extends JPanel {
 
-    public PanelEpailea(Erabiltzaile erab, List<TaldeTemporada> taldeak, List<Jardunaldi> jardunaldiak) {
+    // ALDAKETA: Dena ArrayList<Talde> eta ArrayList<Jardunaldi>-ra
+    public PanelEpailea(Erabiltzaile erab, ArrayList<Talde> taldeak, ArrayList<Jardunaldi> jardunaldiak) {
         add(new JLabel("Epaile Panela: " + erab.getErabiltzaile()));
+        // Hemen garatuko duzu gero emaitzak sartzeko logika
     }
 }

@@ -1,6 +1,8 @@
 package model;
 
-public abstract class Erabiltzaile {
+import java.io.Serializable;
+
+public abstract class Erabiltzaile implements Serializable {
     protected String erabiltzaile;
     protected String pasahitza;
 

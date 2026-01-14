@@ -1,8 +1,11 @@
 package bisuala;
 
 import javax.swing.*;
+import java.awt.*; // EventQueue eta besteak erabiltzeko
+import java.awt.event.*;
 import java.util.ArrayList;
 import model.*;
+import utils.DatuKarga;
 
 public class Login extends JFrame {
 
@@ -11,83 +14,112 @@ public class Login extends JFrame {
     private ArrayList<Erabiltzaile> erabiltzaileak;
     private ArrayList<Denboraldia> denboraldiak;
 
+    /**
+     * Aplikazioaren sarrera puntua (METODO NAGUSIA)
+     */
+    public static void main(String[] args) {
+        EventQueue.invokeLater(new Runnable() {
+            public void run() {
+                try {
+                    Login frame = new Login();
+                    frame.setVisible(true);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    /**
+     * Eraikitzailea (Constructor)
+     */
     public Login() {
-        // 1. Inicializar listas
-        erabiltzaileak = new ArrayList<>();
-        denboraldiak = new ArrayList<>();
+        // 1. Datuak kargatu
+        erabiltzaileak = DatuKarga.kargatuErabiltzaileak();
+        denboraldiak = DatuKarga.kargatuDenboraldiak();
 
-        // 2. Crear la primera temporada (2025) con lista vacía de equipos
-        denboraldiak.add(new Denboraldia(2025, new ArrayList<>()));
+        datuakHasieratuBeharBada();
 
-        // 3. Crear usuarios de prueba
-        erabiltzaileak.add(new ErabiltzaileAdministraria("admin", "admin123"));
-        erabiltzaileak.add(new ErabiltzaileEpaile("epaile", "epaile123"));
-        erabiltzaileak.add(new ErabiltzailePresi("presi", "presi123"));
-
-        // 4. Interfaz gráfica
+        // 2. Leihoaren konfigurazioa
         setTitle("Saioa Hasi");
         setLayout(null);
         setBounds(100, 100, 400, 300);
 
-        // Confirmar al cerrar ventana
+        // Leihoa ixteko logika
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowClosing(java.awt.event.WindowEvent e) {
-                int opcion = JOptionPane.showConfirmDialog(null,
+        addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent e) {
+                int aukera = JOptionPane.showConfirmDialog(
+                        Login.this, 
                         "Ziur zaude programa itxi nahi duzula?",
                         "Irten",
-                        JOptionPane.YES_NO_OPTION);
-                if (opcion == JOptionPane.YES_OPTION) {
+                        JOptionPane.YES_NO_OPTION,
+                        JOptionPane.QUESTION_MESSAGE
+                );
+
+                if (aukera == JOptionPane.YES_OPTION) {
+                    dispose();
                     System.exit(0);
                 }
             }
         });
 
-        JLabel lblUser = new JLabel("Erabiltzailea:"); lblUser.setBounds(50, 50, 100, 30);
-        txtUser = new JTextField(); txtUser.setBounds(150, 50, 150, 30);
+        // Osagaiak (Componentes)
+        JLabel lblUser = new JLabel("Erabiltzailea:"); 
+        lblUser.setBounds(50, 50, 100, 30);
+        txtUser = new JTextField(); 
+        txtUser.setBounds(150, 50, 150, 30);
 
-        JLabel lblPass = new JLabel("Pasahitza:"); lblPass.setBounds(50, 100, 100, 30);
-        txtPass = new JPasswordField(); txtPass.setBounds(150, 100, 150, 30);
+        JLabel lblPass = new JLabel("Pasahitza:"); 
+        lblPass.setBounds(50, 100, 100, 30);
+        txtPass = new JPasswordField(); 
+        txtPass.setBounds(150, 100, 150, 30);
 
-        JButton btnLogin = new JButton("Sartu"); btnLogin.setBounds(150, 160, 100, 30);
+        JButton btnLogin = new JButton("Sartu"); 
+        btnLogin.setBounds(150, 160, 100, 30);
         this.getRootPane().setDefaultButton(btnLogin);
 
         add(lblUser); add(txtUser);
         add(lblPass); add(txtPass);
         add(btnLogin);
 
-        // 5. Acción del botón login
+        // Botoiaren logika
         btnLogin.addActionListener(e -> {
             String u = txtUser.getText().trim();
             String p = new String(txtPass.getPassword()).trim();
 
-            // Comprobar campos vacíos
             if (u.isEmpty() || p.isEmpty()) {
-                JOptionPane.showMessageDialog(null,
-                        "Mesedez, sartu erabiltzailea eta pasahitza.",
-                        "Error",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Mesedez, sartu erabiltzailea eta pasahitza.", "Errorea", JOptionPane.ERROR_MESSAGE);
                 return;
             }
 
-            // Comprobar credenciales
+            boolean aurkitua = false;
             for (Erabiltzaile user : erabiltzaileak) {
                 if (user.getErabiltzaile().equals(u) && user.getPasahitza().equals(p)) {
                     new APP(user, denboraldiak).setVisible(true);
                     dispose();
-                    return;
+                    aurkitua = true;
+                    break;
                 }
             }
 
-            // Credenciales incorrectas
-            JOptionPane.showMessageDialog(null,
-                    "Datu okerrak, saiatu berriro.",
-                    "Error",
-                    JOptionPane.ERROR_MESSAGE);
+            if (!aurkitua) {
+                JOptionPane.showMessageDialog(null, "Datu okerrak, saiatu berriro.", "Errorea", JOptionPane.ERROR_MESSAGE);
+            }
         });
     }
 
-    public static void main(String[] args) {
-        new Login().setVisible(true);
+    private void datuakHasieratuBeharBada() {
+        if (erabiltzaileak.isEmpty()) {
+            System.out.println("Admin lehenetsia sortzen...");
+            erabiltzaileak.add(new ErabiltzaileAdministraria("admin", "admin123"));
+            erabiltzaileak.add(new ErabiltzaileEpaile("epaile", "epaile123"));
+            erabiltzaileak.add(new ErabiltzailePresi("presi", "presi123"));
+        }
+        if (denboraldiak.isEmpty()) {
+            System.out.println("Denboraldi hutsa sortzen...");
+            denboraldiak.add(new Denboraldia(2025));
+        }
     }
 }

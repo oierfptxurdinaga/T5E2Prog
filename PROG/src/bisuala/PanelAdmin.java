@@ -1,20 +1,22 @@
 package bisuala;
 
 import javax.swing.*;
-import java.util.List;
+import java.util.ArrayList;
 import model.*;
 
 public class PanelAdmin extends JPanel {
 
-    public PanelAdmin(Erabiltzaile erab, List<TaldeTemporada> taldeakTemporada) {
+    // ALDAKETA: ArrayList<Talde> dela ziurtatzen dugu
+    public PanelAdmin(Erabiltzaile erab, ArrayList<Talde> taldeak) {
         add(new JLabel("Administratzaile Panela: " + erab.getErabiltzaile()));
     }
 
-    public void aldatuJokalariak(Jokalari jokalari, TaldeTemporada tZaharra, TaldeTemporada tBerria, boolean denboraldiaHasiDa) {
+    public void aldatuJokalariak(Jokalari jokalari, Talde tZaharra, Talde tBerria, boolean denboraldiaHasiDa) {
         if (!denboraldiaHasiDa) {
-            if (tZaharra.getTalde().getJokalariak().contains(jokalari)) {
-                tZaharra.getTalde().getJokalariak().remove(jokalari);
-                tBerria.getTalde().getJokalariak().add(jokalari);
+            if (tZaharra.getJokalariak().contains(jokalari)) {
+                tZaharra.getJokalariak().remove(jokalari);
+                tBerria.getJokalariak().add(jokalari);
+                JOptionPane.showMessageDialog(null, "Aldaketa eginda");
             } else {
                 JOptionPane.showMessageDialog(null, "Jokalari hori ez dago talde horretan", "ERROR", JOptionPane.ERROR_MESSAGE);
             }

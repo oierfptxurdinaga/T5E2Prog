@@ -3,7 +3,7 @@ package bisuala;
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 import java.awt.*;
-import java.util.List;
+import java.util.ArrayList;
 import model.*;
 
 public class PanelSailkapena extends JPanel {
@@ -11,29 +11,33 @@ public class PanelSailkapena extends JPanel {
     public PanelSailkapena(Sailkapena sailkapena) {
         setLayout(new BorderLayout());
 
-        String[] zutabeak = {"Posizioa", "Taldea", "PJ", "V", "E", "D", "GF", "GC", "Diferentzia", "Puntuak"};
+        // Zutabeak definitu
+        String[] zutabeak = {"Posizioa", "Taldea", "Puntuak"}; // Sinplifikatua hasteko
         DefaultTableModel modeloa = new DefaultTableModel(zutabeak, 0);
 
-        List<TaldeTemporada> taldeak = sailkapena.getSailkapena();
-        sailkapena.eguneratuSailkapena();
+        // 1. Sailkapena objektutik ZERRENDA PARALELOAK lortu
+        // Suposatzen dut zure Sailkapena klaseak getter hauek dituela
+        ArrayList<Talde> listaTaldeak = sailkapena.getTaldeak(); 
+        ArrayList<Integer> listaPuntuak = sailkapena.getPuntuak();
 
-        int pos = 1;
-        for (TaldeTemporada tTemp : taldeak) {
-            int diferentzia = tTemp.getGolesFavor() - tTemp.getGolesContra();
-            modeloa.addRow(new Object[]{
-                    pos++,
-                    tTemp.getTalde().getIzena(),
-                    tTemp.getPartidosJugados(),
-                    tTemp.getVictorias(),
-                    tTemp.getEmpates(),
-                    tTemp.getDerrotas(),
-                    tTemp.getGolesFavor(),
-                    tTemp.getGolesContra(),
-                    diferentzia,
-                    tTemp.getLigakoPuntos()
-            });
+        // 2. Egiaztatu null ez direla eta tamaina bera dutela
+        if (listaTaldeak != null && listaPuntuak != null && listaTaldeak.size() == listaPuntuak.size()) {
+            
+            // 'i' indizea erabiltzen dugu bi zerrendak batera irakurtzeko
+            for (int i = 0; i < listaTaldeak.size(); i++) {
+                Talde t = listaTaldeak.get(i);
+                Integer p = listaPuntuak.get(i);
+                
+                // Errenkada gehitu taulara
+                modeloa.addRow(new Object[]{
+                        i + 1,              // Posizioa (1, 2, 3...)
+                        t.getIzena(),       // Taldearen izena
+                        p                   // Puntuak (puntuen zerrendatik)
+                });
+            }
         }
 
+        // Taula panelera gehitu
         add(new JScrollPane(new JTable(modeloa)), BorderLayout.CENTER);
     }
 }

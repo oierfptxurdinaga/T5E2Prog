@@ -1,13 +1,16 @@
 package model;
 
-public class Partidua {
+import java.io.Serializable;
+
+public class Partidua implements Serializable{
 
 	private Talde etxekoTaldea;
 	private Talde kanpokoTaldea;
 	private int etxekoGolak;
 	private int kanpokoGolak;
 	
-	public Partidua(Talde etxekoTaldea, Talde kanpokoTaldea) {
+	
+	public Partidua(Talde etxekoTaldea, Talde kanpokoTaldea, int etxekoGolak, int kanpokoGolak) {
 		this.etxekoTaldea = etxekoTaldea;
 		this.kanpokoTaldea = kanpokoTaldea;
 		this.etxekoGolak=-1;

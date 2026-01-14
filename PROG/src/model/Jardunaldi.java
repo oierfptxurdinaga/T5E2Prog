@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Jardunaldi {
+public class Jardunaldi implements Serializable{
 	
 	private int jardunaldiZbk;
 	private ArrayList<Partidua> partiduak;
@@ -11,6 +12,10 @@ public class Jardunaldi {
 		this.jardunaldiZbk = jardunaldiZbk;
 		this.partiduak = partiduak;
 	}
+	public Jardunaldi(int jardunaldiZbk) {
+        this.jardunaldiZbk = jardunaldiZbk;
+        this.partiduak = new ArrayList<>(); 
+    }
 	
 	//getters and setters
 	public int getJardunaldiZbk() {
@@ -26,4 +31,11 @@ public class Jardunaldi {
 		this.partiduak = partiduak;
 	}
 
+	public void addPartidua(Partidua p) {
+        if (this.partiduak == null) {
+            this.partiduak = new ArrayList<>();
+        }
+
+        this.partiduak.add(p);
+    }
 }

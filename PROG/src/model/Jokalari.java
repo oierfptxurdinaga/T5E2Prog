@@ -1,10 +1,12 @@
 package model;
 
-public class Jokalari {
+import java.io.Serializable;
+
+public class Jokalari implements Serializable{
 
 	private String izena;
 	private String abizena;
-	private int jaiotseUrtea;
+	private int jaiotzeUrtea;
 	private int dortsala;
 	private String posizio;
 	private boolean aktiboaDago;
@@ -12,7 +14,7 @@ public class Jokalari {
 	public Jokalari(String izena, String abizena, int jaiotseUrtea, int dortsala, String posizio, boolean aktiboaDago) {
 		this.izena = izena;
 		this.abizena = abizena;
-		this.jaiotseUrtea = jaiotseUrtea;
+		this.jaiotzeUrtea = jaiotseUrtea;
 		this.dortsala = dortsala;
 		this.posizio = posizio;
 		this.aktiboaDago = aktiboaDago;
@@ -31,11 +33,11 @@ public class Jokalari {
 	public void setAbizena(String abizena) {
 		this.abizena = abizena;
 	}
-	public int getJaiotseUrtea() {
-		return jaiotseUrtea;
+	public int getJaiotzeUrtea() {
+		return jaiotzeUrtea;
 	}
-	public void setJaiotseUrtea(int adina) {
-		this.jaiotseUrtea = adina;
+	public void setJaiotzeUrtea(int adina) {
+		this.jaiotzeUrtea = adina;
 	}
 	public int getDortsala() {
 		return dortsala;

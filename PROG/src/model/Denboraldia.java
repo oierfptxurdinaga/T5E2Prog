@@ -1,8 +1,9 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Denboraldia {
+public class Denboraldia implements Serializable{
 
     private int urtea;
     private ArrayList<Talde> ligakoTaldeak;           // Todos los equipos posibles
@@ -18,14 +19,12 @@ public class Denboraldia {
         this.denboraldiaHasiDa = false;
     }
 
-    // Inicializar temporada con equipos activos
-    public void iniciarTemporada(ArrayList<Talde> equiposActivos) {
-        ArrayList<TaldeTemporada> listaSailkapena = new ArrayList<>();
-        for (Talde t : equiposActivos) {
-            listaSailkapena.add(new TaldeTemporada(t, true));
-        }
-        ligakoSailkapena.setSailkapenaTemporada(listaSailkapena);
-        this.denboraldiaHasiDa = true;
+    public Denboraldia(int urtea) {
+    	this.urtea = urtea;
+    	this.ligakoTaldeak = new ArrayList<Talde>();
+    	this.ligakoSailkapena = new Sailkapena();
+        this.ligakoJardunaldi = new ArrayList<>(); 
+        this.denboraldiaHasiDa = false;
     }
 
     // Getters y setters
@@ -47,5 +46,25 @@ public class Denboraldia {
     @Override
     public String toString() {
         return String.valueOf(urtea);
+    }
+    
+    public void gehituTaldea(Talde taldea) {
+        if (taldea != null) {
+            if (!this.ligakoTaldeak.contains(taldea)) {
+                this.ligakoTaldeak.add(taldea);
+
+                if (this.ligakoSailkapena != null) {
+                    this.ligakoSailkapena.gehituTaldea(taldea);
+                }
+            }
+        }
+    }
+    public void addJardunaldia(Jardunaldi j) {
+        if (this.ligakoJardunaldi == null) {
+            this.ligakoJardunaldi = new ArrayList<>();
+        }
+        
+
+        this.ligakoJardunaldi.add(j);
     }
 }

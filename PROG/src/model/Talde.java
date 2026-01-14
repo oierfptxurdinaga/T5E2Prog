@@ -1,9 +1,10 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Talde {
-	
+public class Talde implements Serializable{
+	private int id;
 	private String izena;
 	private String eskutua;
 	private String futbolZelaia;
@@ -20,8 +21,7 @@ public class Talde {
 		this.aktiboaDago = aktiboaDago;
 	}
 	
-	//getters and setters
-	public void set(Talde taldea) {
+	public Talde(Talde taldea) {
 		this.izena = taldea.izena;
 		this.eskutua = taldea.eskutua;
 		this.futbolZelaia = taldea.futbolZelaia;
@@ -29,6 +29,7 @@ public class Talde {
 		this.hiria = taldea.hiria;
 		this.aktiboaDago = taldea.aktiboaDago;
 	}
+	//getters and setters
 	
 	public String getIzena() {
 		return izena;
@@ -62,7 +63,7 @@ public class Talde {
 		this.jokalariak = jokalariak;
 	}
 
-	public String getSHiria() {
+	public String getHiria() {
 		return hiria;
 	}
 
@@ -82,5 +83,11 @@ public class Talde {
 		if(this.eskutua!=Eskutua) {
 			this.eskutua=Eskutua;
 		}
+	}
+	public void sartuJokalaria (Jokalari j) {
+		if (this.jokalariak == null) {
+            this.jokalariak = new ArrayList<>();
+        }
+        this.jokalariak.add(j);
 	}
 }
