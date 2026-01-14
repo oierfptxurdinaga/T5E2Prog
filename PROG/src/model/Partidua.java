@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Partidua implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private Talde etxekoTaldea;
 	private Talde kanpokoTaldea;
 	private int etxekoGolak;

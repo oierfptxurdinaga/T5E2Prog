@@ -5,8 +5,9 @@ import java.util.ArrayList;
 import model.*;
 
 public class PanelAdmin extends JPanel {
+	private static final long serialVersionUID = 1L;
 
-    // ALDAKETA: ArrayList<Talde> dela ziurtatzen dugu
+	// ALDAKETA: ArrayList<Talde> dela ziurtatzen dugu
     public PanelAdmin(Erabiltzaile erab, ArrayList<Talde> taldeak) {
         add(new JLabel("Administratzaile Panela: " + erab.getErabiltzaile()));
     }

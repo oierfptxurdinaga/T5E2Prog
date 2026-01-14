@@ -9,7 +9,9 @@ import model.*;
 
 public class PanelTaldeak extends JPanel {
 
-    public PanelTaldeak(ArrayList<Talde> taldeak) {
+	private static final long serialVersionUID = 1L;
+
+	public PanelTaldeak(ArrayList<Talde> taldeak) {
         setLayout(new BorderLayout());
 
         // Panel nagusia (zerrenda)

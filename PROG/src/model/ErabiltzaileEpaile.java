@@ -2,6 +2,8 @@ package model;
 
 public class ErabiltzaileEpaile extends Erabiltzaile {
 
+	private static final long serialVersionUID = 1L;
+
 	public ErabiltzaileEpaile(String erabiltzaile, String pasahitza) {
 		super(erabiltzaile, pasahitza);
 	}

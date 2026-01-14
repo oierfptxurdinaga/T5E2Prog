@@ -3,68 +3,94 @@ package model;
 import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Denboraldia implements Serializable{
+public class Denboraldia implements Serializable {
 
+    private static final long serialVersionUID = 1L;
     private int urtea;
-    private ArrayList<Talde> ligakoTaldeak;           // Todos los equipos posibles
-    private ArrayList<Jardunaldi> ligakoJardunaldi;   // Jornadas
-    private Sailkapena ligakoSailkapena;             // Clasificación
-    private boolean denboraldiaHasiDa;
+    private ArrayList<Talde> ligakoTaldeak;
+    private ArrayList<Jardunaldi> ligakoJardunaldi;
 
-    public Denboraldia(int urtea, ArrayList<Talde> ligakoTaldeak) {
-        this.urtea = urtea;
-        this.ligakoTaldeak = ligakoTaldeak;
-        this.ligakoJardunaldi = new ArrayList<>();
-        this.ligakoSailkapena = new Sailkapena();
-        this.denboraldiaHasiDa = false;
-    }
-
+    
     public Denboraldia(int urtea) {
-    	this.urtea = urtea;
-    	this.ligakoTaldeak = new ArrayList<Talde>();
-    	this.ligakoSailkapena = new Sailkapena();
-        this.ligakoJardunaldi = new ArrayList<>(); 
-        this.denboraldiaHasiDa = false;
+        this.urtea = urtea;
+        this.ligakoTaldeak = new ArrayList<>();
+        this.ligakoJardunaldi = new ArrayList<>();
     }
 
-    // Getters y setters
+    // --- GETTERS & SETTERS ---
     public int getUrtea() { return urtea; }
-    public void setUrtea(int urtea) { this.urtea = urtea; }
-
     public ArrayList<Talde> getLigakoTaldeak() { return ligakoTaldeak; }
     public void setLigakoTaldeak(ArrayList<Talde> ligakoTaldeak) { this.ligakoTaldeak = ligakoTaldeak; }
-
     public ArrayList<Jardunaldi> getLigakoJardunaldi() { return ligakoJardunaldi; }
     public void setLigakoJardunaldi(ArrayList<Jardunaldi> ligakoJardunaldi) { this.ligakoJardunaldi = ligakoJardunaldi; }
+    
+    public void addJardunaldia(Jardunaldi j) { this.ligakoJardunaldi.add(j); }
+    public void gehituTaldea(Talde t) { this.ligakoTaldeak.add(t); }
 
-    public Sailkapena getLigakoSailkapena() { return ligakoSailkapena; }
-    public void setLigakoSailkapena(Sailkapena ligakoSailkapena) { this.ligakoSailkapena = ligakoSailkapena; }
+    // -------------------------------------------------------------------------
+    // EGOERA LOGIKA (ALDAKETA HEMEN)
+    // -------------------------------------------------------------------------
 
-    public boolean isDenboraldiaHasiDa() { return denboraldiaHasiDa; }
-    public void setDenboraldiaHasiDa(boolean denboraldiaHasiDa) { this.denboraldiaHasiDa = denboraldiaHasiDa; }
+    /**
+     * Denboraldia HASITA dago gutxienez PARTIDU BAT (1) jokatuta badago.
+     * Ez da itxaron behar jardunaldi osoa amaitu arte.
+     */
+    public boolean isHasiDa() {
+        if (this.ligakoJardunaldi == null || this.ligakoJardunaldi.isEmpty()) {
+            return false;
+        }
+
+        // Jardunaldi guztiak zeharkatu
+        for (Jardunaldi j : this.ligakoJardunaldi) {
+            if (j.getPartiduak() != null) {
+                // Partidu guztiak zeharkatu
+                for (Partidua p : j.getPartiduak()) {
+                    // Jokatutako BAT BAKARRA aurkitzen badugu, TRUE itzultzen dugu berehala.
+                    if (p.jokatutaDago()) {
+                        return true;
+                    }
+                }
+            }
+        }
+        // Egutegi osoa begiratu eta inork jokatu ez badu:
+        return false;
+    }
+
+    /**
+     * Denboraldia AMAITUTA dago partidu GUZTIAK (absolutuki denak) jokatu badira.
+     */
+    public boolean isAmaituta() {
+        if (this.ligakoJardunaldi == null || this.ligakoJardunaldi.isEmpty()) {
+            return false;
+        }
+        
+        // Dena begiratu ea jokatu gabeko partidurik dagoen
+        for (Jardunaldi j : this.ligakoJardunaldi) {
+            if (j.getPartiduak() != null) {
+                for (Partidua p : j.getPartiduak()) {
+                    // Jokatu gabeko bat aurkitzen badugu, EZ da amaitu
+                    if (!p.jokatutaDago()) {
+                        return false;
+                    }
+                }
+            }
+        }
+        // Hona iristen bada, denak jokatuta daude
+        return true;
+    }
+    
+    // PanelAdmin-ekin bateragarritasuna mantentzeko
+    public boolean isDenboraldiaHasiDa() {
+        return isHasiDa();
+    }
+    
+    // Setter hutsa (kode zaharrak errorerik ez emateko)
+    public void setDenboraldiaHasiDa(boolean b) {
+        // Ez du ezer egiten, orain automatikoa da.
+    }
 
     @Override
     public String toString() {
         return String.valueOf(urtea);
-    }
-    
-    public void gehituTaldea(Talde taldea) {
-        if (taldea != null) {
-            if (!this.ligakoTaldeak.contains(taldea)) {
-                this.ligakoTaldeak.add(taldea);
-
-                if (this.ligakoSailkapena != null) {
-                    this.ligakoSailkapena.gehituTaldea(taldea);
-                }
-            }
-        }
-    }
-    public void addJardunaldia(Jardunaldi j) {
-        if (this.ligakoJardunaldi == null) {
-            this.ligakoJardunaldi = new ArrayList<>();
-        }
-        
-
-        this.ligakoJardunaldi.add(j);
     }
 }

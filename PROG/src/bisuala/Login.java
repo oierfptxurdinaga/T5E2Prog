@@ -9,8 +9,8 @@ import model.*;
 import utils.DatuKarga; 
 
 public class Login extends JFrame {
-
-    private JTextField txtUser;
+	private static final long serialVersionUID = 1L;
+	private JTextField txtUser;
     private JPasswordField txtPass;
     
     private ArrayList<Erabiltzaile> erabiltzaileak;

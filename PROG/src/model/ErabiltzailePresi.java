@@ -6,6 +6,11 @@ import javax.swing.JOptionPane;
 
 public class ErabiltzailePresi extends Erabiltzaile {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
+
 	public ErabiltzailePresi(String erabiltzaile, String pasahitza) {
 		super(erabiltzaile, pasahitza);
 	}

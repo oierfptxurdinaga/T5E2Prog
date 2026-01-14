@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Jokalari implements Serializable{
 
+	private static final long serialVersionUID = 1L;
 	private String izena;
 	private String abizena;
 	private int jaiotzeUrtea;

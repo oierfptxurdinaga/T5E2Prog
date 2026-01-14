@@ -15,7 +15,7 @@ import java.util.Map;
 import model.*;
 
 public class PanelSailkapena extends JPanel {
-
+	private static final long serialVersionUID = 1L;
 	private JTable taula;
 	private DefaultTableModel modeloa;
 
@@ -203,6 +203,7 @@ public class PanelSailkapena extends JPanel {
 
 	// --- RENDERER PERSONALIZADO ---
 	private class EstiloRenderer extends DefaultTableCellRenderer {
+		private static final long serialVersionUID = 1L;
 		private boolean zentratu;
 
 		public EstiloRenderer(boolean zentratu) {

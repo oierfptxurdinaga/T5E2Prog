@@ -8,11 +8,11 @@ public class DatuKarga {
 
     // Fitxategien bideak (Rutas de los archivos)
     private static final String ERABILTZAILE_PATH = "src/data/erabiltzaileak.ser";
-    private static final String DENBORALDI_PATH = "src/data/ligaren_datuak.ser";
+    // Orain Federazioa fitxategira apuntatzen dugu (DatuKargatzailea-n jarri duzun izen bera)
+    private static final String FEDERAZIOA_PATH = "src/data/federazioa.ser";
 
     /**
      * Erabiltzaileak .ser fitxategitik kargatzen ditu.
-     * Fitxategia ez bada existitzen, zerrenda huts bat itzultzen du.
      */
     @SuppressWarnings("unchecked")
     public static ArrayList<Erabiltzaile> kargatuErabiltzaileak() {
@@ -22,34 +22,49 @@ public class DatuKarga {
         if (fitxategia.exists()) {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fitxategia))) {
                 zerrenda = (ArrayList<Erabiltzaile>) ois.readObject();
-                System.out.println("Erabiltzaileak zuzen kargatu dira.");
+                // System.out.println("Erabiltzaileak zuzen kargatu dira.");
             } catch (IOException | ClassNotFoundException e) {
                 System.err.println("Errorea erabiltzaileak kargatzean: " + e.getMessage());
             }
         } else {
-            System.out.println("Ez da 'erabiltzaileak.ser' aurkitu. Zerrenda berria sortuko da.");
+            System.out.println("Ez da 'erabiltzaileak.ser' aurkitu.");
         }
         return zerrenda;
     }
 
     /**
-     * Denboraldiak .ser fitxategitik kargatzen ditu.
+     * Federazioa (eta bere barruan denboraldiak/taldeak) kargatzen ditu.
+     * Fitxategia existitzen ez bada, 'null' itzultzen du.
      */
-    @SuppressWarnings("unchecked")
-    public static ArrayList<Denboraldia> kargatuDenboraldiak() {
-        ArrayList<Denboraldia> zerrenda = new ArrayList<>();
-        File fitxategia = new File(DENBORALDI_PATH);
+    public static Federazioa kargatuFederazioa() {
+        Federazioa federazioa = null;
+        File fitxategia = new File(FEDERAZIOA_PATH);
 
         if (fitxategia.exists()) {
             try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(fitxategia))) {
-                zerrenda = (ArrayList<Denboraldia>) ois.readObject();
-                System.out.println("Denboraldiak zuzen kargatu dira.");
+                federazioa = (Federazioa) ois.readObject();
+                // System.out.println("Federazioa eta datuak zuzen kargatu dira.");
             } catch (IOException | ClassNotFoundException e) {
-                System.err.println("Errorea denboraldiak kargatzean: " + e.getMessage());
+                System.err.println("Errorea Federazioa kargatzean: " + e.getMessage());
+                e.printStackTrace();
             }
         } else {
-            System.out.println("Ez da 'denboraldiak.ser' aurkitu. Zerrenda berria sortuko da.");
+            System.out.println("Ez da 'federazioa.ser' aurkitu. DatuKargatzailea exekutatu duzu?");
         }
-        return zerrenda;
+        return federazioa;
+    }
+
+    /**
+     * Federazioaren egoera gordetzen du fitxategian (.ser).
+     * Metodo hau deitu behar da denboraldi berri bat sortzen denean.
+     */
+    public static void gordeFederazioa(Federazioa federazioa) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FEDERAZIOA_PATH))) {
+            oos.writeObject(federazioa);
+            System.out.println("Aldaketak ondo gorde dira hemen: " + FEDERAZIOA_PATH);
+        } catch (IOException e) {
+            System.err.println("Errorea datuak gordetzerakoan: " + e.getMessage());
+            e.printStackTrace();
+        }
     }
 }

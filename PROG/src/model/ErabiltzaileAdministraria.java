@@ -4,6 +4,8 @@ import javax.swing.JOptionPane;
 
 public class ErabiltzaileAdministraria extends Erabiltzaile {
 
+	private static final long serialVersionUID = 1L;
+
 	public ErabiltzaileAdministraria(String erabiltzaile, String pasahitza) {
 		super(erabiltzaile, pasahitza);
 	}

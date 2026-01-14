@@ -3,7 +3,9 @@ package model;
 import java.io.Serializable;
 
 public abstract class Erabiltzaile implements Serializable {
-    protected String erabiltzaile;
+
+	private static final long serialVersionUID = 1L;
+	protected String erabiltzaile;
     protected String pasahitza;
 
     public Erabiltzaile(String erabiltzaile, String pasahitza) {

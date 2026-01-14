@@ -7,228 +7,277 @@ import model.*;
 public class DatuKargatzailea {
 
     public static void main(String[] args) {
-        System.out.println("Sistemaren datuak hasieratzen (Federazioa egitura)...");
+        System.out.println("Sistemaren datuak hasieratzen (Denboraldi osoa + Jokalari errealak 12 taldeentzat)...");
 
         File dataKarpeta = new File("src/data");
         if (!dataKarpeta.exists()) {
             dataKarpeta.mkdirs();
         }
 
-        // 1. FEDERAZIOA SORTU (Objektu nagusia)
+        // 1. FEDERAZIOA SORTU
         Federazioa federazioa = new Federazioa();
 
-        // 2. TALDEAK SORTU (Map egitura kargatu)
+        // 2. TALDEAK SORTU
         Map<Integer, Talde> taldeMapa = sortuTaldeak();
 
-        // 3. JOKALARIAK KARGATU
-        kargatuJokalariak(taldeMapa);
+        // 3. JOKALARIAK KARGATU (12 TALDEEN DATU ERREALAK)
+        kargatuJokalariakErrealak(taldeMapa);
 
-        // --- ALDAKETA GARRANTZITSUA ---
-        // 4. TALDE GUZTIAK (10ak) FEDERAZIOAN GORDE
-        // Orain bai, 10 taldeak gordetzen dira sisteman
+        // 4. TALDE GUZTIAK FEDERAZIOAN GORDE
         for (Talde t : taldeMapa.values()) {
             federazioa.gehituTaldea(t);
         }
 
         // 5. DENBORALDIA SORTU (2024)
+        // NOTA: Para cumplir tu requisito de "10 jornadas" (ida y vuelta), 
+        // la liga activa debe ser de 6 equipos. 
+        // Si metemos los 12 equipos, saldrían 22 jornadas.
+        // Aquí meto los 6 primeros a la liga, pero los otros 6 existen en la federación para fichar.
         Denboraldia denboraldia = new Denboraldia(2024);
+        denboraldia.setDenboraldiaHasiDa(true); 
 
-        // LIGAKO INSKRIPZIOA: Lehenengo 6ak bakarrik sartuko ditugu aurtengo ligan
         for (int i = 1; i <= 6; i++) {
             denboraldia.gehituTaldea(taldeMapa.get(i));
         }
 
-        // 6. JARDUNALDIAK KARGATU
-        kargatuPartiduak(denboraldia, taldeMapa);
+        // 6. JARDUNALDIAK KARGATU (10 JARDUNALDI)
+        kargatuPartiduakOsoak(denboraldia, taldeMapa);
 
-        // Denboraldia Federazioari gehitu
         federazioa.gehituDenboraldia(denboraldia);
 
-        // 7. ERABILTZAILEAK (Hau berdin uzten dugu)
+        // 7. ERABILTZAILEAK
         List<Erabiltzaile> erabiltzaileZerrenda = new ArrayList<>();
         erabiltzaileZerrenda.add(new ErabiltzaileAdministraria("admin", "admin"));
         erabiltzaileZerrenda.add(new ErabiltzaileEpaile("epaile", "epaile"));
         erabiltzaileZerrenda.add(new ErabiltzailePresi("presi", "presi"));
 
-        // 8. DATUAK GORDE (.SER fitxategiak)
-        // Orain 'federazioa.ser' gordetzen dugu, barruan dena duelako (Taldeak + Denboraldiak)
+        // 8. DATUAK GORDE
         gordeObjektua(federazioa, "src/data/federazioa.ser");
         gordeObjektua(erabiltzaileZerrenda, "src/data/erabiltzaileak.ser");
 
         System.out.println("Datuak ondo sortu eta gorde dira.");
     }
 
-    // ... (Beheko metodo pribatuak: sortuTaldeak, kargatuJokalariak, etab. BERDIN MANTENDU) ...
-    // ... (Zuk daukazun kode berdina kopiatu hemen behean) ...
-    // ... (Mantén el resto de métodos: sortuTaldeak, kargatuJokalariak, kargatuPartiduak, sortuPartidua, gordeObjektua IGUAL QUE ANTES)
-    // Solo asegúrate de copiar los métodos privados que tenías abajo.
-    
-    // NOTA: Copia aquí abajo tus métodos privados sortuTaldeak(), kargatuJokalariak(), etc.
-    // No los he puesto para no hacer el texto gigante, pero son necesarios.
-    // ...
     private static Map<Integer, Talde> sortuTaldeak() {
-		Map<Integer, Talde> taldeak = new HashMap<>();
-		// ID, Izena, Irudia, Estadioa, JokalariZerrenda, Hiria, Aktibo
-		Object[][] datuak = {
-				{ 1, "Barça Futsal", "/resources/images/barcelona.png", "Palau Blaugrana", new ArrayList<Jokalari>(),
-						"Barcelona", true },
-				{ 2, "ElPozo Murcia", "/resources/images/elpozo.png", "Palacio de Deportes de Murcia",
-						new ArrayList<Jokalari>(), "Murcia", true },
-				{ 3, "Inter Movistar", "/resources/images/inter.png", "Jorge Garbajosa", new ArrayList<Jokalari>(),
-						"Torrejon de Ardoz", true },
-				{ 4, "Palma Futsal", "/resources/images/baleares.png", "Son Moix", new ArrayList<Jokalari>(), "Palma",
-						true },
-				{ 5, "Jaén Paraíso", "/resources/images/jaen.png", "Olivo Arena", new ArrayList<Jokalari>(), "Jaen",
-						true },
-				{ 6, "Xota FS", "/resources/images/xota.png", "Anaitasuna", new ArrayList<Jokalari>(), "Pamplona",
-						true },
-				{ 7, "Jimbee Cartagena", "/resources/images/cartagena.png", "Cartagena", new ArrayList<Jokalari>(),
-						"Cartagena", false },
-				{ 8, "Peñíscola", "/resources/images/peñiscola.png", "Juan Vizcarro", new ArrayList<Jokalari>(),
-						"Peñiscola", false },
-				{ 9, "Burela FS", "/resources/images/burela.png", "Vista Alegre", new ArrayList<Jokalari>(), "Burela",
-						false },
-				{ 10, "Córdoba Pat.", "/resources/images/cordoba.png", "Vista Alegre", new ArrayList<Jokalari>(),
-						"Cordoba", false } };
+        Map<Integer, Talde> taldeak = new HashMap<>();
+        // ID, Izena, Irudia, Estadioa, JokalariZerrenda, Hiria, Aktibo
+        Object[][] datuak = {
+            { 1, "Barça Futsal", "/resources/images/barcelona.png", "Palau Blaugrana", new ArrayList<Jokalari>(), "Barcelona", true },
+            { 2, "ElPozo Murcia", "/resources/images/elpozo.png", "Palacio de Deportes", new ArrayList<Jokalari>(), "Murcia", true },
+            { 3, "Inter Movistar", "/resources/images/inter.png", "Jorge Garbajosa", new ArrayList<Jokalari>(), "Torrejon", true },
+            { 4, "Mallorca Palma Futsal", "/resources/images/baleares.png", "Son Moix", new ArrayList<Jokalari>(), "Palma", true },
+            { 5, "Jaén Paraíso Interior", "/resources/images/jaen.png", "Olivo Arena", new ArrayList<Jokalari>(), "Jaen", true },
+            { 6, "Viña Albali Valdepeñas", "/resources/images/valdepenas.png", "Virgen de la Cabeza", new ArrayList<Jokalari>(), "Valdepeñas", true },
+            { 7, "Jimbee Cartagena", "/resources/images/cartagena.png", "Palacio Deportes", new ArrayList<Jokalari>(), "Cartagena", true },
+            { 8, "Aspil-Jumpers Ribera", "/resources/images/ribera.png", "Ciudad de Tudela", new ArrayList<Jokalari>(), "Tudela", true },
+            { 9, "Industrias Santa Coloma", "/resources/images/industrias.png", "Pavelló Nou", new ArrayList<Jokalari>(), "Sta Coloma", true },
+            { 10, "Xota FS", "/resources/images/xota.png", "Anaitasuna", new ArrayList<Jokalari>(), "Pamplona", true },
+            { 11, "Córdoba Patrimonio", "/resources/images/cordoba.png", "Vista Alegre", new ArrayList<Jokalari>(), "Córdoba", true },
+            { 12, "Noia Portus Apostoli", "/resources/images/noia.png", "Agustín Mourís", new ArrayList<Jokalari>(), "Noia", true }
+        };
 
-		for (Object[] d : datuak) {
-			Talde t = new Talde((String) d[1], (String) d[2], (String) d[3], (ArrayList<Jokalari>) d[4], (String) d[5],
-					(boolean) d[6]);
-			taldeak.put((Integer) d[0], t);
-		}
-		return taldeak;
-	}
+        for (Object[] d : datuak) {
+            Talde t = new Talde((String) d[1], (String) d[2], (String) d[3], (ArrayList<Jokalari>) d[4], (String) d[5], (boolean) d[6]);
+            taldeak.put((Integer) d[0], t);
+        }
+        return taldeak;
+    }
 
-	private static void kargatuJokalariak(Map<Integer, Talde> taldeMapa) {
-		String[][] jokalariDatuak = {
-				// Barça (1)
-				{ "Miquel", "Feixas", "1997-09-04" }, { "Didac", "Plana", "1990-05-22" },
-				{ "Antonio", "Pérez", "2000-10-10" }, { "André", "Coelho", "1993-10-30" },
-				{ "Sergio", "Lozano", "1988-11-09" }, { "Dyego", "Zuffo", "1989-08-05" },
-				{ "Adolfo", "Fernández", "1993-05-19" }, { "Catela", "Juanjo", "1995-04-14" },
-				{ "Matheus", "Rodrigues", "1996-10-03" }, { "Erick", "Mendonça", "1995-07-21" },
-				{ "Pito", "Guisel", "1991-11-06" }, { "Alex", "Yepes", "1989-03-12" },
-				// ElPozo (2)
-				{ "Juanjo", "Angosto", "1985-08-19" }, { "Edu", "Sousa", "1996-08-15" },
-				{ "Felipe", "Valerio", "1993-07-08" }, { "Marlon", "Oliveira", "1987-12-28" },
-				{ "Marcel", "Marques", "1996-07-26" }, { "Gadeia", "Fabricio", "1988-06-14" },
-				{ "David", "Álvarez", "1998-02-14" }, { "Ricardo", "Mayor", "2000-02-21" },
-				{ "Esteban", "Guerrero", "1995-04-14" }, { "Rafa", "Santos", "1990-09-21" },
-				{ "Bruno", "Taffy", "1990-03-30" }, { "Eric", "Pérez", "1997-02-10" },
-				// Inter (3)
-				{ "Jesús", "Herrero", "1986-11-04" }, { "Jesús", "García", "1999-02-05" },
-				{ "Raya", "José Javier", "1997-01-01" }, { "Humberto", "De Araujo", "1986-11-24" },
-				{ "Cecilio", "Morales", "1992-07-06" }, { "Rubi", "Lemos", "1987-11-13" },
-				{ "Terry", "Prestjord", "1993-01-01" }, { "Kaito", "Eto", "1998-01-01" },
-				{ "Sepe", "García", "1990-11-04" }, { "Drahovsky", "Tomas", "1992-10-07" },
-				{ "Raúl", "Gómez", "1995-10-25" }, { "Fits", "Rafael", "1992-05-23" },
-				// Palma (4)
-				{ "Luan", "Muller", "1993-03-17" }, { "Carlos", "Barrón", "1987-10-01" },
-				{ "Rómulo", "Alves", "1986-09-28" }, { "Chaguinha", "Bruno", "1988-07-25" },
-				{ "Moslem", "Oladghobad", "1995-11-29" }, { "Cleber", "Gomes", "1997-01-06" },
-				{ "Rivillos", "Mario", "1989-12-13" }, { "Neguinho", "Joao", "2000-07-12" },
-				{ "Bruno", "Gomes", "1996-01-01" }, { "Gordillo", "Jesús", "2001-02-08" },
-				{ "Tayebi", "Hossein", "1988-09-29" }, { "Fabinho", "Gomes", "2001-11-29" },
-				// Jaén (5)
-				{ "Espindola", "Carlos", "1993-07-12" }, { "Dudu", "Eduardo", "1996-02-15" },
-				{ "Taborda", "Pablo", "1986-09-02" }, { "Menzeguez", "Gerardo", "1993-04-23" },
-				{ "Alan", "Brandi", "1987-11-24" }, { "Mati", "Rosa", "1995-09-18" },
-				{ "Michel", "Moya", "1997-02-02" }, { "Cesar", "Velasco", "1998-05-30" },
-				{ "Chino", "Javier", "1991-11-26" }, { "Renato", "Lopes", "1997-12-15" },
-				{ "Helder", "Goncalves", "2000-03-25" }, { "Nem", "Everson", "1995-06-12" },
-				// Xota (6)
-				{ "Asier", "Llamas", "1993-05-15" }, { "Oihan", "Sanchez", "2001-01-20" },
-				{ "Tony", "Escribano", "1998-04-14" }, { "Juninho", "Roberto", "1995-06-12" },
-				{ "Linhares", "Fabinho", "1996-08-22" }, { "Roberto", "Martil", "1986-02-21" },
-				{ "Geraghty", "Braulio", "1994-11-12" }, { "Dani", "Zurdo", "2000-08-08" },
-				{ "Pachu", "Alberto", "1992-04-12" }, { "Ion", "Cerviño", "2002-11-20" },
-				{ "Iosu", "Mendell", "2003-01-30" }, { "Josu", "Mendive", "2001-07-15" },
-				// Beste taldeak (soberan dauden datuak...)
-				{ "Chemi", "Oliver", "1996-02-20" }, { "Chispi", "Molina", "1999-05-12" },
-				{ "Bebe", "Rafael", "1990-06-12" }, { "Mellado", "Miguel", "1999-07-23" },
-				// ... (zerrenda jarraitzen du, ez dut dena kopiatuko luzera ez handitzeko)
-		};
+    private static void kargatuJokalariakErrealak(Map<Integer, Talde> taldeMapa) {
+        // Formato: { ID_TALDEA, IZENA, ABIZENA, DORTSALA, POSIZIOA }
+        Object[][] jokalariak = {
+            // --- 1. BARÇA ---
+            { 1, "Sergio", "Lozano", 9, "Hegala" }, { 1, "Jean Pierre", "Pito", 10, "Pibota" },
+            { 1, "Adolfo", "Fernández", 8, "Hegala" }, { 1, "Dídac", "Plana", 21, "Atezaina" },
+            { 1, "Matheus", "Rodrigues", 3, "Hegala" }, { 1, "Miquel", "Feixas", 26, "Atezaina" },
+            { 1, "Antonio", "Pérez", 2, "Itxiera" }, { 1, "André", "Coelho", 4, "Itxiera" },
+            { 1, "Alex", "Yepes", 11, "Pibota" }, { 1, "Erick", "Mendonça", 99, "Unibertsala" },
 
-		String[] posizioPosibleak = { "Atezaina", "Itxiera", "Hegala", "Pibota" };
-		java.util.Random random = new java.util.Random();
-		int jokalariIndizea = 0;
+            // --- 2. ELPOZO MURCIA ---
+            { 2, "Rafa", "Santos", 11, "Pibota" }, { 2, "Felipe", "Valerio", 5, "Itxiera" },
+            { 2, "Gadeia", "Fabricio", 13, "Hegala" }, { 2, "Juanjo", "Angosto", 12, "Atezaina" },
+            { 2, "Marcel", "Marques", 10, "Hegala" }, { 2, "Edu", "Sousa", 1, "Atezaina" },
+            { 2, "Bruno", "Taffy", 9, "Pibota" }, { 2, "Artem", "Niyazov", 96, "Hegala" },
+            { 2, "David", "Álvarez", 8, "Hegala" }, { 2, "Ricardo", "Mayor", 4, "Itxiera" },
 
-		for (int taldeId = 1; taldeId <= 10; taldeId++) {
-			Talde unekoTaldea = taldeMapa.get(taldeId);
-			// 12 jokalari talde bakoitzeko
-			for (int k = 0; k < 12; k++) {
-				if (jokalariIndizea < jokalariDatuak.length) {
-					String[] d = jokalariDatuak[jokalariIndizea];
-					int jaiotzeUrtea = 2000; // Defektuzkoa errorea ez emateko formatua txarra bada
-					try {
-						jaiotzeUrtea = Integer.parseInt(d[2].split("-")[0]);
-					} catch (Exception e) {
-					}
+            // --- 3. INTER MOVISTAR ---
+            { 3, "Jesús", "Herrero", 1, "Atezaina" }, { 3, "Raúl", "Gómez", 8, "Hegala" },
+            { 3, "Cecilio", "Morales", 2, "Itxiera" }, { 3, "Lucas", "Tripodi", 3, "Hegala" },
+            { 3, "Fits", "Rafael", 12, "Pibota" }, { 3, "Javi", "Mínguez", 6, "Hegala" },
+            { 3, "Tomás", "Drahovsky", 10, "Pibota" }, { 3, "Jhonatan", "Linhares", 14, "Itxiera" },
+            { 3, "Humberto", "Dalmata", 7, "Hegala" }, { 3, "Kaito", "Yamada", 19, "Hegala" },
 
-					int dortsala = k + 1;
-					String posizioa = posizioPosibleak[random.nextInt(posizioPosibleak.length)];
+            // --- 4. PALMA FUTSAL ---
+            { 4, "Luan", "Muller", 1, "Atezaina" }, { 4, "Cleber", "Gomes", 10, "Hegala" },
+            { 4, "Mario", "Rivillos", 8, "Hegala" }, { 4, "Moslem", "Oladghobad", 9, "Hegala" },
+            { 4, "Bruno", "Gomes", 11, "Pibota" }, { 4, "Carlos", "Barrón", 21, "Atezaina" },
+            { 4, "Hossein", "Tayebi", 15, "Pibota" }, { 4, "Chaguinha", "Bruno", 2, "Itxiera" },
+            { 4, "Fabinho", "Teixeira", 17, "Hegala" }, { 4, "Rómulo", "Alves", 5, "Itxiera" },
 
-					Jokalari j = new Jokalari(d[0], d[1], jaiotzeUrtea, dortsala, posizioa, true);
-					unekoTaldea.sartuJokalaria(j);
+            // --- 5. JAEN PARAISO ---
+            { 5, "Alan", "Brandi", 10, "Pibota" }, { 5, "Mati", "Rosa", 41, "Pibota" },
+            { 5, "Chino", "Javier", 20, "Hegala" }, { 5, "Michel", "Moyano", 21, "Hegala" },
+            { 5, "César", "Velasco", 8, "Hegala" }, { 5, "Espindola", "Carlos", 2, "Atezaina" },
+            { 5, "Pablo", "Taborda", 14, "Itxiera" }, { 5, "Renato", "Lopes", 12, "Hegala" },
+            { 5, "Helder", "Seminario", 29, "Hegala" }, { 5, "Dudú", "Rodríguez", 15, "Atezaina" },
 
-					jokalariIndizea++;
-				}
-			}
-		}
-	}
+            // --- 6. VIÑA ALBALI VALDEPEÑAS ---
+            { 6, "Boyis", "Antonio", 4, "Itxiera" }, { 6, "Pol", "Pacheco", 10, "Hegala" },
+            { 6, "Eric", "Martel", 7, "Hegala" }, { 6, "Abassi", "Amin", 11, "Pibota" },
+            { 6, "Lolo", "Manuel", 21, "Itxiera" }, { 6, "Marcao", "Marcio", 1, "Atezaina" },
+            { 6, "Solano", "Francisco", 9, "Pibota" }, { 6, "Bynho", "Ferraz", 17, "Hegala" },
+            { 6, "Eloy", "Rojas", 8, "Hegala" }, { 6, "Nano", "David", 23, "Itxiera" },
 
-	private static void kargatuPartiduak(Denboraldia d, Map<Integer, Talde> tMap) {
-		// JARDUNALDIA 1 (Jokatuta)
-		Jardunaldi j1 = new Jardunaldi(1);
-		j1.addPartidua(sortuPartidua(tMap, 1, 2, 4, 3));
-		j1.addPartidua(sortuPartidua(tMap, 3, 4, 2, 2));
-		j1.addPartidua(sortuPartidua(tMap, 5, 6, 2, 2));
-		d.addJardunaldia(j1);
+            // --- 7. JIMBEE CARTAGENA ---
+            { 7, "Mellado", "Miguel", 13, "Hegala" }, { 7, "Lucao", "Lucas", 12, "Hegala" },
+            { 7, "Waltinho", "Walter", 11, "Pibota" }, { 7, "Bebe", "Rafael", 4, "Itxiera" },
+            { 7, "Chemi", "José", 1, "Atezaina" }, // Jarri dugu Atezaina bezala (nahiz eta SQLn ez zehaztu)
+            { 7, "Tomaz", "Braga", 2, "Itxiera" }, { 7, "Pablo", "Ramírez", 9, "Pibota" },
+            { 7, "Juanan", "Sánchez", 21, "Pibota" }, { 7, "Motta", "Felipe", 3, "Hegala" },
+            { 7, "Darío", "Gil", 16, "Hegala" },
 
-		// JARDUNALDIA 2 (Jokatuta)
-		Jardunaldi j2 = new Jardunaldi(2);
-		j2.addPartidua(sortuPartidua(tMap, 2, 3, 1, 5));
-		j2.addPartidua(sortuPartidua(tMap, 4, 5, 3, 3));
-		j2.addPartidua(sortuPartidua(tMap, 6, 1, 1, 4));
-		d.addJardunaldia(j2);
+            // --- 8. ASPIL-JUMPERS RIBERA ---
+            { 8, "Terry", "Prestjord", 10, "Hegala" }, { 8, "David", "García", 5, "Itxiera" },
+            { 8, "Pintinho", "Gabriel", 17, "Hegala" }, { 8, "Carlos", "Bartolomé", 2, "Hegala" },
+            { 8, "Nacho", "Gómez", 21, "Itxiera" }, { 8, "Adrián", "Pereira", 1, "Atezaina" },
+            { 8, "Uge", "Eugenio", 14, "Hegala" }, { 8, "Gabi", "Vasques", 7, "Hegala" },
+            { 8, "Claudino", "Angel", 23, "Hegala" }, { 8, "Petry", "João", 9, "Pibota" },
 
-		// JARDUNALDIA 3 (Jokatuta)
-		Jardunaldi j3 = new Jardunaldi(3);
-		j3.addPartidua(sortuPartidua(tMap, 5, 1, 0, 4));
-		j3.addPartidua(sortuPartidua(tMap, 3, 4, 1, 2));
-		j3.addPartidua(sortuPartidua(tMap, 2, 6, 3, 1));
-		d.addJardunaldia(j3);
+            // --- 9. INDUSTRIAS SANTA COLOMA ---
+            { 9, "Khalid", "Bouzid", 2, "Hegala" }, { 9, "Cardona", "David", 7, "Hegala" },
+            { 9, "Verdejo", "Víctor", 10, "Hegala" }, { 9, "Corso", "Sebastián", 5, "Itxiera" },
+            { 9, "Povill", "Bernat", 14, "Hegala" }, { 9, "Borja", "Puerta", 1, "Atezaina" },
+            { 9, "Uri", "Santos", 9, "Pibota" }, { 9, "Marc", "Tolrà", 4, "Itxiera" },
+            { 9, "Nil", "Closas", 6, "Hegala" }, { 9, "Hirata", "Neto", 11, "Pibota" },
 
-		// JARDUNALDIA 4 (Jokatuta)
-		Jardunaldi j4 = new Jardunaldi(4);
-		j4.addPartidua(sortuPartidua(tMap, 1, 4, 6, 6));
-		j4.addPartidua(sortuPartidua(tMap, 2, 5, 2, 1));
-		j4.addPartidua(sortuPartidua(tMap, 6, 3, 2, 4));
-		d.addJardunaldia(j4);
+            // --- 10. XOTA FS ---
+            { 10, "Asier", "Llamas", 1, "Atezaina" }, { 10, "Linhares", "Juninho", 11, "Hegala" },
+            { 10, "Geraghty", "Tony", 14, "Hegala" }, { 10, "Fabinho", "Silva", 17, "Hegala" },
+            { 10, "Dani", "Zurdo", 10, "Hegala" }, { 10, "Roberto", "Martil", 5, "Itxiera" },
+            { 10, "Ion", "Cerviño", 2, "Itxiera" }, { 10, "Leo", "Café", 8, "Hegala" },
+            { 10, "Vento", "Alejandro", 21, "Hegala" }, { 10, "Raúl", "Jiménez", 9, "Pibota" },
 
-		// JARDUNALDIA 5 (EZ JOKATUTA - PENDIENTE)
-		// -1 jartzen dugu programak jakin dezan oraindik ez direla jokatu
-		Jardunaldi j5 = new Jardunaldi(5);
-		j5.addPartidua(sortuPartidua(tMap, 3, 1, -1, -1));
-		j5.addPartidua(sortuPartidua(tMap, 5, 3, -1, -1));
-		j5.addPartidua(sortuPartidua(tMap, 4, 6, -1, -1));
-		d.addJardunaldia(j5);
-	}
+            // --- 11. CÓRDOBA PATRIMONIO ---
+            { 11, "Fabio", "Alvira", 1, "Atezaina" }, { 11, "Zequi", "Ezequiel", 7, "Hegala" },
+            { 11, "Perin", "Lucas", 11, "Hegala" }, { 11, "Muhammad", "Osamanmusa", 9, "Pibota" },
+            { 11, "Pulinho", "Victor", 10, "Hegala" }, { 11, "Víctor", "Arenas", 12, "Atezaina" },
+            { 11, "Mykytiuk", "Mykola", 14, "Itxiera" }, { 11, "Kauê", "Monteiro", 8, "Hegala" },
+            { 11, "Arnaldo", "Báez", 5, "Itxiera" }, { 11, "Kenji", "González", 2, "Itxiera" },
 
-	private static Partidua sortuPartidua(Map<Integer, Talde> map, int idEtxekoa, int idKanpokoa, int golEtxekoa,
-			int golKanpokoa) {
-		Talde etxekoa = map.get(idEtxekoa);
-		Talde kanpokoa = map.get(idKanpokoa);
-		return new Partidua(etxekoa, kanpokoa, golEtxekoa, golKanpokoa);
-	}
+            // --- 12. NOIA PORTUS APOSTOLI ---
+            { 12, "Henrique", "Rafagnin", 1, "Atezaina" }, { 12, "Power", "Raggiati", 4, "Itxiera" },
+            { 12, "Altamirano", "Leandro", 10, "Hegala" }, { 12, "Pirata", "David", 7, "Hegala" },
+            { 12, "Edu", "Jabá", 14, "Hegala" }, { 12, "Nico", "Sarmiento", 21, "Atezaina" },
+            { 12, "Matheus", "Machado", 11, "Hegala" }, { 12, "Attos", "Mendes", 2, "Itxiera" },
+            { 12, "Rufino", "García", 8, "Hegala" }, { 12, "David", "Pazos", 20, "Hegala" }
+        };
 
-	private static void gordeObjektua(Object obj, String bidea) {
-		try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(bidea))) {
-			oos.writeObject(obj);
-			System.out.println("Gordeta: " + bidea);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
+        for (Object[] d : jokalariak) {
+            int taldeId = (int) d[0];
+            String izena = (String) d[1];
+            String abizena = (String) d[2];
+            int dortsala = (int) d[3];
+            String posizioa = (String) d[4];
 
+            Talde t = taldeMapa.get(taldeId);
+            if (t != null) {
+                // Urtea 1995 jarri diogu defektuz denei adibide honetarako
+                Jokalari j = new Jokalari(izena, abizena, 1995, dortsala, posizioa, true);
+                t.sartuJokalaria(j);
+            }
+        }
+    }
+
+
+        private static void kargatuPartiduakOsoak(Denboraldia d, Map<Integer, Talde> tMap) {
+            // --- IDA (JORNADAS 1-5) ---
+            
+            // J1: JOKATUTA
+            Jardunaldi j1 = new Jardunaldi(1);
+            j1.addPartidua(sortuPartidua(tMap, 1, 6, 4, 2)); // Barça vs Valdepeñas
+            j1.addPartidua(sortuPartidua(tMap, 2, 5, 3, 3)); // ElPozo vs Jaen
+            j1.addPartidua(sortuPartidua(tMap, 3, 4, 5, 4)); // Inter vs Palma
+            d.addJardunaldia(j1);
+
+            // J2: JOKATUTA
+            Jardunaldi j2 = new Jardunaldi(2);
+            j2.addPartidua(sortuPartidua(tMap, 6, 4, 1, 2)); // Valdepeñas vs Palma
+            j2.addPartidua(sortuPartidua(tMap, 5, 3, 2, 2)); // Jaen vs Inter
+            j2.addPartidua(sortuPartidua(tMap, 1, 2, 3, 1)); // Barça vs ElPozo
+            d.addJardunaldia(j2);
+
+            // J3: JOKATUTA
+            Jardunaldi j3 = new Jardunaldi(3);
+            j3.addPartidua(sortuPartidua(tMap, 2, 6, 5, 0)); // ElPozo vs Valdepeñas
+            j3.addPartidua(sortuPartidua(tMap, 3, 1, 2, 4)); // Inter vs Barça
+            j3.addPartidua(sortuPartidua(tMap, 4, 5, 1, 1)); // Palma vs Jaen
+            d.addJardunaldia(j3);
+
+            // J4: JOKATUTA
+            Jardunaldi j4 = new Jardunaldi(4);
+            j4.addPartidua(sortuPartidua(tMap, 6, 5, 2, 3)); // Valdepeñas vs Jaen
+            j4.addPartidua(sortuPartidua(tMap, 1, 4, 4, 4)); // Barça vs Palma
+            j4.addPartidua(sortuPartidua(tMap, 2, 3, 3, 2)); // ElPozo vs Inter
+            d.addJardunaldia(j4);
+
+            // J5: JOKATUTA (Lehen itzuliaren amaiera)
+            Jardunaldi j5 = new Jardunaldi(5);
+            j5.addPartidua(sortuPartidua(tMap, 3, 6, 5, 2)); // Inter vs Valdepeñas
+            j5.addPartidua(sortuPartidua(tMap, 4, 2, 3, 3)); // Palma vs ElPozo
+            j5.addPartidua(sortuPartidua(tMap, 5, 1, 1, 4)); // Jaen vs Barça
+            d.addJardunaldia(j5);
+
+            // --- VUELTA (JORNADAS 6-10) --- 
+            // Etxeko/Kanpoko alderantziz eta emaitza berriak
+            
+            // J6 (Vuelta de J1): JOKATUTA
+            Jardunaldi j6 = new Jardunaldi(6);
+            j6.addPartidua(sortuPartidua(tMap, 6, 1, 2, 5)); // Valdepeñas vs Barça
+            j6.addPartidua(sortuPartidua(tMap, 5, 2, 1, 0)); // Jaen vs ElPozo
+            j6.addPartidua(sortuPartidua(tMap, 4, 3, 4, 3)); // Palma vs Inter
+            d.addJardunaldia(j6);
+
+            // J7 (Vuelta de J2): JOKATUTA
+            Jardunaldi j7 = new Jardunaldi(7);
+            j7.addPartidua(sortuPartidua(tMap, 4, 6, 3, 1)); // Palma vs Valdepeñas
+            j7.addPartidua(sortuPartidua(tMap, 3, 5, 4, 2)); // Inter vs Jaen
+            j7.addPartidua(sortuPartidua(tMap, 2, 1, 2, 2)); // ElPozo vs Barça
+            d.addJardunaldia(j7);
+
+            // J8 (Vuelta de J3): JOKATUTA
+            Jardunaldi j8 = new Jardunaldi(8);
+            j8.addPartidua(sortuPartidua(tMap, 6, 2, 3, 4)); // Valdepeñas vs ElPozo
+            j8.addPartidua(sortuPartidua(tMap, 1, 3, 6, 3)); // Barça vs Inter
+            j8.addPartidua(sortuPartidua(tMap, 5, 4, 2, 2)); // Jaen vs Palma
+            d.addJardunaldia(j8);
+
+            // J9 (Vuelta de J4): JOKATUTA
+            Jardunaldi j9 = new Jardunaldi(9);
+            j9.addPartidua(sortuPartidua(tMap, 5, 6, 4, 1)); // Jaen vs Valdepeñas
+            j9.addPartidua(sortuPartidua(tMap, 4, 1, 2, 3)); // Palma vs Barça
+            j9.addPartidua(sortuPartidua(tMap, 3, 2, 1, 1)); // Inter vs ElPozo
+            d.addJardunaldia(j9);
+
+            // J10 (Vuelta de J5): JOKATUTA - Denboraldiaren amaiera
+            Jardunaldi j10 = new Jardunaldi(10);
+            j10.addPartidua(sortuPartidua(tMap, 6, 3, 2, 4)); // Valdepeñas vs Inter
+            j10.addPartidua(sortuPartidua(tMap, 2, 4, 3, 2)); // ElPozo vs Palma
+            j10.addPartidua(sortuPartidua(tMap, 1, 5, 5, 1)); // Barça vs Jaen
+            d.addJardunaldia(j10);
+        }
+
+    private static Partidua sortuPartidua(Map<Integer, Talde> map, int idEtxekoa, int idKanpokoa, int golEtxekoa, int golKanpokoa) {
+        Talde etxekoa = map.get(idEtxekoa);
+        Talde kanpokoa = map.get(idKanpokoa);
+        return new Partidua(etxekoa, kanpokoa, golEtxekoa, golKanpokoa);
+    }
+
+    private static void gordeObjektua(Object obj, String bidea) {
+        try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(bidea))) {
+            oos.writeObject(obj);
+            System.out.println("Gordeta: " + bidea);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 }
