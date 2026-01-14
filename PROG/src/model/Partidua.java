@@ -21,7 +21,7 @@ public class Partidua implements Serializable{
 		this.etxekoTaldea = etxekoTaldea;
 		this.kanpokoTaldea = kanpokoTaldea;
 		this.etxekoGolak=etxekoGolak;
-		this.kanpokoGolak=-kanpokoGolak;
+		this.kanpokoGolak=kanpokoGolak;
 	}
 	public boolean jokatutaDago() {
         return this.etxekoGolak != -1 && this.kanpokoGolak != -1;

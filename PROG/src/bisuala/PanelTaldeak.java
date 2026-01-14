@@ -45,9 +45,7 @@ public class PanelTaldeak extends JPanel {
                 lblEskutua.setText("Irudirik ez");
                 lblEskutua.setHorizontalAlignment(SwingConstants.CENTER);
             }
-            
-            // ALDAKETA HEMEN: BorderLayout erabili beharrean, GridBagLayout erabiltzen dugu
-            // honek ziurtatzen du irudia beti erdian egongo dela (bertikalki eta horizontalki)
+
             JPanel pnlIrudia = new JPanel(new GridBagLayout()); 
             pnlIrudia.setBackground(Color.WHITE);
             pnlIrudia.setPreferredSize(new Dimension(100, 100)); 
@@ -67,12 +65,12 @@ public class PanelTaldeak extends JPanel {
             // --- IZENBURUA ---
             JLabel lblIzena = new JLabel(t.getIzena().toUpperCase());
             lblIzena.setFont(new Font("Arial", Font.BOLD, 18));
-            lblIzena.setForeground(new Color(0, 51, 102));
+            lblIzena.setForeground(new Color(135, 21, 33));
             // GAKOA: Hau da lerrokatzen duena
             lblIzena.setAlignmentX(Component.LEFT_ALIGNMENT); 
             
             // --- INFO (Estadioa / Herria) ---
-            JLabel lblInfo = new JLabel("Estadioa: " + t.getFutbolZelaia() + "  |  Herria: " + t.getHiria());
+            JLabel lblInfo = new JLabel("Zelaia: " + t.getFutbolZelaia() + "  |  Herria: " + t.getHiria());
             lblInfo.setFont(new Font("Arial", Font.PLAIN, 12));
             lblInfo.setForeground(Color.GRAY);
             // GAKOA: Hau da lerrokatzen duena
@@ -100,7 +98,7 @@ public class PanelTaldeak extends JPanel {
 
             if (t.getJokalariak() != null && !t.getJokalariak().isEmpty()) {
                 for (Jokalari j : t.getJokalariak()) {
-                    String testua = "• " + j.getIzena() + " " + j.getAbizena() + " (" + j.getPosizio() + ")";
+                    String testua = "• " + j.getDortsala() +" - "+ j.getIzena() + " " + j.getAbizena() + " (" + j.getPosizio() + ")";
                     JLabel lblJokalari = new JLabel(testua);
                     lblJokalari.setFont(new Font("Segoe UI", Font.PLAIN, 12));
                     // Grid barruan daudenez, hauek automatikoki lerrokatzen dira, 
