@@ -1,6 +1,7 @@
 package bisuala;
 
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
@@ -11,82 +12,112 @@ public class PanelTaldeak extends JPanel {
     public PanelTaldeak(ArrayList<Talde> taldeak) {
         setLayout(new BorderLayout());
 
-        // Zerrenda nagusia edukiko duen panela (bertikalean antolatuta)
+        // Panel nagusia (zerrenda)
         JPanel pnlTaldeZerrenda = new JPanel();
         pnlTaldeZerrenda.setLayout(new BoxLayout(pnlTaldeZerrenda, BoxLayout.Y_AXIS));
+        pnlTaldeZerrenda.setBorder(new EmptyBorder(10, 10, 10, 10)); 
 
-        // Talde bakoitza zeharkatu
         for (Talde t : taldeak) {
-            // 1. Talde bakoitzerako panel propio bat sortu
-            // BorderLayout erabiltzen dugu: Ezkerrean irudia, erdian testua
-            JPanel pnlTaldea = new JPanel(new BorderLayout(15, 15)); 
-            pnlTaldea.setBorder(BorderFactory.createMatteBorder(0, 0, 1, 0, Color.GRAY)); // Banatzailea behean
+            // 1. TALDEAREN PANELA
+            JPanel pnlTaldea = new JPanel(new BorderLayout(20, 0)); 
+            pnlTaldea.setBorder(BorderFactory.createCompoundBorder(
+                BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(220, 220, 220)), 
+                new EmptyBorder(15, 10, 15, 10) 
+            ));
             pnlTaldea.setBackground(Color.WHITE);
-            pnlTaldea.setMaximumSize(new Dimension(Integer.MAX_VALUE, 180)); // Altuera maximoa mugatu
+            // Tamaina maximoa finkatu horizontalki zabaltzeko baina bertikalki ez gehiegi
+            pnlTaldea.setMaximumSize(new Dimension(Integer.MAX_VALUE, 300));
 
             // ---------------------------------------------------------
-            // A. IRUDIA (ESKUTUA)
+            // A. IRUDIA (EZKUTUA)
             // ---------------------------------------------------------
             JLabel lblEskutua = new JLabel();
-            
-            // Datu basetik datorren bidea (adibidez: "/resources/images/barca.jpg")
             String irudiBidea = t.getEskutua(); 
-            
-            // 'src' barruan baliabideak bilatzeko modu zuzena
             URL imgUrl = getClass().getResource(irudiBidea);
 
             if (imgUrl != null) {
-                // Irudia kargatu eta tamaina egokitu (100x100 px)
                 ImageIcon ikonoOriginala = new ImageIcon(imgUrl);
-                Image irudiaEskalatuta = ikonoOriginala.getImage().getScaledInstance(150, 150, Image.SCALE_SMOOTH);
+                Image irudia = ikonoOriginala.getImage();
+                int dim = 90; 
+                Image irudiaEskalatuta = irudia.getScaledInstance(dim, dim, Image.SCALE_SMOOTH); 
                 lblEskutua.setIcon(new ImageIcon(irudiaEskalatuta));
             } else {
-                // Irudia ez bada aurkitzen, testu bat erakutsi
                 lblEskutua.setText("Irudirik ez");
                 lblEskutua.setHorizontalAlignment(SwingConstants.CENTER);
-                System.err.println("Errorea: Ez da irudia aurkitu bide honetan: " + irudiBidea);
             }
             
-            // Irudia panel txiki batean sartu zentratuta egoteko
-            JPanel pnlIrudia = new JPanel(new GridBagLayout());
+            // ALDAKETA HEMEN: BorderLayout erabili beharrean, GridBagLayout erabiltzen dugu
+            // honek ziurtatzen du irudia beti erdian egongo dela (bertikalki eta horizontalki)
+            JPanel pnlIrudia = new JPanel(new GridBagLayout()); 
             pnlIrudia.setBackground(Color.WHITE);
-            pnlIrudia.setPreferredSize(new Dimension(120, 120));
+            pnlIrudia.setPreferredSize(new Dimension(100, 100)); 
+            
+            // GridBagLayout-ek automatikoki zentratzen du osagaia add() egitean
             pnlIrudia.add(lblEskutua);
             
-            // Irudia EZKERREAN gehitu
             pnlTaldea.add(pnlIrudia, BorderLayout.WEST);
 
             // ---------------------------------------------------------
-            // B. INFORMAZIOA (TESTUA)
+            // B. DATUAK (EZKERREAN LERROKATUTA)
             // ---------------------------------------------------------
-            JTextArea txtInfo = new JTextArea();
-            txtInfo.setEditable(false);
-            txtInfo.setOpaque(false); // Atzeko planoa gardena
-            txtInfo.setFont(new Font("Arial", Font.PLAIN, 12));
-            txtInfo.setMargin(new Insets(10, 0, 10, 10)); // Marjinak
-            
-            // Testua eraiki StringBuilder erabiliz
-            StringBuilder sb = new StringBuilder();
-            sb.append("TALDEA: ").append(t.getIzena().toUpperCase()).append("\n");
-            sb.append("Estadioa: ").append(t.getFutbolZelaia()).append("\n");
-            sb.append("Herria: ").append(t.getHiria()).append("\n");
-            sb.append("--------------------------------------------------\n");
-            sb.append("Jokalariak (").append(t.getJokalariak().size()).append("):\n");
+            JPanel pnlDatuak = new JPanel();
+            pnlDatuak.setLayout(new BoxLayout(pnlDatuak, BoxLayout.Y_AXIS));
+            pnlDatuak.setBackground(Color.WHITE);
 
-            if (t.getJokalariak() != null) {
+            // --- IZENBURUA ---
+            JLabel lblIzena = new JLabel(t.getIzena().toUpperCase());
+            lblIzena.setFont(new Font("Arial", Font.BOLD, 18));
+            lblIzena.setForeground(new Color(0, 51, 102));
+            // GAKOA: Hau da lerrokatzen duena
+            lblIzena.setAlignmentX(Component.LEFT_ALIGNMENT); 
+            
+            // --- INFO (Estadioa / Herria) ---
+            JLabel lblInfo = new JLabel("Estadioa: " + t.getFutbolZelaia() + "  |  Herria: " + t.getHiria());
+            lblInfo.setFont(new Font("Arial", Font.PLAIN, 12));
+            lblInfo.setForeground(Color.GRAY);
+            // GAKOA: Hau da lerrokatzen duena
+            lblInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+            // Gehitu panelera
+            pnlDatuak.add(lblIzena);
+            pnlDatuak.add(Box.createRigidArea(new Dimension(0, 4))); // Tarte txikia
+            pnlDatuak.add(lblInfo);
+            pnlDatuak.add(Box.createRigidArea(new Dimension(0, 12))); // Tarte handiagoa
+
+            // --- JOKALARIEN GRID-A ---
+            JPanel pnlJokalariak = new JPanel(new GridLayout(0, 2, 10, 5)); // 2 Zutabe
+            pnlJokalariak.setBackground(Color.WHITE);
+            // GAKOA: Panela bera ere ezkerrera lerrokatu
+            pnlJokalariak.setAlignmentX(Component.LEFT_ALIGNMENT);
+
+            // Jokalarien izenburua
+            JLabel lblJokIzenburua = new JLabel("JOKALARIAK:");
+            lblJokIzenburua.setFont(new Font("Arial", Font.BOLD, 11));
+            lblJokIzenburua.setAlignmentX(Component.LEFT_ALIGNMENT); // GAKOA
+            
+            pnlDatuak.add(lblJokIzenburua);
+            pnlDatuak.add(Box.createRigidArea(new Dimension(0, 5)));
+
+            if (t.getJokalariak() != null && !t.getJokalariak().isEmpty()) {
                 for (Jokalari j : t.getJokalariak()) {
-                    sb.append("   • ").append(j.getIzena()).append(" ").append(j.getAbizena())
-                      .append("  [ZK: ").append(j.getDortsala()).append("] - ")
-                      .append(j.getPosizio()).append("\n");
+                    String testua = "• " + j.getIzena() + " " + j.getAbizena() + " (" + j.getPosizio() + ")";
+                    JLabel lblJokalari = new JLabel(testua);
+                    lblJokalari.setFont(new Font("Segoe UI", Font.PLAIN, 12));
+                    // Grid barruan daudenez, hauek automatikoki lerrokatzen dira, 
+                    // baina ziurtasunagatik ezkerrera behartu dezakegu:
+                    lblJokalari.setHorizontalAlignment(SwingConstants.LEFT);
+                    pnlJokalariak.add(lblJokalari);
                 }
             } else {
-                sb.append("   (Ez dago jokalaririk erregistratuta)\n");
+                JLabel lblHutsik = new JLabel("(Ez dago jokalaririk)");
+                lblHutsik.setForeground(Color.RED);
+                pnlJokalariak.add(lblHutsik);
             }
-            
-            txtInfo.setText(sb.toString());
-            
-            // Testua ERDIAN gehitu (Scrollarekin testua luzea bada)
-            pnlTaldea.add(new JScrollPane(txtInfo), BorderLayout.CENTER);
+
+            pnlDatuak.add(pnlJokalariak);
+
+            // Datuen panela taldera gehitu
+            pnlTaldea.add(pnlDatuak, BorderLayout.CENTER);
 
             // ---------------------------------------------------------
             // C. ZERRENDA NAGUSIRA GEHITU
@@ -94,7 +125,8 @@ public class PanelTaldeak extends JPanel {
             pnlTaldeZerrenda.add(pnlTaldea);
         }
 
-        // Dena ScrollPane orokor batean sartu
-        add(new JScrollPane(pnlTaldeZerrenda), BorderLayout.CENTER);
+        JScrollPane scrollPane = new JScrollPane(pnlTaldeZerrenda);
+        scrollPane.getVerticalScrollBar().setUnitIncrement(16);
+        add(scrollPane, BorderLayout.CENTER);
     }
 }

@@ -10,12 +10,22 @@ public class Partidua implements Serializable{
 	private int kanpokoGolak;
 	
 	
-	public Partidua(Talde etxekoTaldea, Talde kanpokoTaldea, int etxekoGolak, int kanpokoGolak) {
+	public Partidua(Talde etxekoTaldea, Talde kanpokoTaldea) {
 		this.etxekoTaldea = etxekoTaldea;
 		this.kanpokoTaldea = kanpokoTaldea;
 		this.etxekoGolak=-1;
 		this.kanpokoGolak=-1;
 	}
+	
+	public Partidua(Talde etxekoTaldea, Talde kanpokoTaldea, int etxekoGolak, int kanpokoGolak) {
+		this.etxekoTaldea = etxekoTaldea;
+		this.kanpokoTaldea = kanpokoTaldea;
+		this.etxekoGolak=etxekoGolak;
+		this.kanpokoGolak=-kanpokoGolak;
+	}
+	public boolean jokatutaDago() {
+        return this.etxekoGolak != -1 && this.kanpokoGolak != -1;
+    }
 
 	//getters and setters
 	public Talde getEtxekoTaldea() {

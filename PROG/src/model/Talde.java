@@ -4,7 +4,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 public class Talde implements Serializable{
-	private int id;
+	private static final long serialVersionUID = 1L;
 	private String izena;
 	private String eskutua;
 	private String futbolZelaia;
@@ -28,6 +28,9 @@ public class Talde implements Serializable{
 		this.jokalariak = taldea.jokalariak;
 		this.hiria = taldea.hiria;
 		this.aktiboaDago = taldea.aktiboaDago;
+	}
+	public Talde() {
+		
 	}
 	//getters and setters
 	

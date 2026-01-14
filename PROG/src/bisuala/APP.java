@@ -74,9 +74,14 @@ public class APP extends JFrame {
         Denboraldia d = (Denboraldia) cbDenboraldiak.getSelectedItem();
 
         if (d != null) {
-            // PASAMOS SOLO Sailkapena a PanelSailkapena
-            tabs.addTab("Sailkapena", new PanelSailkapena(d.getLigakoSailkapena()));
-            // PASAMOS ligakoTaldeak (TaldeTemporada) a PanelTaldeak
+            // --- ALDAKETA HEMEN DAGO ---
+            // Orain PanelSailkapena eraikitzeko, TALDEAK eta JORNADAK behar ditugu.
+            // Lehen: new PanelSailkapena(d.getLigakoSailkapena()); <- HAU GAISKI DAGO ORAIN
+            
+            // ORAIN (ZUZENA):
+            tabs.addTab("Sailkapena", new PanelSailkapena(d.getLigakoTaldeak(), d.getLigakoJardunaldi()));
+
+            // Besteak berdin jarraitzen dute
             tabs.addTab("Taldeak", new PanelTaldeak(d.getLigakoTaldeak()));
 
             if (erabAktiboa instanceof ErabiltzaileAdministraria) {
