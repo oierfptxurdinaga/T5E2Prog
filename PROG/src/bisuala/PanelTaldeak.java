@@ -65,7 +65,7 @@ public class PanelTaldeak extends JPanel {
             // --- IZENBURUA ---
             JLabel lblIzena = new JLabel(t.getIzena().toUpperCase());
             lblIzena.setFont(new Font("Arial", Font.BOLD, 18));
-            lblIzena.setForeground(new Color(135, 21, 33));
+			lblIzena.setForeground(new Color(135, 21, 33));
             // GAKOA: Hau da lerrokatzen duena
             lblIzena.setAlignmentX(Component.LEFT_ALIGNMENT); 
             

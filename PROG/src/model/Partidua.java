@@ -2,32 +2,32 @@ package model;
 
 import java.io.Serializable;
 
-public class Partidua implements Serializable{
+public class Partidua implements Serializable {
 
 	private Talde etxekoTaldea;
 	private Talde kanpokoTaldea;
 	private int etxekoGolak;
 	private int kanpokoGolak;
-	
-	
+
 	public Partidua(Talde etxekoTaldea, Talde kanpokoTaldea) {
 		this.etxekoTaldea = etxekoTaldea;
 		this.kanpokoTaldea = kanpokoTaldea;
-		this.etxekoGolak=-1;
-		this.kanpokoGolak=-1;
+		this.etxekoGolak = -1;
+		this.kanpokoGolak = -1;
 	}
-	
+
 	public Partidua(Talde etxekoTaldea, Talde kanpokoTaldea, int etxekoGolak, int kanpokoGolak) {
 		this.etxekoTaldea = etxekoTaldea;
 		this.kanpokoTaldea = kanpokoTaldea;
-		this.etxekoGolak=etxekoGolak;
-		this.kanpokoGolak=kanpokoGolak;
+		this.etxekoGolak = etxekoGolak;
+		this.kanpokoGolak = kanpokoGolak;
 	}
-	public boolean jokatutaDago() {
-        return this.etxekoGolak != -1 && this.kanpokoGolak != -1;
-    }
 
-	//getters and setters
+	public boolean jokatutaDago() {
+		return this.etxekoGolak != -1 && this.kanpokoGolak != -1;
+	}
+
+	// getters and setters
 	public Talde getEtxekoTaldea() {
 		return etxekoTaldea;
 	}
@@ -59,17 +59,18 @@ public class Partidua implements Serializable{
 	public void setKanpokoGolak(int kanpokoGolak) {
 		this.kanpokoGolak = kanpokoGolak;
 	}
-	
+
 	/**
 	 * Aukeratutako partidotik nor irabasten duen estendu
+	 * 
 	 * @return Talde modura itsultzen du irabaslea
 	 */
 	public Talde erakutziIrabazlea() {
-		Talde irabazle=null;
-		if(this.etxekoGolak<this.kanpokoGolak) {
-			irabazle=this.kanpokoTaldea;
-		}else if(this.etxekoGolak>this.kanpokoGolak) {
-			irabazle=this.etxekoTaldea;
+		Talde irabazle = null;
+		if (this.etxekoGolak < this.kanpokoGolak) {
+			irabazle = this.kanpokoTaldea;
+		} else if (this.etxekoGolak > this.kanpokoGolak) {
+			irabazle = this.etxekoTaldea;
 		}
 		return irabazle;
 	}
