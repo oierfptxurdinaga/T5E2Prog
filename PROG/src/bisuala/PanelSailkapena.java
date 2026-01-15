@@ -18,12 +18,15 @@ public class PanelSailkapena extends JPanel {
 	private static final long serialVersionUID = 1L;
 	private JTable taula;
 	private DefaultTableModel modeloa;
-
-	public PanelSailkapena(ArrayList<Talde> taldeak, ArrayList<Jardunaldi> jardunaldi) {
+	private int urtea;
+	
+	
+	public PanelSailkapena(ArrayList<Talde> taldeak, ArrayList<Jardunaldi> jardunaldi, int urtea) {
 		setLayout(new BorderLayout());
 		setBorder(new EmptyBorder(20, 20, 20, 20));
 		setBackground(Color.WHITE);
-
+		this.urtea = urtea;
+		
 		// 1. IZENBURUA
 		JLabel lblIzenburua = new JLabel("SAILKAPENA");
 		lblIzenburua.setFont(new Font("Arial", Font.BOLD, 24));
@@ -90,6 +93,25 @@ public class PanelSailkapena extends JPanel {
 		};
 
 		taula = new JTable(modeloa);
+		JButton btnPrint = new JButton("Inprimatu / PDF");
+        btnPrint.addActionListener(e -> {
+            try {
+                java.text.MessageFormat header = new java.text.MessageFormat("Sailkapena - Denboraldia " + this.urtea);
+                
+                java.text.MessageFormat footer = new java.text.MessageFormat("Orrialdea {0,number,integer}");
+
+                boolean complete = taula.print(JTable.PrintMode.FIT_WIDTH, header, footer);
+                
+                if (complete) {
+                    JOptionPane.showMessageDialog(null, "Eginda!", "Inprimatzen", JOptionPane.INFORMATION_MESSAGE);
+                }
+            } catch (java.awt.print.PrinterException pe) {
+                JOptionPane.showMessageDialog(null, "Errorea inprimatzean: " + pe.getMessage());
+            }
+        });
+
+		// Gehitu botoia panelera
+		this.add(btnPrint, BorderLayout.SOUTH);
 
 		// --- DISEINUA ---
 		konfiguratuDiseinua();

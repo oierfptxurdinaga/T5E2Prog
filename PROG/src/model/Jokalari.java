@@ -58,4 +58,18 @@ public class Jokalari implements Serializable{
 	public void setAktiboaDago(boolean aktiboaDago) {
 		this.aktiboaDago = aktiboaDago;
 	}
+	public Jokalari kopiatu() {
+	    return new Jokalari(
+	        this.izena, 
+	        this.abizena, 
+	        this.jaiotzeUrtea, 
+	        this.dortsala, 
+	        this.posizio, 
+	        this.aktiboaDago
+	    );
+	}
+	public String getIrudiaUrl(int urtea) {
+	     String seed = this.izena.replaceAll(" ", "") + urtea;
+	     return "https://api.dicebear.com/7.x/avataaars/png?seed=" + seed;
+	}
 }

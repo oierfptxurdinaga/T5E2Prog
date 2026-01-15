@@ -5,24 +5,24 @@ import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Collections; // <--- HAU BEHARREZKOA DA
+import java.util.Comparator;  // <--- HAU ERE BAI
 import model.*;
 
 public class PanelPresi extends JPanel {
-	private static final long serialVersionUID = 1L;
-	private final Color LIGHTRED = new Color(219, 175, 175);
+    private static final long serialVersionUID = 1L;
+    private final Color LIGHTRED = new Color(219, 175, 175);
     private final Color LIGHTGREEN = new Color(218, 245, 213);
     private APP aplikazioNagusia;
 
-    // CAMBIO 1: El constructor ahora necesita la FEDERACIÓN (todos) y la TEMPORADA ACTUAL (los que juegan)
     public PanelPresi(Erabiltzaile erab, Federazioa federazioa, Denboraldia unekoDenboraldia, APP app) {
-    	this.aplikazioNagusia = app;
+        this.aplikazioNagusia = app;
         setLayout(new BorderLayout());
 
-        // 1. Obtenemos la lista MAESTRA (Todos los equipos existentes, jueguen o no)
+        // 1. Zerrenda nagusia lortu
         ArrayList<Talde> taldeGuztiak = federazioa.getTaldeGuztiak();
         
-        // 2. Obtenemos la lista de la TEMPORADA (Solo los que juegan este año)
-        // Usamos una lista vacía si la temporada es null para evitar errores
+        // 2. Denboraldiko zerrenda lortu
         ArrayList<Talde> taldeJokatzen = (unekoDenboraldia != null) ? unekoDenboraldia.getLigakoTaldeak() : new ArrayList<>();
 
         // Izenburua
@@ -36,13 +36,35 @@ public class PanelPresi extends JPanel {
         pnlZerrenda.setLayout(new BoxLayout(pnlZerrenda, BoxLayout.Y_AXIS));
 
         if (taldeGuztiak != null && !taldeGuztiak.isEmpty()) {
-            for (Talde t : taldeGuztiak) {
+            
+            // --- ORDENAZIOA: HEMEN DAGO GAKOA ---
+            
+            // 1. Zerrendaren kopia bat egiten dugu jatorrizkoa ez nahasteko
+            ArrayList<Talde> taldeOrdenatuak = new ArrayList<>(taldeGuztiak);
+            
+            // 2. Ordenatu egiten dugu: Jokatzen dutenak LEHENAGO
+            Collections.sort(taldeOrdenatuak, new Comparator<Talde>() {
+                @Override
+                public int compare(Talde t1, Talde t2) {
+                    boolean t1Jokatzen = taldeJokatzen.contains(t1);
+                    boolean t2Jokatzen = taldeJokatzen.contains(t2);
+                    
+                    if (t1Jokatzen && !t2Jokatzen) {
+                        return -1; // t1 goian (Jokatzen du)
+                    } else if (!t1Jokatzen && t2Jokatzen) {
+                        return 1;  // t2 goian (Jokatzen du)
+                    } else {
+                        // Biak egoera berean badaude, izenaren arabera ordenatu
+                        return t1.getIzena().compareToIgnoreCase(t2.getIzena());
+                    }
+                }
+            });
+            // -------------------------------------
+
+            // ORAIN 'taldeOrdenatuak' ERABILTZEN DUGU BEGIZTAN
+            for (Talde t : taldeOrdenatuak) {
                 
-                // --- LOGICA CLAVE AQUI ---
-                // Preguntamos: ¿Está este equipo (t) dentro de la lista de la temporada?
                 boolean jokatzenAriDa = taldeJokatzen.contains(t);
-                
-                // Decidimos el color UNA VEZ para usarlo en todos los paneles
                 Color kolorea = jokatzenAriDa ? LIGHTGREEN : LIGHTRED;
                 
                 // --- 1. TALDEAREN PANELA ---
@@ -51,25 +73,31 @@ public class PanelPresi extends JPanel {
                         BorderFactory.createMatteBorder(0, 0, 2, 0, new Color(220, 220, 220)),
                         new EmptyBorder(15, 10, 15, 10)));
                 
-                pnlTaldeaPresi.setBackground(kolorea); // <--- Usamos la variable
+                pnlTaldeaPresi.setBackground(kolorea);
                 pnlTaldeaPresi.setMaximumSize(new Dimension(Integer.MAX_VALUE, 300));
 
                 // --- A. IRUDIA ---
                 JLabel lblEskutua = new JLabel();
-                URL imgUrl = getClass().getResource(t.getEskutua());
-
-                if (imgUrl != null) {
-                    ImageIcon ikonoOriginala = new ImageIcon(imgUrl);
-                    Image irudia = ikonoOriginala.getImage();
-                    Image irudiaEskalatuta = irudia.getScaledInstance(90, 90, Image.SCALE_SMOOTH);
-                    lblEskutua.setIcon(new ImageIcon(irudiaEskalatuta));
+                // Kontuz hemen: t.getEskutua() erabiltzen dugu, zuk esan bezala
+                String path = t.getEskutua(); 
+                
+                if (path != null) {
+                    URL imgUrl = getClass().getResource(path);
+                    if (imgUrl != null) {
+                        ImageIcon ikonoOriginala = new ImageIcon(imgUrl);
+                        Image irudia = ikonoOriginala.getImage();
+                        Image irudiaEskalatuta = irudia.getScaledInstance(90, 90, Image.SCALE_SMOOTH);
+                        lblEskutua.setIcon(new ImageIcon(irudiaEskalatuta));
+                    } else {
+                        lblEskutua.setText("Ez dago");
+                    }
                 } else {
                     lblEskutua.setText("Irudirik ez");
-                    lblEskutua.setHorizontalAlignment(SwingConstants.CENTER);
                 }
+                lblEskutua.setHorizontalAlignment(SwingConstants.CENTER);
 
                 JPanel pnlIrudia = new JPanel(new GridBagLayout());
-                pnlIrudia.setBackground(kolorea); // <--- Usamos la variable
+                pnlIrudia.setBackground(kolorea);
                 pnlIrudia.setPreferredSize(new Dimension(100, 100));
                 pnlIrudia.add(lblEskutua);
                 pnlTaldeaPresi.add(pnlIrudia, BorderLayout.WEST);
@@ -77,7 +105,7 @@ public class PanelPresi extends JPanel {
                 // --- B. DATUAK ---
                 JPanel pnlDatuak = new JPanel();
                 pnlDatuak.setLayout(new BoxLayout(pnlDatuak, BoxLayout.Y_AXIS));
-                pnlDatuak.setBackground(kolorea); // <--- Usamos la variable
+                pnlDatuak.setBackground(kolorea);
 
                 JLabel lblIzena = new JLabel(t.getIzena().toUpperCase());
                 lblIzena.setFont(new Font("Arial", Font.BOLD, 18));
@@ -88,7 +116,7 @@ public class PanelPresi extends JPanel {
                 lblInfo.setFont(new Font("Arial", Font.PLAIN, 12));
                 lblInfo.setForeground(Color.GRAY);
                 lblInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
-               
+                
                 String egoeraTestua = jokatzenAriDa ? "(Ligan Inskribatuta)" : "(Ez du jokatzen denboraldi honetan)";
                 JLabel lblEgoera = new JLabel(egoeraTestua);
                 lblEgoera.setFont(new Font("Arial", Font.ITALIC, 10));
@@ -97,12 +125,12 @@ public class PanelPresi extends JPanel {
                 pnlDatuak.add(lblIzena);
                 pnlDatuak.add(Box.createRigidArea(new Dimension(0, 4)));
                 pnlDatuak.add(lblInfo);
-                pnlDatuak.add(lblEgoera); // Añadido opcional
+                pnlDatuak.add(lblEgoera);
                 pnlDatuak.add(Box.createRigidArea(new Dimension(0, 12)));
 
                 // --- JOKALARIAK ---
                 JPanel pnlJokalariak = new JPanel(new GridLayout(0, 2, 10, 5));
-                pnlJokalariak.setBackground(kolorea); // <--- Usamos la variable
+                pnlJokalariak.setBackground(kolorea);
                 pnlJokalariak.setAlignmentX(Component.LEFT_ALIGNMENT);
 
                 JLabel lblJokIzenburua = new JLabel("JOKALARIAK:");
@@ -114,7 +142,7 @@ public class PanelPresi extends JPanel {
 
                 if (t.getJokalariak() != null && !t.getJokalariak().isEmpty()) {
                     for (Jokalari j : t.getJokalariak()) {
-                        String testua = "• " + j.getDortsala() + " - " + j.getIzena() + " (" + j.getPosizio() +")"; 
+                        String testua = "• " + j.getDortsala() + " - " + j.getIzena() + " (" + j.getPosizio() + ")"; 
                         JLabel lblJokalari = new JLabel(testua);
                         lblJokalari.setFont(new Font("Segoe UI", Font.PLAIN, 12));
                         lblJokalari.setHorizontalAlignment(SwingConstants.LEFT);
@@ -132,25 +160,16 @@ public class PanelPresi extends JPanel {
             add(new JScrollPane(pnlZerrenda), BorderLayout.CENTER);
         }
 
-        // --- BOTONES ---
+        // --- BOTOIAK ---
         JPanel pnlBotoiak = new JPanel();
         JButton btnHasi = new JButton("Denboraldia hasi");
         btnHasi.addActionListener(e -> {
-            // 1. Leihoa sortu eta ireki
             LeihoaDenboraldiBerria leihoa = new LeihoaDenboraldiBerria(federazioa);
-            leihoa.setVisible(true); // Hemen gelditzen da leihoa itxi arte
+            leihoa.setVisible(true);
 
-            // 2. GAKOA: Egiaztatu ea ondo sortu den itxi aurretik
             if (leihoa.isOndoSortuDa()) {
-                
-                // Soilik ondo sortu bada freskatzen dugu
                 aplikazioNagusia.interfazeaFreskatu();
-                
-                // Eta mezua hemen (aukerakoa, zeren LeihoaDenboraldiBerria-k jada eman du mezua)
-                // JOptionPane.showMessageDialog(this, "Datuak kargatu dira.");
-                
             } else {
-                // "X" edo "Utzi" sakatu badu, ez dugu ezer egiten.
                 System.out.println("Ez da denboraldirik sortu.");
             }
         });

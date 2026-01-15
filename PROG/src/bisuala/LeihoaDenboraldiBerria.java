@@ -153,13 +153,16 @@ public class LeihoaDenboraldiBerria extends JDialog {
 
     private void sortuDenboraldia() {
         try {
-            // Segurtasunagatik berriro egiaztatu, baina UI-ak jada mugatzen du
             ArrayList<Talde> taldeAukeratuak = new ArrayList<>();
+            
+            // --- ALDAKETA HEMEN ---
             for (JCheckBox chk : checkTaldeak) {
                 if (chk.isSelected()) {
-                    taldeAukeratuak.add((Talde) chk.getClientProperty("taldeObj"));
+                    Talde jatorrizkoTaldea = (Talde) chk.getClientProperty("taldeObj");
+                    taldeAukeratuak.add(jatorrizkoTaldea.kopiatu());
                 }
             }
+            // ----------------------
 
             if (taldeAukeratuak.size() != MAX_TALDEAK) {
                 JOptionPane.showMessageDialog(this, "Zehazki 6 talde aukeratu behar dituzu.", "Errorea", JOptionPane.WARNING_MESSAGE);
@@ -171,16 +174,15 @@ public class LeihoaDenboraldiBerria extends JDialog {
             // SORTU
             Denboraldia d = new Denboraldia(urtea);
             d.setLigakoTaldeak(taldeAukeratuak);
-            d.setLigakoJardunaldi(PartiduKudeatzailea.sortuEgutegia(taldeAukeratuak));
             
-            // Ez dugu "setHasiDa" eskuz jarri behar, automatikoa da emaitzak sartzean.
+            // Orain egutegia sortzen denean, TALDE KOPIAK erabiliko ditu
+            d.setLigakoJardunaldi(PartiduKudeatzailea.sortuEgutegia(taldeAukeratuak));
             
             federazioa.gehituDenboraldia(d);
             
-            // Ondo joan da
             this.ondoSortuDa = true;
             
-            JOptionPane.showMessageDialog(this, "Denboraldia sortu da!");
+            JOptionPane.showMessageDialog(this, "Denboraldia (" + urtea + ") ondo sortu da!");
             dispose();
 
         } catch (Exception ex) {

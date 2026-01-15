@@ -93,4 +93,29 @@ public class Talde implements Serializable{
         }
         this.jokalariak.add(j);
 	}
+	@Override
+	public String toString() {
+	    return this.izena; // Edo taldearen izena gordetzen duen aldagaia
+	}
+	public Talde kopiatu() {
+	    // 1. Sortu zerrenda berri eta huts bat jokalarientzat
+	    ArrayList<Jokalari> jokalariKopiak = new ArrayList<>();
+	    
+	    // 2. Jatorrizko taldeko jokalari bakoitza kopiatu eta zerrenda berrira gehitu
+	    if (this.jokalariak != null) { // Segurtasuna (null check)
+	        for (Jokalari j : this.jokalariak) {
+	            jokalariKopiak.add(j.kopiatu()); // HEMEN DAGO GAKOA
+	        }
+	    }
+	    
+	    // 3. Talde berria itzuli, jokalari zerrenda BERRIAREKIN
+	    return new Talde(
+	        this.izena,
+	        this.eskutua, // Edo irudiaUrl
+	        this.futbolZelaia,
+	        jokalariKopiak, // Zerrenda berria pasatzen dugu
+	        this.hiria,
+	        this.aktiboaDago
+	    );
+	}
 }
