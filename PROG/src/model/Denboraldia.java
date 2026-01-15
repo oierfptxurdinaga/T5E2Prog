@@ -11,6 +11,7 @@ public class Denboraldia implements Serializable {
     private ArrayList<Jardunaldi> ligakoJardunaldi;
 
     
+    
     public Denboraldia(int urtea) {
         this.urtea = urtea;
         this.ligakoTaldeak = new ArrayList<>();

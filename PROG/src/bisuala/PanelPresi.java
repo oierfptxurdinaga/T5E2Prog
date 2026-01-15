@@ -88,8 +88,7 @@ public class PanelPresi extends JPanel {
                 lblInfo.setFont(new Font("Arial", Font.PLAIN, 12));
                 lblInfo.setForeground(Color.GRAY);
                 lblInfo.setAlignmentX(Component.LEFT_ALIGNMENT);
-                
-                // Etiqueta extra para clarificar estado (Opcional)
+               
                 String egoeraTestua = jokatzenAriDa ? "(Ligan Inskribatuta)" : "(Ez du jokatzen denboraldi honetan)";
                 JLabel lblEgoera = new JLabel(egoeraTestua);
                 lblEgoera.setFont(new Font("Arial", Font.ITALIC, 10));
