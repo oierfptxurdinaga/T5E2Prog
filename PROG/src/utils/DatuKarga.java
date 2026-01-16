@@ -61,9 +61,7 @@ public class DatuKarga {
     public static void gordeFederazioa(Federazioa federazioa) {
         try (ObjectOutputStream oos = new ObjectOutputStream(new FileOutputStream(FEDERAZIOA_PATH))) {
             oos.writeObject(federazioa);
-            System.out.println("Aldaketak ondo gorde dira hemen: " + FEDERAZIOA_PATH);
         } catch (IOException e) {
-            System.err.println("Errorea datuak gordetzerakoan: " + e.getMessage());
             e.printStackTrace();
         }
     }

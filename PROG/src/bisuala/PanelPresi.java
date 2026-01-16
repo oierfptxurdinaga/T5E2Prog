@@ -157,7 +157,11 @@ public class PanelPresi extends JPanel {
                 pnlTaldeaPresi.add(pnlDatuak, BorderLayout.CENTER);
                 pnlZerrenda.add(pnlTaldeaPresi);
             }
-            add(new JScrollPane(pnlZerrenda), BorderLayout.CENTER);
+            
+            //SCROLL AZKARRA EGITEKO
+            JScrollPane scroll = new JScrollPane(pnlZerrenda);
+            scroll.getVerticalScrollBar().setUnitIncrement(20);
+            add(scroll, BorderLayout.CENTER);
         }
 
         // --- BOTOIAK ---
