@@ -122,12 +122,20 @@ public class PanelSailkapena extends JPanel {
 		add(scroll, BorderLayout.CENTER);
 	}
 
+	/**
+	 * Metodo hau TaldeStats (sortu dugun klase pribatua .java honetan) Map bat sortzen du
+	 * Map honela funtzionatzen du: Lehenengo "Armairu bat sortzen du hainbat gelaxkekin
+	 * ("ID" bat bezala funtzionatzen du eta deitu ahal diogu) kasu honetan gure taldearen izena
+	 * t.getIzena. Gero erabili ahal dugu t.getIzena talde horri deitzeko nahi dugunean.
+	 * @param taldeak
+	 * @param jardunaldi
+	 * @return
+	 */
 	private ArrayList<TaldeStats> kalkulatuEstatistikak(ArrayList<Talde> taldeak, ArrayList<Jardunaldi> jardunaldi) {
 		Map<String, TaldeStats> mapaStats = new HashMap<>();
-
+			//"Armairua sortu" eta TaldeStats hutsak sortu
 		if (taldeak != null) {
 			for (Talde t : taldeak) {
-				// --- CAMBIO: Ahora guardamos también la ruta de la imagen (t.getEskutua())
 				mapaStats.put(t.getIzena().trim(), new TaldeStats(t.getIzena(), t.getEskutua()));
 			}
 		}
@@ -138,10 +146,10 @@ public class PanelSailkapena extends JPanel {
 					for (Partidua p : j.getPartiduak()) {
 						if (!p.jokatutaDago())
 							continue;
-
+						//Partidu bakoitzeko gorde jokatu duten taldeen izena aldagai batean.
 						String localNom = p.getEtxekoTaldea().getIzena().trim();
 						String visitNom = p.getKanpokoTaldea().getIzena().trim();
-
+						//Hartu jokatu duten taldeen TaldeStats
 						TaldeStats sLocal = mapaStats.get(localNom);
 						TaldeStats sVisit = mapaStats.get(visitNom);
 
@@ -180,7 +188,7 @@ public class PanelSailkapena extends JPanel {
 	}
 
 	private void konfiguratuDiseinua() {
-		taula.setRowHeight(40); // Un poco más alto para que quepa el icono
+		taula.setRowHeight(40); 
 		taula.setFont(new Font("Segoe UI", Font.PLAIN, 14));
 		taula.setGridColor(new Color(230, 230, 230));
 		taula.setShowVerticalLines(false);
@@ -192,7 +200,7 @@ public class PanelSailkapena extends JPanel {
 		header.setPreferredSize(new Dimension(header.getWidth(), 40));
 
 		taula.getColumnModel().getColumn(0).setPreferredWidth(40);
-		taula.getColumnModel().getColumn(1).setPreferredWidth(250); // Más ancho para el nombre + icono
+		taula.getColumnModel().getColumn(1).setPreferredWidth(250); 
 
 		for (int i = 0; i < taula.getColumnCount(); i++) {
 			boolean zentratu = (i != 1);
@@ -200,10 +208,10 @@ public class PanelSailkapena extends JPanel {
 		}
 	}
 
-	// --- CLASE INTERNA DE DATOS ---
+	//Klase pribatua sortzen dugu taldeen sailkapena sortzeko
 	private class TaldeStats {
 		String taldeIzena;
-		String irudia; // Nuevo campo para la ruta de la imagen
+		String irudia; 
 		int jokatuak = 0;
 		int irabaziak = 0;
 		int berdinduak = 0;
@@ -223,7 +231,7 @@ public class PanelSailkapena extends JPanel {
 		}
 	}
 
-	// --- RENDERER PERSONALIZADO ---
+
 	private class EstiloRenderer extends DefaultTableCellRenderer {
 		private static final long serialVersionUID = 1L;
 		private boolean zentratu;
@@ -235,20 +243,15 @@ public class PanelSailkapena extends JPanel {
 		@Override
 		public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus,
 				int row, int column) {
-			// Llamamos a super para que configure colores, selección, etc.
 			super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
 
-			// Limpiamos el icono por defecto (para columnas que no son equipo)
 			setIcon(null);
 
-			// 1. COLUMNA DE EQUIPO (Índice 1)
 			if (column == 1 && value instanceof TaldeStats) {
 				TaldeStats stats = (TaldeStats) value;
 
-				// Texto: el nombre del equipo
 				setText(stats.taldeIzena);
 
-				// Imagen: Cargar y escalar
 				if (stats.irudia != null) {
 					URL imgUrl = getClass().getResource(stats.irudia);
 					if (imgUrl != null) {
@@ -261,9 +264,8 @@ public class PanelSailkapena extends JPanel {
 				}
 
 				setHorizontalAlignment(JLabel.LEFT);
-				setBorder(new EmptyBorder(0, 10, 0, 0)); // Un poco de margen a la izquierda
+				setBorder(new EmptyBorder(0, 10, 0, 0));
 			}
-			// 2. RESTO DE COLUMNAS
 			else {
 				if (zentratu)
 					setHorizontalAlignment(JLabel.CENTER);
@@ -272,8 +274,6 @@ public class PanelSailkapena extends JPanel {
 					setBorder(new EmptyBorder(0, 10, 0, 0));
 				}
 			}
-
-			// Estilos generales (Zebra y Negritas)
 			if (!isSelected) {
 				setBackground(row % 2 == 0 ? Color.WHITE : new Color(245, 245, 250));
 			}

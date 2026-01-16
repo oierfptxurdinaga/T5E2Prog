@@ -37,8 +37,7 @@ public class PanelPresi extends JPanel {
 
         if (taldeGuztiak != null && !taldeGuztiak.isEmpty()) {
             
-            // --- ORDENAZIOA: HEMEN DAGO GAKOA ---
-            
+          
             // 1. Zerrendaren kopia bat egiten dugu jatorrizkoa ez nahasteko
             ArrayList<Talde> taldeOrdenatuak = new ArrayList<>(taldeGuztiak);
             
@@ -59,9 +58,7 @@ public class PanelPresi extends JPanel {
                     }
                 }
             });
-            // -------------------------------------
 
-            // ORAIN 'taldeOrdenatuak' ERABILTZEN DUGU BEGIZTAN
             for (Talde t : taldeOrdenatuak) {
                 
                 boolean jokatzenAriDa = taldeJokatzen.contains(t);
@@ -78,7 +75,7 @@ public class PanelPresi extends JPanel {
 
                 // --- A. IRUDIA ---
                 JLabel lblEskutua = new JLabel();
-                // Kontuz hemen: t.getEskutua() erabiltzen dugu, zuk esan bezala
+
                 String path = t.getEskutua(); 
                 
                 if (path != null) {

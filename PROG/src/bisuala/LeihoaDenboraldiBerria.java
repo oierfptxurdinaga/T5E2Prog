@@ -11,9 +11,9 @@ public class LeihoaDenboraldiBerria extends JDialog {
 	private JTextField txtUrtea;
     private Federazioa federazioa;
     private ArrayList<JCheckBox> checkTaldeak;
-    private JLabel lblKontagailua; // "X / 6" erakusteko
-    private final int MAX_TALDEAK = 6; // Muga finkoa
-    private boolean ondoSortuDa = false; // PanelPresi-k jakiteko
+    private JLabel lblKontagailua; 
+    private final int MAX_TALDEAK = 6; 
+    private boolean ondoSortuDa = false;
 
     public LeihoaDenboraldiBerria(Federazioa federazioa) {
         this.federazioa = federazioa;
@@ -91,8 +91,6 @@ public class LeihoaDenboraldiBerria extends JDialog {
         JPanel pnlBenetakoBotoiak = new JPanel(new FlowLayout(FlowLayout.CENTER));
         JButton btnSortu = new JButton("Sortu eta Egutegia Kalkulatu");
         JButton btnUtzi = new JButton("Utzi");
-
-        // Balidazioa: Aurrekoa amaitu gabe badago
         if (azkena != null && !azkena.isAmaituta()) {
             btnSortu.setEnabled(false);
             JLabel lblOharra = new JLabel("<html><center><font color='red'>* Aurreko denboraldia amaitu arte<br>ezin da berria sortu.</font></center></html>");
@@ -154,15 +152,13 @@ public class LeihoaDenboraldiBerria extends JDialog {
     private void sortuDenboraldia() {
         try {
             ArrayList<Talde> taldeAukeratuak = new ArrayList<>();
-            
-            // --- ALDAKETA HEMEN ---
+
             for (JCheckBox chk : checkTaldeak) {
                 if (chk.isSelected()) {
                     Talde jatorrizkoTaldea = (Talde) chk.getClientProperty("taldeObj");
                     taldeAukeratuak.add(jatorrizkoTaldea.kopiatu());
                 }
             }
-            // ----------------------
 
             if (taldeAukeratuak.size() != MAX_TALDEAK) {
                 JOptionPane.showMessageDialog(this, "Zehazki 6 talde aukeratu behar dituzu.", "Errorea", JOptionPane.WARNING_MESSAGE);
@@ -171,11 +167,9 @@ public class LeihoaDenboraldiBerria extends JDialog {
 
             int urtea = Integer.parseInt(txtUrtea.getText().trim());
 
-            // SORTU
             Denboraldia d = new Denboraldia(urtea);
             d.setLigakoTaldeak(taldeAukeratuak);
             
-            // Orain egutegia sortzen denean, TALDE KOPIAK erabiliko ditu
             d.setLigakoJardunaldi(PartiduKudeatzailea.sortuEgutegia(taldeAukeratuak));
             
             federazioa.gehituDenboraldia(d);

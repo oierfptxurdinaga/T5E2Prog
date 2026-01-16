@@ -7,7 +7,7 @@ import java.util.Objects;
 public class Talde implements Serializable{
 	private static final long serialVersionUID = 1L;
 	private String izena;
-	private String eskutua;
+	private String ezkutua;
 	private String futbolZelaia;
 	private ArrayList<Jokalari> jokalariak;
 	private String hiria;
@@ -15,7 +15,7 @@ public class Talde implements Serializable{
 	
 	public Talde(String izena, String eskutua, String futbolZelaia, ArrayList<Jokalari> jokalariak, String hiria, boolean aktiboaDago) {
 		this.izena = izena;
-		this.eskutua = eskutua;
+		this.ezkutua = eskutua;
 		this.futbolZelaia = futbolZelaia;
 		this.jokalariak = jokalariak;
 		this.hiria = hiria;
@@ -24,7 +24,7 @@ public class Talde implements Serializable{
 	
 	public Talde(Talde taldea) {
 		this.izena = taldea.izena;
-		this.eskutua = taldea.eskutua;
+		this.ezkutua = taldea.ezkutua;
 		this.futbolZelaia = taldea.futbolZelaia;
 		this.jokalariak = taldea.jokalariak;
 		this.hiria = taldea.hiria;
@@ -44,11 +44,11 @@ public class Talde implements Serializable{
 	}
 
 	public String getEskutua() {
-		return eskutua;
+		return ezkutua;
 	}
 
 	public void setEskutua(String eskutua) {
-		this.eskutua = eskutua;
+		this.ezkutua = eskutua;
 	}
 
 	public String getFutbolZelaia() {
@@ -84,8 +84,8 @@ public class Talde implements Serializable{
 	}
 	
 	public void aldatuEskutua(String Eskutua) {
-		if(this.eskutua!=Eskutua) {
-			this.eskutua=Eskutua;
+		if(this.ezkutua!=Eskutua) {
+			this.ezkutua=Eskutua;
 		}
 	}
 	public void sartuJokalaria (Jokalari j) {
@@ -96,7 +96,7 @@ public class Talde implements Serializable{
 	}
 	@Override
 	public String toString() {
-	    return this.izena; // Edo taldearen izena gordetzen duen aldagaia
+	    return this.izena; 
 	}
 	@Override
 	public int hashCode() {
@@ -129,9 +129,9 @@ public class Talde implements Serializable{
 	    // 3. Talde berria itzuli, jokalari zerrenda BERRIAREKIN
 	    return new Talde(
 	        this.izena,
-	        this.eskutua, // Edo irudiaUrl
+	        this.ezkutua,
 	        this.futbolZelaia,
-	        jokalariKopiak, // Zerrenda berria pasatzen dugu
+	        jokalariKopiak,
 	        this.hiria,
 	        this.aktiboaDago
 	    );

@@ -65,4 +65,5 @@ public class DatuKarga {
             e.printStackTrace();
         }
     }
+    
 }

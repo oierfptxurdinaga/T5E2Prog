@@ -41,8 +41,6 @@ public class Login extends JFrame {
         setLayout(null);
         setBounds(100, 100, 400, 300);
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        
-        // ... (WindowListener kodea berdin mantendu) ...
         addWindowListener(new WindowAdapter() {
 			@Override
 			public void windowClosing(WindowEvent e) {
@@ -77,7 +75,7 @@ public class Login extends JFrame {
         add(txtPass);
         add(btnLogin);
 
-        // Botoiaren logika
+
         btnLogin.addActionListener(e -> {
             String u = txtUser.getText().trim();
             String p = new String(txtPass.getPassword()).trim();
@@ -91,8 +89,6 @@ public class Login extends JFrame {
             boolean aurkitua = false;
             for (Erabiltzaile user : erabiltzaileak) {
                 if (user.getErabiltzaile().equals(u) && user.getPasahitza().equals(p)) {
-                    // ALDAKETA: Orain 'federazioa' pasatzen diogu APP-ari
-                    // GARRANTZITSUA: Joan APP.java-ra eta aldatu konstruktorea!
                     new APP(user, federazioa).setVisible(true);
                     dispose();
                     aurkitua = true;
@@ -124,11 +120,9 @@ public class Login extends JFrame {
         if (erabiltzaileak.isEmpty()) {
             erabiltzaileak.add(new ErabiltzaileAdministraria("admin", "admin"));
         }
-        // Federazioa null bada, berria sortu
         if (federazioa == null) {
             System.out.println("Federazioa hutsa sortzen...");
             federazioa = new Federazioa();
-            // Hemen defektuzko zerbait sortu liteke...
         }
     }
 }

@@ -109,7 +109,6 @@ public class XmlKudeatzailea {
             StreamResult result = new StreamResult(new File(rutaFitxategia));
 
             transformer.transform(source, result);
-            System.out.println("XML gordeta: " + rutaFitxategia);
             return true;
 
         } catch (Exception e) {

@@ -28,9 +28,6 @@ public class Denboraldia implements Serializable {
     public void addJardunaldia(Jardunaldi j) { this.ligakoJardunaldi.add(j); }
     public void gehituTaldea(Talde t) { this.ligakoTaldeak.add(t); }
 
-    // -------------------------------------------------------------------------
-    // EGOERA LOGIKA (ALDAKETA HEMEN)
-    // -------------------------------------------------------------------------
 
     /**
      * Denboraldia HASITA dago gutxienez PARTIDU BAT (1) jokatuta badago.
@@ -85,7 +82,7 @@ public class Denboraldia implements Serializable {
         return isHasiDa();
     }
     
-    // Setter hutsa (kode zaharrak errorerik ez emateko)
+    // Setter hutsa
     public void setDenboraldiaHasiDa(boolean b) {
         // Ez du ezer egiten, orain automatikoa da.
     }

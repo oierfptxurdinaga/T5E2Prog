@@ -13,8 +13,6 @@ public class APP extends JFrame {
 	private JTabbedPane tabs;
 	private Erabiltzaile erabAktiboa;
 	private Federazioa federazioa;
-
-	// ALDAKETA: Aldaketak dauden kontrolatzeko aldagaia
 	private boolean aldaketakDauden = false;
 
 	public APP(Erabiltzaile erab, Federazioa federazioa) {
@@ -26,13 +24,8 @@ public class APP extends JFrame {
 
 		setTitle("FNS Kudeaketa - " + erab.getErabiltzaile());
 		setBounds(100, 100, 950, 700);
-
-		// 1. LEIHOA IXTEKO KUDEAKETA (ConfirmarCierre erabiltzen dugu)
 		// Leihoa ez ixtea automatikoki, guk kudeatzeko
 		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-
-		// Zure 'ConfirmarCierre' klasea gehitzen dugu entzule gisa
-		// 'this' pasatzen diogu APP-aren metodoak erabili ahal izateko
 		addWindowListener(new ItziKonfirmazioa(this, federazioa));
 
 		// --- GOIKO PANELA ---
@@ -98,23 +91,18 @@ public class APP extends JFrame {
 	}
 
 	/**
-	 * Pestainak eguneratzen ditu aukeratutako denboraldiaren arabera.
+	 * TAB-ak eguneratzen ditu aukeratutako denboraldiaren arabera.
 	 */
 	private void tabsEguneratu() {
 		tabs.removeAll();
-
-		// Denboraldi hau COMBOBOX-etik dator (Sailkapenerako eta abar)
 		Denboraldia aukeratutakoa = (Denboraldia) cbDenboraldiak.getSelectedItem();
 
 		if (aukeratutakoa != null) {
-
-			// 1. PESTAÑAS COMUNES (Erabiltzaileak aukeratutako denboraldia erakusten dute)
 			tabs.addTab("Sailkapena", new PanelSailkapena(aukeratutakoa.getLigakoTaldeak(),
 					aukeratutakoa.getLigakoJardunaldi(), aukeratutakoa.getUrtea()));
 
 			tabs.addTab("Taldeak", new PanelTaldeak(aukeratutakoa.getLigakoTaldeak(), aukeratutakoa.getUrtea()));
-
-			// 2. ROLES ESPECÍFICOS
+			//TAB Desberdina erabiltzaile desberdinentzat.
 			if (erabAktiboa instanceof ErabiltzaileAdministraria) {
 				tabs.addTab("Admin - Kudeaketa", new PanelAdmin(erabAktiboa, aukeratutakoa.getLigakoTaldeak()));
 

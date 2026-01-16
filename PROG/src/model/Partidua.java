@@ -60,19 +60,4 @@ public class Partidua implements Serializable {
 	public void setKanpokoGolak(int kanpokoGolak) {
 		this.kanpokoGolak = kanpokoGolak;
 	}
-
-	/**
-	 * Aukeratutako partidotik nor irabasten duen estendu
-	 * 
-	 * @return Talde modura itsultzen du irabaslea
-	 */
-	public Talde erakutziIrabazlea() {
-		Talde irabazle = null;
-		if (this.etxekoGolak < this.kanpokoGolak) {
-			irabazle = this.kanpokoTaldea;
-		} else if (this.etxekoGolak > this.kanpokoGolak) {
-			irabazle = this.etxekoTaldea;
-		}
-		return irabazle;
-	}
 }
