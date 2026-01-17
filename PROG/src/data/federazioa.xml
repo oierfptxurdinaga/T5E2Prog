@@ -1014,6 +1014,74 @@
                     </Jokalariak>
                 </Talde>
             </DenboraldikoTaldeak>
+            <Sailkapena>
+                <Lerroa>
+                    <Posizioa>1</Posizioa>
+                    <Taldea>Barça Futsal</Taldea>
+                    <Puntuak>26</Puntuak>
+                    <Jokatuak>10</Jokatuak>
+                    <Irabaziak>8</Irabaziak>
+                    <Berdinduak>2</Berdinduak>
+                    <Galduak>0</Galduak>
+                    <AldekoGolak>40</AldekoGolak>
+                    <AurkakoGolak>20</AurkakoGolak>
+                </Lerroa>
+                <Lerroa>
+                    <Posizioa>2</Posizioa>
+                    <Taldea>ElPozo Murcia</Taldea>
+                    <Puntuak>16</Puntuak>
+                    <Jokatuak>10</Jokatuak>
+                    <Irabaziak>4</Irabaziak>
+                    <Berdinduak>4</Berdinduak>
+                    <Galduak>2</Galduak>
+                    <AldekoGolak>25</AldekoGolak>
+                    <AurkakoGolak>20</AurkakoGolak>
+                </Lerroa>
+                <Lerroa>
+                    <Posizioa>3</Posizioa>
+                    <Taldea>Inter Movistar</Taldea>
+                    <Puntuak>14</Puntuak>
+                    <Jokatuak>10</Jokatuak>
+                    <Irabaziak>4</Irabaziak>
+                    <Berdinduak>2</Berdinduak>
+                    <Galduak>4</Galduak>
+                    <AldekoGolak>31</AldekoGolak>
+                    <AurkakoGolak>30</AurkakoGolak>
+                </Lerroa>
+                <Lerroa>
+                    <Posizioa>4</Posizioa>
+                    <Taldea>Mallorca Palma Futsal</Taldea>
+                    <Puntuak>13</Puntuak>
+                    <Jokatuak>10</Jokatuak>
+                    <Irabaziak>3</Irabaziak>
+                    <Berdinduak>4</Berdinduak>
+                    <Galduak>3</Galduak>
+                    <AldekoGolak>27</AldekoGolak>
+                    <AurkakoGolak>26</AurkakoGolak>
+                </Lerroa>
+                <Lerroa>
+                    <Posizioa>5</Posizioa>
+                    <Taldea>Jaén Paraíso Interior</Taldea>
+                    <Puntuak>13</Puntuak>
+                    <Jokatuak>10</Jokatuak>
+                    <Irabaziak>3</Irabaziak>
+                    <Berdinduak>4</Berdinduak>
+                    <Galduak>3</Galduak>
+                    <AldekoGolak>20</AldekoGolak>
+                    <AurkakoGolak>24</AurkakoGolak>
+                </Lerroa>
+                <Lerroa>
+                    <Posizioa>6</Posizioa>
+                    <Taldea>Viña Albali Valdepeñas</Taldea>
+                    <Puntuak>0</Puntuak>
+                    <Jokatuak>10</Jokatuak>
+                    <Irabaziak>0</Irabaziak>
+                    <Berdinduak>0</Berdinduak>
+                    <Galduak>10</Galduak>
+                    <AldekoGolak>16</AldekoGolak>
+                    <AurkakoGolak>39</AurkakoGolak>
+                </Lerroa>
+            </Sailkapena>
             <Jardunaldiak>
                 <Jardunaldi zenbakia="1">
                     <Partidua>
@@ -1526,6 +1594,74 @@
                     </Jokalariak>
                 </Talde>
             </DenboraldikoTaldeak>
+            <Sailkapena>
+                <Lerroa>
+                    <Posizioa>1</Posizioa>
+                    <Taldea>Industrias Santa Coloma</Taldea>
+                    <Puntuak>0</Puntuak>
+                    <Jokatuak>0</Jokatuak>
+                    <Irabaziak>0</Irabaziak>
+                    <Berdinduak>0</Berdinduak>
+                    <Galduak>0</Galduak>
+                    <AldekoGolak>0</AldekoGolak>
+                    <AurkakoGolak>0</AurkakoGolak>
+                </Lerroa>
+                <Lerroa>
+                    <Posizioa>2</Posizioa>
+                    <Taldea>Xota FS</Taldea>
+                    <Puntuak>0</Puntuak>
+                    <Jokatuak>0</Jokatuak>
+                    <Irabaziak>0</Irabaziak>
+                    <Berdinduak>0</Berdinduak>
+                    <Galduak>0</Galduak>
+                    <AldekoGolak>0</AldekoGolak>
+                    <AurkakoGolak>0</AurkakoGolak>
+                </Lerroa>
+                <Lerroa>
+                    <Posizioa>3</Posizioa>
+                    <Taldea>Noia Portus Apostoli</Taldea>
+                    <Puntuak>0</Puntuak>
+                    <Jokatuak>0</Jokatuak>
+                    <Irabaziak>0</Irabaziak>
+                    <Berdinduak>0</Berdinduak>
+                    <Galduak>0</Galduak>
+                    <AldekoGolak>0</AldekoGolak>
+                    <AurkakoGolak>0</AurkakoGolak>
+                </Lerroa>
+                <Lerroa>
+                    <Posizioa>4</Posizioa>
+                    <Taldea>Córdoba Patrimonio</Taldea>
+                    <Puntuak>0</Puntuak>
+                    <Jokatuak>0</Jokatuak>
+                    <Irabaziak>0</Irabaziak>
+                    <Berdinduak>0</Berdinduak>
+                    <Galduak>0</Galduak>
+                    <AldekoGolak>0</AldekoGolak>
+                    <AurkakoGolak>0</AurkakoGolak>
+                </Lerroa>
+                <Lerroa>
+                    <Posizioa>5</Posizioa>
+                    <Taldea>Aspil-Jumpers Ribera</Taldea>
+                    <Puntuak>0</Puntuak>
+                    <Jokatuak>0</Jokatuak>
+                    <Irabaziak>0</Irabaziak>
+                    <Berdinduak>0</Berdinduak>
+                    <Galduak>0</Galduak>
+                    <AldekoGolak>0</AldekoGolak>
+                    <AurkakoGolak>0</AurkakoGolak>
+                </Lerroa>
+                <Lerroa>
+                    <Posizioa>6</Posizioa>
+                    <Taldea>Jimbee Cartagena</Taldea>
+                    <Puntuak>0</Puntuak>
+                    <Jokatuak>0</Jokatuak>
+                    <Irabaziak>0</Irabaziak>
+                    <Berdinduak>0</Berdinduak>
+                    <Galduak>0</Galduak>
+                    <AldekoGolak>0</AldekoGolak>
+                    <AurkakoGolak>0</AurkakoGolak>
+                </Lerroa>
+            </Sailkapena>
             <Jardunaldiak>
                 <Jardunaldi zenbakia="1">
                     <Partidua egoera="JokatuGabe">
@@ -1534,35 +1670,35 @@
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
                         <EtxekoTaldea>Córdoba Patrimonio</EtxekoTaldea>
-                        <KanpokoTaldea>Jimbee Cartagena</KanpokoTaldea>
+                        <KanpokoTaldea>Xota FS</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
-                        <EtxekoTaldea>Xota FS</EtxekoTaldea>
-                        <KanpokoTaldea>Industrias Santa Coloma</KanpokoTaldea>
+                        <EtxekoTaldea>Industrias Santa Coloma</EtxekoTaldea>
+                        <KanpokoTaldea>Jimbee Cartagena</KanpokoTaldea>
                     </Partidua>
                 </Jardunaldi>
                 <Jardunaldi zenbakia="2">
                     <Partidua egoera="JokatuGabe">
                         <EtxekoTaldea>Aspil-Jumpers Ribera</EtxekoTaldea>
-                        <KanpokoTaldea>Jimbee Cartagena</KanpokoTaldea>
+                        <KanpokoTaldea>Xota FS</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
                         <EtxekoTaldea>Noia Portus Apostoli</EtxekoTaldea>
-                        <KanpokoTaldea>Industrias Santa Coloma</KanpokoTaldea>
+                        <KanpokoTaldea>Jimbee Cartagena</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
                         <EtxekoTaldea>Córdoba Patrimonio</EtxekoTaldea>
-                        <KanpokoTaldea>Xota FS</KanpokoTaldea>
+                        <KanpokoTaldea>Industrias Santa Coloma</KanpokoTaldea>
                     </Partidua>
                 </Jardunaldi>
                 <Jardunaldi zenbakia="3">
                     <Partidua egoera="JokatuGabe">
                         <EtxekoTaldea>Aspil-Jumpers Ribera</EtxekoTaldea>
-                        <KanpokoTaldea>Industrias Santa Coloma</KanpokoTaldea>
+                        <KanpokoTaldea>Jimbee Cartagena</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
-                        <EtxekoTaldea>Jimbee Cartagena</EtxekoTaldea>
-                        <KanpokoTaldea>Xota FS</KanpokoTaldea>
+                        <EtxekoTaldea>Xota FS</EtxekoTaldea>
+                        <KanpokoTaldea>Industrias Santa Coloma</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
                         <EtxekoTaldea>Noia Portus Apostoli</EtxekoTaldea>
@@ -1572,14 +1708,14 @@
                 <Jardunaldi zenbakia="4">
                     <Partidua egoera="JokatuGabe">
                         <EtxekoTaldea>Aspil-Jumpers Ribera</EtxekoTaldea>
-                        <KanpokoTaldea>Xota FS</KanpokoTaldea>
-                    </Partidua>
-                    <Partidua egoera="JokatuGabe">
-                        <EtxekoTaldea>Industrias Santa Coloma</EtxekoTaldea>
-                        <KanpokoTaldea>Córdoba Patrimonio</KanpokoTaldea>
+                        <KanpokoTaldea>Industrias Santa Coloma</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
                         <EtxekoTaldea>Jimbee Cartagena</EtxekoTaldea>
+                        <KanpokoTaldea>Córdoba Patrimonio</KanpokoTaldea>
+                    </Partidua>
+                    <Partidua egoera="JokatuGabe">
+                        <EtxekoTaldea>Xota FS</EtxekoTaldea>
                         <KanpokoTaldea>Noia Portus Apostoli</KanpokoTaldea>
                     </Partidua>
                 </Jardunaldi>
@@ -1589,12 +1725,12 @@
                         <KanpokoTaldea>Córdoba Patrimonio</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
-                        <EtxekoTaldea>Xota FS</EtxekoTaldea>
+                        <EtxekoTaldea>Industrias Santa Coloma</EtxekoTaldea>
                         <KanpokoTaldea>Noia Portus Apostoli</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
-                        <EtxekoTaldea>Industrias Santa Coloma</EtxekoTaldea>
-                        <KanpokoTaldea>Jimbee Cartagena</KanpokoTaldea>
+                        <EtxekoTaldea>Jimbee Cartagena</EtxekoTaldea>
+                        <KanpokoTaldea>Xota FS</KanpokoTaldea>
                     </Partidua>
                 </Jardunaldi>
                 <Jardunaldi zenbakia="6">
@@ -1603,36 +1739,36 @@
                         <KanpokoTaldea>Aspil-Jumpers Ribera</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
-                        <EtxekoTaldea>Jimbee Cartagena</EtxekoTaldea>
+                        <EtxekoTaldea>Xota FS</EtxekoTaldea>
                         <KanpokoTaldea>Córdoba Patrimonio</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
-                        <EtxekoTaldea>Industrias Santa Coloma</EtxekoTaldea>
-                        <KanpokoTaldea>Xota FS</KanpokoTaldea>
+                        <EtxekoTaldea>Jimbee Cartagena</EtxekoTaldea>
+                        <KanpokoTaldea>Industrias Santa Coloma</KanpokoTaldea>
                     </Partidua>
                 </Jardunaldi>
                 <Jardunaldi zenbakia="7">
                     <Partidua egoera="JokatuGabe">
-                        <EtxekoTaldea>Jimbee Cartagena</EtxekoTaldea>
+                        <EtxekoTaldea>Xota FS</EtxekoTaldea>
                         <KanpokoTaldea>Aspil-Jumpers Ribera</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
-                        <EtxekoTaldea>Industrias Santa Coloma</EtxekoTaldea>
+                        <EtxekoTaldea>Jimbee Cartagena</EtxekoTaldea>
                         <KanpokoTaldea>Noia Portus Apostoli</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
-                        <EtxekoTaldea>Xota FS</EtxekoTaldea>
+                        <EtxekoTaldea>Industrias Santa Coloma</EtxekoTaldea>
                         <KanpokoTaldea>Córdoba Patrimonio</KanpokoTaldea>
                     </Partidua>
                 </Jardunaldi>
                 <Jardunaldi zenbakia="8">
                     <Partidua egoera="JokatuGabe">
-                        <EtxekoTaldea>Industrias Santa Coloma</EtxekoTaldea>
+                        <EtxekoTaldea>Jimbee Cartagena</EtxekoTaldea>
                         <KanpokoTaldea>Aspil-Jumpers Ribera</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
-                        <EtxekoTaldea>Xota FS</EtxekoTaldea>
-                        <KanpokoTaldea>Jimbee Cartagena</KanpokoTaldea>
+                        <EtxekoTaldea>Industrias Santa Coloma</EtxekoTaldea>
+                        <KanpokoTaldea>Xota FS</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
                         <EtxekoTaldea>Córdoba Patrimonio</EtxekoTaldea>
@@ -1641,16 +1777,16 @@
                 </Jardunaldi>
                 <Jardunaldi zenbakia="9">
                     <Partidua egoera="JokatuGabe">
-                        <EtxekoTaldea>Xota FS</EtxekoTaldea>
+                        <EtxekoTaldea>Industrias Santa Coloma</EtxekoTaldea>
                         <KanpokoTaldea>Aspil-Jumpers Ribera</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
                         <EtxekoTaldea>Córdoba Patrimonio</EtxekoTaldea>
-                        <KanpokoTaldea>Industrias Santa Coloma</KanpokoTaldea>
+                        <KanpokoTaldea>Jimbee Cartagena</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
                         <EtxekoTaldea>Noia Portus Apostoli</EtxekoTaldea>
-                        <KanpokoTaldea>Jimbee Cartagena</KanpokoTaldea>
+                        <KanpokoTaldea>Xota FS</KanpokoTaldea>
                     </Partidua>
                 </Jardunaldi>
                 <Jardunaldi zenbakia="10">
@@ -1660,11 +1796,11 @@
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
                         <EtxekoTaldea>Noia Portus Apostoli</EtxekoTaldea>
-                        <KanpokoTaldea>Xota FS</KanpokoTaldea>
+                        <KanpokoTaldea>Industrias Santa Coloma</KanpokoTaldea>
                     </Partidua>
                     <Partidua egoera="JokatuGabe">
-                        <EtxekoTaldea>Jimbee Cartagena</EtxekoTaldea>
-                        <KanpokoTaldea>Industrias Santa Coloma</KanpokoTaldea>
+                        <EtxekoTaldea>Xota FS</EtxekoTaldea>
+                        <KanpokoTaldea>Jimbee Cartagena</KanpokoTaldea>
                     </Partidua>
                 </Jardunaldi>
             </Jardunaldiak>
