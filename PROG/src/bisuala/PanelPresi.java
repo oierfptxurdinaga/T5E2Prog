@@ -76,7 +76,7 @@ public class PanelPresi extends JPanel {
                 // --- A. IRUDIA ---
                 JLabel lblEskutua = new JLabel();
 
-                String path = t.getEskutua(); 
+                String path = t.getEzkutua(); 
                 
                 if (path != null) {
                     URL imgUrl = getClass().getResource(path);

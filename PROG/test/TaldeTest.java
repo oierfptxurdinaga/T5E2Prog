@@ -28,8 +28,8 @@ class TaldeTest {
 	@Test
 	void aldatuEskutua() {
 		t.setEskutua("Beltza");
-        assertEquals("Beltza", t.getEskutua());
+        assertEquals("Beltza", t.getEzkutua());
         t.aldatuEskutua("Gorria");
-        assertEquals("Gorria", t.getEskutua());
+        assertEquals("Gorria", t.getEzkutua());
 	}
 }

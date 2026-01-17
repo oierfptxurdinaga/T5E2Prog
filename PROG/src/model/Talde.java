@@ -43,7 +43,7 @@ public class Talde implements Serializable{
 		this.izena = izena;
 	}
 
-	public String getEskutua() {
+	public String getEzkutua() {
 		return ezkutua;
 	}
 

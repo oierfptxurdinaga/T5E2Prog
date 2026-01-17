@@ -108,7 +108,7 @@ public class PanelTaldeak extends JPanel {
         lblEscudo.setHorizontalAlignment(SwingConstants.CENTER);
         
         // ALDAKETA NAGUSIA HEMEN: Objektuari galdetzen diogu bidea
-        String irudiBidea = t.getEskutua(); 
+        String irudiBidea = t.getEzkutua(); 
         
         if (irudiBidea != null && !irudiBidea.isEmpty()) {
             try {

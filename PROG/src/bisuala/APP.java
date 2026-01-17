@@ -94,31 +94,36 @@ public class APP extends JFrame {
 	 * TAB-ak eguneratzen ditu aukeratutako denboraldiaren arabera.
 	 */
 	private void tabsEguneratu() {
-		tabs.removeAll();
-		Denboraldia aukeratutakoa = (Denboraldia) cbDenboraldiak.getSelectedItem();
+	    tabs.removeAll();
+	    Denboraldia aukeratutakoa = (Denboraldia) cbDenboraldiak.getSelectedItem();
 
-		if (aukeratutakoa != null) {
-			tabs.addTab("Sailkapena", new PanelSailkapena(aukeratutakoa.getLigakoTaldeak(),
-					aukeratutakoa.getLigakoJardunaldi(), aukeratutakoa.getUrtea()));
+	    if (aukeratutakoa != null) {
+	        // 1. Sailkapena
+	        ArrayList<DenboraldiTalde> sailkapena = aukeratutakoa.getSailkapena(); // Ziurtatu metodo hau existitzen dela edo kalkulatzen duzula
+	        tabs.addTab("Sailkapena", new PanelSailkapena(sailkapena, aukeratutakoa.getUrtea()));
 
-			tabs.addTab("Taldeak", new PanelTaldeak(aukeratutakoa.getLigakoTaldeak(), aukeratutakoa.getUrtea()));
-			//TAB Desberdina erabiltzaile desberdinentzat.
-			if (erabAktiboa instanceof ErabiltzaileAdministraria) {
-				tabs.addTab("Admin - Kudeaketa", new PanelAdmin(erabAktiboa, aukeratutakoa.getLigakoTaldeak()));
+	        // 2. Taldeak
+	        tabs.addTab("Taldeak", new PanelTaldeak(aukeratutakoa.getLigakoTaldeak(), aukeratutakoa.getUrtea()));
+	        
+	        // 3. JARDUNALDIAK (Hau da falta zena) [GEHITU LERRO HAU]
+	        tabs.addTab("Jardunaldiak", new PanelJardunaldiak(aukeratutakoa));
 
-			} else if (erabAktiboa instanceof ErabiltzaileEpaile) {
-				tabs.addTab("Epailea - Emaitzak", new PanelEpailea(erabAktiboa, aukeratutakoa.getLigakoTaldeak(),
-						aukeratutakoa.getLigakoJardunaldi()));
+	        // 4. Erabiltzailearen araberako panelak
+	        if (erabAktiboa instanceof ErabiltzaileAdministraria) {
+	            tabs.addTab("Admin - Kudeaketa", new PanelAdmin(erabAktiboa, aukeratutakoa.getLigakoTaldeak()));
 
-			} else if (erabAktiboa instanceof ErabiltzailePresi) {
+	        } else if (erabAktiboa instanceof ErabiltzaileEpaile) {
+	            tabs.addTab("Epailea - Emaitzak", new PanelEpailea(erabAktiboa, aukeratutakoa.getLigakoTaldeak(),
+	                    aukeratutakoa.getLigakoJardunaldi()));
 
-				tabs.addTab("Presidentea - Taldea",
-						new PanelPresi(erabAktiboa, this.federazioa, federazioa.getUnekoDenboraldia(), this));
-			}
-		}
+	        } else if (erabAktiboa instanceof ErabiltzailePresi) {
+	            tabs.addTab("Presidentea - Taldea",
+	                    new PanelPresi(erabAktiboa, this.federazioa, federazioa.getUnekoDenboraldia(), this));
+	        }
+	    }
 
-		tabs.revalidate();
-		tabs.repaint();
+	    tabs.revalidate();
+	    tabs.repaint();
 	}
 
 	/**
@@ -166,8 +171,7 @@ public class APP extends JFrame {
 
 	/**
 	 * Irteera edo Logout egitean exekutatzen den logika bateratua.
-	 * 
-	 * @param isLogout Egia bada Login-era doa, Gezurra bada programa ixten du.
+	 * * @param isLogout Egia bada Login-era doa, Gezurra bada programa ixten du.
 	 */
 	public void kudeatuIrteera(boolean isLogout) {
 		if (aldaketakDauden) {

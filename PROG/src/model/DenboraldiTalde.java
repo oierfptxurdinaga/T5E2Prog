@@ -11,7 +11,7 @@ public class DenboraldiTalde {
     private int GA;            // Golak alde
     private int GK;            // Golak kontra
     private int GD;            // Gol diferentzia
-    private int Pts;           // Puntuak
+    private int PT;           // Puntuak
 
     public DenboraldiTalde(Talde talde, boolean aktiboa) {
         this.talde = talde;
@@ -23,7 +23,7 @@ public class DenboraldiTalde {
         this.GA = 0;
         this.GK = 0;
         this.GD = 0;
-        this.Pts = 0;
+        this.PT = 0;
     }
 
     public void emaitzakEguneratu(int golAlde, int golAurka) {
@@ -34,10 +34,10 @@ public class DenboraldiTalde {
 
         if (golAlde > golAurka) {
             this.I++;
-            this.Pts += 3;
+            this.PT += 3;
         } else if (golAlde == golAurka) {
             this.B++;
-            this.Pts += 1;
+            this.PT += 1;
         } else {
             this.G++;
         }
@@ -55,5 +55,5 @@ public class DenboraldiTalde {
     public int getGF() { return GA; }
     public int getGC() { return GK; }
     public int getDG() { return GD; }
-    public int getPts() { return Pts; }
+    public int getPts() { return PT; }
 }
