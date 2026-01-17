@@ -2,9 +2,6 @@ package utils;
 
 import java.io.File;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -20,14 +17,6 @@ import model.*;
 
 public class XmlKudeatzailea {
 
-    // Barruko klasea estatistikak kalkulatzeko (Model-en ez baduzu, hemen erabil dezakezu)
-    // Zure TaldeStats klasea model paketean badago, hau ezabatu dezakezu.
-    private class TaldeStats {
-        String izena;
-        int puntuak = 0, jokatuak = 0, irabaziak = 0, berdinduak = 0, galduak = 0, gAlde = 0, gAurka = 0;
-        public TaldeStats(String izena) { this.izena = izena; }
-    }
-
     public boolean esportatuXML(Federazioa federazioa, String rutaFitxategia) {
         try {
             DocumentBuilderFactory docFactory = DocumentBuilderFactory.newInstance();
@@ -38,7 +27,7 @@ public class XmlKudeatzailea {
             doc.appendChild(rootElement);
 
             // -------------------------------------------------
-            // A. TALDEAK (MAISUA / MASTER)
+            // A. TALDE GUZTIAK (Masterra)
             // -------------------------------------------------
             Element taldeakElement = doc.createElement("TaldeGuztiak");
             rootElement.appendChild(taldeakElement);
@@ -48,7 +37,7 @@ public class XmlKudeatzailea {
             }
 
             // -------------------------------------------------
-            // B. DENBORALDIAK (HISTORIKOA)
+            // B. DENBORALDIAK (Historiala)
             // -------------------------------------------------
             Element denboraldiakElement = doc.createElement("Denboraldiak");
             rootElement.appendChild(denboraldiakElement);
@@ -58,7 +47,7 @@ public class XmlKudeatzailea {
                 denbElement.setAttribute("urtea", String.valueOf(d.getUrtea()));
                 denboraldiakElement.appendChild(denbElement);
 
-                // 1. TALDEEN FOTOA (PLANTILLAK)
+                // 1. TALDEAK (Denboraldi honetakoak)
                 Element denbTaldeak = doc.createElement("DenboraldikoTaldeak");
                 denbElement.appendChild(denbTaldeak);
 
@@ -69,40 +58,45 @@ public class XmlKudeatzailea {
                 }
 
                 // ---------------------------------------------------------
-                // 2. SAILKAPENA (HEMEN GEHITU DUGU ZATI BERRIA)
+                // 2. SAILKAPENA (Modelotik zuzenean lortuta)
                 // ---------------------------------------------------------
                 
-                // A) Estatistikak kalkulatu
-                ArrayList<TaldeStats> stats = kalkulatuEstatistikak(d.getLigakoTaldeak(), d.getLigakoJardunaldi());
+                // A) Datuak eskatu Denboraldia klaseari (kalkulua han egiten da)
+                ArrayList<DenboraldiTalde> stats = d.getSailkapena();
                 
                 // B) Ordenatu (Puntuak > Gol Aldea)
                 stats.sort((s1, s2) -> {
-                    if (s1.puntuak != s2.puntuak) return s2.puntuak - s1.puntuak;
-                    return (s2.gAlde - s2.gAurka) - (s1.gAlde - s1.gAurka);
+                    if (s1.getPts() != s2.getPts()) return s2.getPts() - s1.getPts();
+                    return s2.getDG() - s1.getDG();
                 });
 
                 // C) XML Nodoak sortu
                 Element sailkapenaElem = doc.createElement("Sailkapena");
                 for (int i = 0; i < stats.size(); i++) {
-                    TaldeStats s = stats.get(i);
+                    DenboraldiTalde s = stats.get(i);
                     Element lerroa = doc.createElement("Lerroa");
 
                     elementuaSortu(doc, lerroa, "Posizioa", String.valueOf(i + 1));
-                    elementuaSortu(doc, lerroa, "Taldea", s.izena);
-                    elementuaSortu(doc, lerroa, "Puntuak", String.valueOf(s.puntuak));
-                    elementuaSortu(doc, lerroa, "Jokatuak", String.valueOf(s.jokatuak));
-                    elementuaSortu(doc, lerroa, "Irabaziak", String.valueOf(s.irabaziak));
-                    elementuaSortu(doc, lerroa, "Berdinduak", String.valueOf(s.berdinduak));
-                    elementuaSortu(doc, lerroa, "Galduak", String.valueOf(s.galduak));
-                    elementuaSortu(doc, lerroa, "AldekoGolak", String.valueOf(s.gAlde));
-                    elementuaSortu(doc, lerroa, "AurkakoGolak", String.valueOf(s.gAurka));
+                    
+                    // DenboraldiTalde barruan dago Talde objektua
+                    elementuaSortu(doc, lerroa, "Taldea", s.getTalde().getIzena());
+                    
+                    // Estatistikak (Zure DenboraldiTalde getterrak erabiliz)
+                    elementuaSortu(doc, lerroa, "Puntuak", String.valueOf(s.getPts()));
+                    elementuaSortu(doc, lerroa, "Jokatuak", String.valueOf(s.getPJ()));
+                    elementuaSortu(doc, lerroa, "Irabaziak", String.valueOf(s.getG())); // G = Irabaziak
+                    elementuaSortu(doc, lerroa, "Berdinduak", String.valueOf(s.getE())); // E = Berdinduak
+                    elementuaSortu(doc, lerroa, "Galduak", String.valueOf(s.getP())); // P = Galduak
+                    elementuaSortu(doc, lerroa, "AldekoGolak", String.valueOf(s.getGF()));
+                    elementuaSortu(doc, lerroa, "AurkakoGolak", String.valueOf(s.getGC()));
 
                     sailkapenaElem.appendChild(lerroa);
                 }
                 denbElement.appendChild(sailkapenaElem);
+                
                 // ---------------------------------------------------------
 
-                // 3. JARDUNALDIAK
+                // 3. JARDUNALDIAK ETA PARTIDUAK
                 Element jardunaldiakElement = doc.createElement("Jardunaldiak");
                 denbElement.appendChild(jardunaldiakElement);
 
@@ -180,53 +174,10 @@ public class XmlKudeatzailea {
         return taldeElement;
     }
 
-    // Kodea garbitzeko metodo berria (Elementu sinpleak sortzeko)
+    // Elementu sinpleak sortzeko metodoa (kodea garbiago uzteko)
     private void elementuaSortu(Document doc, Element gurasoa, String etiketa, String balioa) {
         Element e = doc.createElement(etiketa);
         e.appendChild(doc.createTextNode(balioa));
         gurasoa.appendChild(e);
-    }
-
-    // Estatistikak kalkulatzeko logika
-    private ArrayList<TaldeStats> kalkulatuEstatistikak(ArrayList<Talde> taldeak, ArrayList<Jardunaldi> jardunaldi) {
-        Map<String, TaldeStats> mapaStats = new HashMap<>();
-
-        if (taldeak != null) {
-            for (Talde t : taldeak) {
-                mapaStats.put(t.getIzena(), new TaldeStats(t.getIzena()));
-            }
-        }
-
-        if (jardunaldi != null) {
-            for (Jardunaldi j : jardunaldi) {
-                if (j.getPartiduak() != null) {
-                    for (Partidua p : j.getPartiduak()) {
-                        if (!p.jokatutaDago()) continue;
-
-                        TaldeStats local = mapaStats.get(p.getEtxekoTaldea().getIzena());
-                        TaldeStats visit = mapaStats.get(p.getKanpokoTaldea().getIzena());
-
-                        if (local == null || visit == null) continue;
-
-                        int gL = p.getEtxekoGolak();
-                        int gK = p.getKanpokoGolak();
-
-                        local.jokatuak++; visit.jokatuak++;
-                        local.gAlde += gL; local.gAurka += gK;
-                        visit.gAlde += gK; visit.gAurka += gL;
-
-                        if (gL > gK) {
-                            local.puntuak += 3; local.irabaziak++; visit.galduak++;
-                        } else if (gK > gL) {
-                            visit.puntuak += 3; visit.irabaziak++; local.galduak++;
-                        } else {
-                            local.puntuak += 1; local.berdinduak++;
-                            visit.puntuak += 1; visit.berdinduak++;
-                        }
-                    }
-                }
-            }
-        }
-        return new ArrayList<>(mapaStats.values());
     }
 }
