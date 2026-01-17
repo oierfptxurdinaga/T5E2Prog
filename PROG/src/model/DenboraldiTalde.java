@@ -2,16 +2,16 @@ package model;
 
 public class DenboraldiTalde {
 
-    private Talde talde;      // Equipo original
-    private boolean aktiboa;   // Participa en la temporada actual
-    private int JP;            // Partidos jugados
-    private int I;             // Victorias
-    private int B;             // Empates
-    private int G;             // Derrotas
-    private int GA;            // Goles a favor
-    private int GK;            // Goles en contra
-    private int GD;            // Diferencia de goles
-    private int Pts;           // Puntos
+    private Talde talde;      // Talde originala
+    private boolean aktiboa;   // Denboraldi honetan partizipatzen du
+    private int JP;            // Jokatutako partidak
+    private int I;             // Irabazitak
+    private int B;             // Berdinketak
+    private int G;             // Galdutak
+    private int GA;            // Golak alde
+    private int GK;            // Golak kontra
+    private int GD;            // Gol diferentzia
+    private int Pts;           // Puntuak
 
     public DenboraldiTalde(Talde talde, boolean aktiboa) {
         this.talde = talde;

@@ -81,14 +81,10 @@ public class Denboraldia implements Serializable {
     public boolean isDenboraldiaHasiDa() {
         return isHasiDa();
     }
-    
-    // Setter hutsa
-    public void setDenboraldiaHasiDa(boolean b) {
-        // Ez du ezer egiten, orain automatikoa da.
-    }
 
     @Override
     public String toString() {
         return String.valueOf(urtea);
     }
+
 }

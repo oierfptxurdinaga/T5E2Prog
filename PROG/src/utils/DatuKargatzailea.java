@@ -28,13 +28,8 @@ public class DatuKargatzailea {
             federazioa.gehituTaldea(t);
         }
 
-        // 5. DENBORALDIA SORTU (2024)
-        // NOTA: Para cumplir tu requisito de "10 jornadas" (ida y vuelta), 
-        // la liga activa debe ser de 6 equipos. 
-        // Si metemos los 12 equipos, saldrían 22 jornadas.
-        // Aquí meto los 6 primeros a la liga, pero los otros 6 existen en la federación para fichar.
+
         Denboraldia denboraldia = new Denboraldia(2024);
-        denboraldia.setDenboraldiaHasiDa(true); 
 
         for (int i = 1; i <= 6; i++) {
             denboraldia.gehituTaldea(taldeMapa.get(i));
