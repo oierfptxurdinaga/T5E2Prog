@@ -30,7 +30,7 @@ class DenboraldiaTest {
     void gehituTaldeaEtaAddJardunaldiaTest() {
         assertEquals(0, denboraldia.getLigakoTaldeak().size());
         assertEquals(0, denboraldia.getLigakoJardunaldi().size());
-
+        
         denboraldia.gehituTaldea(t1);
         denboraldia.addJardunaldia(j1);
 
@@ -57,9 +57,51 @@ class DenboraldiaTest {
 		assertTrue(denboraldia.isHasiDa());
 		assertTrue(denboraldia.isAmaituta());
 	}
+		@Test
+	void testIsHasiDa_Null() {
+        denboraldia.setLigakoJardunaldi(null);
+        assertFalse(denboraldia.isHasiDa());
+	}
+
 	
 	@Test
     void toStringTest() {
         assertEquals("2002", denboraldia.toString());
     }
+	@Test
+	void getUrteaTest() {
+		assertEquals(denboraldia.getUrtea(), 2002);
+	}
+	@Test
+	void setLigakoTaldeakTest() {
+		ArrayList<Talde> taldeakArrayList = new ArrayList<Talde>();
+		taldeakArrayList.add(t1);
+		taldeakArrayList.add(t2);
+		denboraldia.setLigakoTaldeak(taldeakArrayList);
+		assertEquals(taldeakArrayList, denboraldia.getLigakoTaldeak());
+	}
+	
+	@Test
+	void isDenboraldiaHasiDaTest() {
+		assertFalse(denboraldia.isDenboraldiaHasiDa());
+	}
+	@Test
+	void getSailkapenaTest() {
+		denboraldia.gehituTaldea(t1);
+		denboraldia.gehituTaldea(t2);
+		j1.addPartidua(p1);
+		j1.addPartidua(p2);
+		denboraldia.addJardunaldia(j1);
+		ArrayList<DenboraldiTalde> tDenboraldiTaldeak = denboraldia.getSailkapena();
+		assertNotNull(tDenboraldiTaldeak);
+		assertEquals(2, tDenboraldiTaldeak.size());
+	}
+	@Test
+	void getSailkapenaTest_Null() {
+		denboraldia.setLigakoTaldeak(null);
+		denboraldia.setLigakoJardunaldi(null);
+		ArrayList<DenboraldiTalde> emaitzArrayList = denboraldia.getSailkapena();
+		assertNotNull(emaitzArrayList);
+		assertTrue(emaitzArrayList.isEmpty());
+	}
 }

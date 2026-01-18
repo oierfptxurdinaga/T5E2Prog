@@ -47,7 +47,7 @@ public class Talde implements Serializable{
 		return ezkutua;
 	}
 
-	public void setEskutua(String eskutua) {
+	public void setEzkutua(String eskutua) {
 		this.ezkutua = eskutua;
 	}
 
@@ -83,9 +83,9 @@ public class Talde implements Serializable{
 		this.aktiboaDago = aktiboaDago;
 	}
 	
-	public void aldatuEskutua(String Eskutua) {
-		if(this.ezkutua!=Eskutua) {
-			this.ezkutua=Eskutua;
+	public void aldatuEzkutua(String ezkutua) {
+		if(this.ezkutua!=ezkutua) {
+			this.ezkutua=ezkutua;
 		}
 	}
 	public void sartuJokalaria (Jokalari j) {
@@ -120,7 +120,7 @@ public class Talde implements Serializable{
 	    ArrayList<Jokalari> jokalariKopiak = new ArrayList<>();
 	    
 	    // 2. Jatorrizko taldeko jokalari bakoitza kopiatu eta zerrenda berrira gehitu
-	    if (this.jokalariak != null) { // Segurtasuna (null check)
+	    if (this.jokalariak != null) {
 	        for (Jokalari j : this.jokalariak) {
 	            jokalariKopiak.add(j.kopiatu()); // HEMEN DAGO GAKOA
 	        }

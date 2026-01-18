@@ -26,10 +26,76 @@ class TaldeTest {
 	}
 	
 	@Test
-	void aldatuEskutua() {
-		t.setEskutua("Beltza");
+	void aldatuEzkutua() {
+		t.setEzkutua("Beltza");
         assertEquals("Beltza", t.getEzkutua());
-        t.aldatuEskutua("Gorria");
+        t.aldatuEzkutua("Gorria");
         assertEquals("Gorria", t.getEzkutua());
 	}
+	@Test
+	void taldeKopiaTest() {
+		Talde tKopiaTalde = new Talde(t);
+		assertEquals(t, tKopiaTalde);
+	}
+	@Test
+	void setGetIzenaTest() {
+		t.setIzena("Txurdinaga");
+		assertEquals(t.getIzena(), "Txurdinaga");
+	}
+	@Test
+	void setGetZelaiaTest() {
+		t.setFutbolZelaia("Txurdinaga");
+		assertEquals(t.getFutbolZelaia(), "Txurdinaga");
+	}
+	@Test
+	void setGetHiriaTest() {
+		t.setHiria("Bilbao");
+		assertEquals(t.getHiria(), "Bilbao");
+	}
+	@Test
+	void setJokalariakTest(){
+		ArrayList<Jokalari> jokalariTest = new ArrayList<Jokalari>();
+		jokalariTest.add(j);
+		t.setJokalariak(jokalariTest);
+		assertEquals(jokalariTest, t.getJokalariak());
+	}
+	
+	@Test
+	void setGetAktiboaDagoTest(){
+		t.setAktiboaDago(false);
+		assertFalse(t.isAktiboaDago());
+	}
+	@Test
+	void eskutuBerdinaTest() {
+		t.setEzkutua("Txurdinaga.png");
+		t.aldatuEzkutua("Txurdinaga.png");
+		assertEquals("Txurdinaga.png", t.getEzkutua());
+	}
+	@Test
+	void equalsTest() {
+		assertTrue(t.equals(t));
+		assertFalse(t.equals(null));
+		assertFalse(t.equals("String"));
+		
+		Talde desberdinaTalde = new Talde();
+	    desberdinaTalde.setIzena("Real Sociedad");
+	    assertFalse(t.equals(desberdinaTalde));
+	}
+	@Test
+	void kopiatuTest() {
+		t.setJokalariak(new ArrayList<>());
+		t.getJokalariak().add(j);
+		Talde kopiaTalde = t.kopiatu();
+		assertNotSame(t, kopiaTalde);
+		assertEquals(t.getIzena(), kopiaTalde.getIzena());
+		assertEquals(1, kopiaTalde.getJokalariak().size());
+		
+		t.setJokalariak(null);
+		Talde nullTalde = t.kopiatu();
+		assertNotNull(nullTalde);
+		assertNotNull(nullTalde.getJokalariak());
+		assertTrue(nullTalde.getJokalariak().isEmpty());
+	}
 }
+
+

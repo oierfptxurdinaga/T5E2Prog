@@ -21,6 +21,10 @@ public class Jokalari implements Serializable{
 		this.aktiboaDago = aktiboaDago;
 	}
 	
+	public Jokalari() {
+		super();
+	}
+
 	//getters and setters
 	public String getIzena() {
 		return izena;
