@@ -40,10 +40,8 @@ class FederazioaTest {
 		f.gehituDenboraldia(d);
 		assertEquals(d, f.getUnekoDenboraldia());
 		
-		
 		Federazioa fHutsa = new Federazioa();
 		assertNull(fHutsa.getUnekoDenboraldia());
-		
 		
 		Federazioa fNull = new Federazioa();
 	    fNull.setDenboraldiak(null);
