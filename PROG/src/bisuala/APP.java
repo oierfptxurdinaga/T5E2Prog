@@ -8,207 +8,150 @@ import model.*;
 import utils.DatuKarga;
 
 public class APP extends JFrame {
-	private static final long serialVersionUID = 1L;
-	private JComboBox<Denboraldia> cbDenboraldiak;
-	private JTabbedPane tabs;
-	private Erabiltzaile erabAktiboa;
-	private Federazioa federazioa;
-	private boolean aldaketakDauden = false;
+    private static final long serialVersionUID = 1L;
+    private JComboBox<Denboraldia> cbDenboraldiak;
+    private JTabbedPane tabs;
+    private Erabiltzaile erabAktiboa;
+    private Federazioa federazioa;
+    private boolean aldaketakDauden = false;
 
-	public APP(Erabiltzaile erab, Federazioa federazioa) {
-		this.erabAktiboa = erab;
-		this.federazioa = federazioa;
+    public APP(Erabiltzaile erab, Federazioa federazioa) {
+        // ... (Todo el constructor se queda IGUAL que lo tenías) ...
+        this.erabAktiboa = erab;
+        this.federazioa = federazioa;
+        ArrayList<Denboraldia> denboraldiak = federazioa.getDenboraldiak();
 
-		// Denboraldiak kargatu Federaziotik
-		ArrayList<Denboraldia> denboraldiak = federazioa.getDenboraldiak();
+        setTitle("FNS Kudeaketa - " + erab.getErabiltzaile());
+        setBounds(100, 100, 950, 700);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        addWindowListener(new ItziKonfirmazioa(this, federazioa));
 
-		setTitle("FNS Kudeaketa - " + erab.getErabiltzaile());
-		setBounds(100, 100, 950, 700);
-		// Leihoa ez ixtea automatikoki, guk kudeatzeko
-		setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-		addWindowListener(new ItziKonfirmazioa(this, federazioa));
+        tabs = new JTabbedPane();
+        JPanel pnlGoikoa = new JPanel(new BorderLayout());
+        pnlGoikoa.setBackground(new Color(230, 230, 230));
 
-		// --- GOIKO PANELA ---
-		tabs = new JTabbedPane();
+        JPanel pnlEzkerra = new JPanel(new FlowLayout(FlowLayout.LEFT));
+        pnlEzkerra.setOpaque(false);
+        JLabel labelDenboraldia = new JLabel("Denboraldia:");
+        pnlEzkerra.add(labelDenboraldia);
 
-		JPanel pnlGoikoa = new JPanel(new BorderLayout());
-		pnlGoikoa.setBackground(new Color(230, 230, 230));
+        cbDenboraldiak = new JComboBox<>();
+        if (denboraldiak != null) {
+            for (Denboraldia d : denboraldiak) {
+                cbDenboraldiak.addItem(d);
+            }
+            if (!denboraldiak.isEmpty()) {
+                cbDenboraldiak.setSelectedIndex(denboraldiak.size() - 1);
+            }
+        }
+        pnlEzkerra.add(cbDenboraldiak);
 
-		// Ezkerrean: Denboraldi aukeraketa
-		JPanel pnlEzkerra = new JPanel(new FlowLayout(FlowLayout.LEFT));
-		pnlEzkerra.setOpaque(false);
-		JLabel labelDenboraldia = new JLabel("Denboraldia:");
-		pnlEzkerra.add(labelDenboraldia);
+        JPanel pnlEskubia = new JPanel(new FlowLayout(FlowLayout.RIGHT));
+        pnlEskubia.setOpaque(false);
+        JButton btnLogout = new JButton("Saioa Itxi");
+        btnLogout.setBackground(new Color(135, 21, 33));
+        btnLogout.setForeground(Color.WHITE);
+        pnlEskubia.add(btnLogout);
 
-		// ComboBox-a hasieratu
-		cbDenboraldiak = new JComboBox<>();
-		if (denboraldiak != null) {
-			for (Denboraldia d : denboraldiak) {
-				cbDenboraldiak.addItem(d);
-			}
-			if (!denboraldiak.isEmpty()) {
-				cbDenboraldiak.setSelectedIndex(denboraldiak.size() - 1);
-			}
-		}
-		pnlEzkerra.add(cbDenboraldiak);
+        pnlGoikoa.add(pnlEzkerra, BorderLayout.WEST);
+        pnlGoikoa.add(pnlEskubia, BorderLayout.EAST);
 
-		// Eskubian: Saioa itxi botoia
-		JPanel pnlEskubia = new JPanel(new FlowLayout(FlowLayout.RIGHT));
-		pnlEskubia.setOpaque(false);
-		JButton btnLogout = new JButton("Saioa Itxi");
-		btnLogout.setBackground(new Color(135, 21, 33));
-		btnLogout.setForeground(Color.WHITE);
-		pnlEskubia.add(btnLogout);
+        getContentPane().add(pnlGoikoa, BorderLayout.NORTH);
+        getContentPane().add(tabs, BorderLayout.CENTER);
 
-		pnlGoikoa.add(pnlEzkerra, BorderLayout.WEST);
-		pnlGoikoa.add(pnlEskubia, BorderLayout.EAST);
+        tabs.addChangeListener(e -> {
+            Component panelAktiboa = tabs.getSelectedComponent();
+            if (panelAktiboa instanceof PanelPresi) {
+                labelDenboraldia.setVisible(false);
+                cbDenboraldiak.setVisible(false);
+            } else {
+                labelDenboraldia.setVisible(true);
+                cbDenboraldiak.setVisible(true);
+            }
+        });
 
-		getContentPane().add(pnlGoikoa, BorderLayout.NORTH);
-		getContentPane().add(tabs, BorderLayout.CENTER);
+        cbDenboraldiak.addActionListener(e -> tabsEguneratu());
+        tabsEguneratu();
+        btnLogout.addActionListener(e -> kudeatuIrteera(true));
+    }
 
-		// --- ENTZULEAK (LISTENERS) ---
+    private void tabsEguneratu() {
+        tabs.removeAll();
+        Denboraldia aukeratutakoa = (Denboraldia) cbDenboraldiak.getSelectedItem();
 
-		// 1. Pestaina aldatzean ComboBox-a ezkutatu Presidentea bada
-		tabs.addChangeListener(e -> {
-			Component panelAktiboa = tabs.getSelectedComponent();
-			if (panelAktiboa instanceof PanelPresi) {
-				labelDenboraldia.setVisible(false);
-				cbDenboraldiak.setVisible(false);
-			} else {
-				labelDenboraldia.setVisible(true);
-				cbDenboraldiak.setVisible(true);
-			}
-		});
+        if (aukeratutakoa != null) {
+            // 1. Sailkapena
+            ArrayList<DenboraldiTalde> sailkapena = aukeratutakoa.getSailkapena(); // Ziurtatu metodo hau existitzen dela edo kalkulatzen duzula
+            tabs.addTab("Sailkapena", new PanelSailkapena(sailkapena, aukeratutakoa.getUrtea()));
 
-		// 2. ComboBox aldatzean pestainak eguneratu
-		cbDenboraldiak.addActionListener(e -> tabsEguneratu());
+            // 2. Taldeak
+            tabs.addTab("Taldeak", new PanelTaldeak(aukeratutakoa.getLigakoTaldeak(), aukeratutakoa.getUrtea()));
+            
+            // 3. JARDUNALDIAK (Hau da falta zena) [GEHITU LERRO HAU]
+            tabs.addTab("Jardunaldiak", new PanelJardunaldiak(aukeratutakoa));
 
-		// Hasierako karga
-		tabsEguneratu();
+            // 4. Erabiltzailearen araberako panelak
+            if (erabAktiboa instanceof ErabiltzaileAdministraria) {
+                tabs.addTab("Admin - Kudeaketa", new PanelAdmin(erabAktiboa, aukeratutakoa.getLigakoTaldeak()));
 
-		// 3. LOGOUT BOTOIA: Orain irteera kudeatzen duen metodora deitzen du
-		btnLogout.addActionListener(e -> kudeatuIrteera(true));
-	}
+            } else if (erabAktiboa instanceof ErabiltzaileEpaile) {
+                tabs.addTab("Epailea - Emaitzak", new PanelEpailea(erabAktiboa, aukeratutakoa.getLigakoTaldeak(),
+                        aukeratutakoa.getLigakoJardunaldi()));
 
-	/**
-	 * TAB-ak eguneratzen ditu aukeratutako denboraldiaren arabera.
-	 */
-	private void tabsEguneratu() {
-	    tabs.removeAll();
-	    Denboraldia aukeratutakoa = (Denboraldia) cbDenboraldiak.getSelectedItem();
+            } else if (erabAktiboa instanceof ErabiltzailePresi) {
+                tabs.addTab("Presidentea - Taldea",
+                        new PanelPresi(erabAktiboa, this.federazioa, federazioa.getUnekoDenboraldia(), this));
+            }
+        }
 
-	    if (aukeratutakoa != null) {
-	        // 1. Sailkapena
-	        ArrayList<DenboraldiTalde> sailkapena = aukeratutakoa.getSailkapena(); // Ziurtatu metodo hau existitzen dela edo kalkulatzen duzula
-	        tabs.addTab("Sailkapena", new PanelSailkapena(sailkapena, aukeratutakoa.getUrtea()));
+        tabs.revalidate();
+        tabs.repaint();
+    }
+    // ... (El resto de métodos: interfazeaFreskatu, kudeatuIrteera, etc. se quedan IGUAL) ...
+    public void interfazeaFreskatu() {
+        this.aldaketakDauden = true;
+        ActionListener[] listeners = cbDenboraldiak.getActionListeners();
+        for (ActionListener al : listeners) { cbDenboraldiak.removeActionListener(al); }
+        cbDenboraldiak.removeAllItems();
+        ArrayList<Denboraldia> denboraldiak = federazioa.getDenboraldiak();
+        if (denboraldiak != null) {
+            for (Denboraldia d : denboraldiak) { cbDenboraldiak.addItem(d); }
+            cbDenboraldiak.setSelectedIndex(denboraldiak.size() - 1);
+        }
+        for (ActionListener al : listeners) { cbDenboraldiak.addActionListener(al); }
+        tabsEguneratu();
+    }
 
-	        // 2. Taldeak
-	        tabs.addTab("Taldeak", new PanelTaldeak(aukeratutakoa.getLigakoTaldeak(), aukeratutakoa.getUrtea()));
-	        
-	        // 3. JARDUNALDIAK (Hau da falta zena) [GEHITU LERRO HAU]
-	        tabs.addTab("Jardunaldiak", new PanelJardunaldiak(aukeratutakoa));
+    public boolean isAldaketakDauden() { return aldaketakDauden; }
+    public void setAldaketakDauden(boolean aldaketakDauden) { this.aldaketakDauden = aldaketakDauden; }
 
-	        // 4. Erabiltzailearen araberako panelak
-	        if (erabAktiboa instanceof ErabiltzaileAdministraria) {
-	            tabs.addTab("Admin - Kudeaketa", new PanelAdmin(erabAktiboa, aukeratutakoa.getLigakoTaldeak()));
+    public void kudeatuIrteera(boolean isLogout) {
+        if (aldaketakDauden) {
+            int aukera = JOptionPane.showConfirmDialog(this, "Aldaketak egin dituzu. Gorde nahi dituzu irten aurretik?",
+                    "Gorde aldaketak", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
+            if (aukera == JOptionPane.YES_OPTION) {
+                DatuKarga.gordeFederazioa(federazioa);
+                aldaketakDauden = false;
+                exekutatuIrteera(isLogout);
+            } else if (aukera == JOptionPane.NO_OPTION) {
+                exekutatuIrteera(isLogout);
+            }
+        } else {
+            int aukera = JOptionPane.showConfirmDialog(this,
+                    isLogout ? "Ziur zaude saioa itxi nahi duzula?" : "Ziur zaude programa itxi nahi duzula?",
+                    "Konfirmatu", JOptionPane.YES_NO_OPTION);
+            if (aukera == JOptionPane.YES_OPTION) {
+                exekutatuIrteera(isLogout);
+            }
+        }
+    }
 
-	        } else if (erabAktiboa instanceof ErabiltzaileEpaile) {
-	            tabs.addTab("Epailea - Emaitzak", new PanelEpailea(erabAktiboa, aukeratutakoa.getLigakoTaldeak(),
-	                    aukeratutakoa.getLigakoJardunaldi()));
-
-	        } else if (erabAktiboa instanceof ErabiltzailePresi) {
-	            tabs.addTab("Presidentea - Taldea",
-	                    new PanelPresi(erabAktiboa, this.federazioa, federazioa.getUnekoDenboraldia(), this));
-	        }
-	    }
-
-	    tabs.revalidate();
-	    tabs.repaint();
-	}
-
-	/**
-	 * Metodo hau PanelPresi-tik deitzen da denboraldi berri bat sortzen denean. Ez
-	 * du automatikoki gordetzen, baina aldaketak daudela markatzen du.
-	 */
-	public void interfazeaFreskatu() {
-		// 1. Aldaketak daudela markatu (gordetzeko abisua ateratzeko gero)
-		this.aldaketakDauden = true;
-
-		// 2. ComboBox-a eguneratu listener-ak kenduz momentu batez
-		ActionListener[] listeners = cbDenboraldiak.getActionListeners();
-		for (ActionListener al : listeners) {
-			cbDenboraldiak.removeActionListener(al);
-		}
-
-		cbDenboraldiak.removeAllItems();
-		ArrayList<Denboraldia> denboraldiak = federazioa.getDenboraldiak();
-
-		if (denboraldiak != null) {
-			for (Denboraldia d : denboraldiak) {
-				cbDenboraldiak.addItem(d);
-			}
-			// Azkena aukeratu (sortu berri duguna)
-			cbDenboraldiak.setSelectedIndex(denboraldiak.size() - 1);
-		}
-
-		for (ActionListener al : listeners) {
-			cbDenboraldiak.addActionListener(al);
-		}
-
-		// 3. Pestainak berritu
-		tabsEguneratu();
-	}
-
-	// --- IRTEERA KUDEAKETA ETA GETTER/SETTER ---
-
-	public boolean isAldaketakDauden() {
-		return aldaketakDauden;
-	}
-
-	public void setAldaketakDauden(boolean aldaketakDauden) {
-		this.aldaketakDauden = aldaketakDauden;
-	}
-
-	/**
-	 * Irteera edo Logout egitean exekutatzen den logika bateratua.
-	 * * @param isLogout Egia bada Login-era doa, Gezurra bada programa ixten du.
-	 */
-	public void kudeatuIrteera(boolean isLogout) {
-		if (aldaketakDauden) {
-			// Aldaketak badaude, galdetu
-			int aukera = JOptionPane.showConfirmDialog(this, "Aldaketak egin dituzu. Gorde nahi dituzu irten aurretik?",
-					"Gorde aldaketak", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
-
-			if (aukera == JOptionPane.YES_OPTION) {
-				// BAI -> Gorde eta jarraitu
-				DatuKarga.gordeFederazioa(federazioa);
-				aldaketakDauden = false;
-				exekutatuIrteera(isLogout);
-
-			} else if (aukera == JOptionPane.NO_OPTION) {
-				// EZ -> Ez gorde eta jarraitu
-				exekutatuIrteera(isLogout);
-			}
-			// CANCEL -> Ez egin ezer (leihoan geratu)
-
-		} else {
-			// Aldaketarik ez badago, konfirmazio sinplea
-			int aukera = JOptionPane.showConfirmDialog(this,
-					isLogout ? "Ziur zaude saioa itxi nahi duzula?" : "Ziur zaude programa itxi nahi duzula?",
-					"Konfirmatu", JOptionPane.YES_NO_OPTION);
-
-			if (aukera == JOptionPane.YES_OPTION) {
-				exekutatuIrteera(isLogout);
-			}
-		}
-	}
-
-	private void exekutatuIrteera(boolean isLogout) {
-		if (isLogout) {
-			new Login().setVisible(true);
-			dispose();
-		} else {
-			System.exit(0);
-		}
-	}
+    private void exekutatuIrteera(boolean isLogout) {
+        if (isLogout) {
+            new Login().setVisible(true);
+            dispose();
+        } else {
+            System.exit(0);
+        }
+    }
 }
