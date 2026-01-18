@@ -17,6 +17,7 @@ public class Federazioa implements Serializable {
         this.denboraldiak = new ArrayList<>();
     }
 
+    
     // --- KUDEAKETA METODOAK ---
     
     public void gehituTaldea(Talde t) {
@@ -37,6 +38,9 @@ public class Federazioa implements Serializable {
 
     public ArrayList<Denboraldia> getDenboraldiak() {
         return denboraldiak;
+    }
+    public void setDenboraldiak(ArrayList<Denboraldia> denboraldiak) {
+        this.denboraldiak = denboraldiak;
     }
     
     /**
