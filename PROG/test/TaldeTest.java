@@ -96,6 +96,11 @@ class TaldeTest {
 		assertNotNull(nullTalde.getJokalariak());
 		assertTrue(nullTalde.getJokalariak().isEmpty());
 	}
+	
+	@Test
+	void toStringTest() {
+		assertEquals(t.toString(),"Talde1");
+	}
 }
 
 

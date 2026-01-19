@@ -15,4 +15,10 @@ public abstract class Erabiltzaile implements Serializable {
 
     public String getErabiltzaile() { return this.erabiltzaile; }
     public String getPasahitza() { return this.pasahitza; }
+
+	public abstract void setErabiltzaile(String string);
+
+	public abstract void setPasahitza(String string);
+    
+    
 }
