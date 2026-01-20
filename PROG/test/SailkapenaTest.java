@@ -17,14 +17,22 @@ class SailkapenaTest {
 	
 
 	@BeforeEach
-	void setUp() throws Exception {
-		lT = new ArrayList<>();
-		lT.add(T1);
-		lT.add(T2);
-		Pt = new ArrayList<>();
-		Pt.add(5);
-		Pt.add(10);
-		S = new Sailkapena(lT,Pt);
+	void setUp() {
+	    T1 = new Talde();
+	    T1.setIzena("Equipo 1");
+
+	    T2 = new Talde();
+	    T2.setIzena("Equipo 2");
+
+	    lT = new ArrayList<>();
+	    lT.add(T1);
+	    lT.add(T2);
+
+	    Pt = new ArrayList<>();
+	    Pt.add(5);
+	    Pt.add(10);
+
+	    S = new Sailkapena(lT, Pt);
 	}
 	
 	@Test
@@ -57,10 +65,36 @@ class SailkapenaTest {
 	
 	@Test
 	void gehituTaldeaTest() {
-		Talde T3 = new Talde();
-		S.gehituTaldea(T3);
-		assertEquals(S.getTaldeak().getLast(),T3);
-		assertEquals(S.getPuntuak().getLast(),0);
+	    Talde T3 = new Talde();
+	    T3.setIzena("Equipo 3");
+
+	    int sizeAntes = S.getTaldeak().size();
+
+	    S.gehituTaldea(T3);
+
+	    assertEquals(sizeAntes + 1, S.getTaldeak().size());
+	    assertEquals(T3, S.getTaldeak().get(sizeAntes));
+
+	    assertEquals(sizeAntes + 1, S.getPuntuak().size());
+	    assertEquals(0, S.getPuntuak().get(sizeAntes));
+	}
+	@Test
+	void gehituTaldeaConListasNull() {
+	    Sailkapena sNull = new Sailkapena(null, null);
+
+	    Talde t = new Talde();
+	    t.setIzena("Equipo X");
+
+	    sNull.gehituTaldea(t);
+
+	    assertNotNull(sNull.getTaldeak());
+	    assertNotNull(sNull.getPuntuak());
+
+	    assertEquals(1, sNull.getTaldeak().size());
+	    assertEquals(t, sNull.getTaldeak().get(0));
+
+	    assertEquals(1, sNull.getPuntuak().size());
+	    assertEquals(0, sNull.getPuntuak().get(0));
 	}
 	
 	@Test

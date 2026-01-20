@@ -24,6 +24,25 @@ class TaldeTest {
 		assertEquals(1, t.getJokalariak().size());
 		assertEquals(j, t.getJokalariak().get(0));
 	}
+	@Test
+	void sartuJokalariaMultipleTest() {
+	    Jokalari j2 = new Jokalari("Iker", "Lopez", 2001, 7, "Defensa", true);
+
+	    t.sartuJokalaria(j);
+	    t.sartuJokalaria(j2);
+
+	    assertEquals(2, t.getJokalariak().size());
+	    assertEquals(j, t.getJokalariak().get(0));
+	    assertEquals(j2, t.getJokalariak().get(1));
+	}
+	@Test
+	void sartuJokalariaNullTest() {
+	    t.sartuJokalaria(null);
+
+	    assertNotNull(t.getJokalariak());
+	    assertEquals(1, t.getJokalariak().size());
+	    assertNull(t.getJokalariak().get(0));
+	}
 	
 	@Test
 	void aldatuEzkutua() {
@@ -100,6 +119,14 @@ class TaldeTest {
 	@Test
 	void toStringTest() {
 		assertEquals(t.toString(),"Talde1");
+	}
+	
+	@Test
+	void hashCodeIgualParaMismoIzena() {
+	    Talde t2 = new Talde();
+	    t2.setIzena("Talde1");
+
+	    assertEquals(t.hashCode(), t2.hashCode());
 	}
 }
 
