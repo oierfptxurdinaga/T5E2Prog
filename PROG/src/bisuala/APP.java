@@ -66,14 +66,14 @@ public class APP extends JFrame {
         getContentPane().add(pnlGoikoa, BorderLayout.NORTH);
         getContentPane().add(tabs, BorderLayout.CENTER);
 
-        // Listener: Presidentearen panelean gaudenean, agian denboraldiaren combo-a ezkutatu nahi duzu
         tabs.addChangeListener(e -> {
             int index = tabs.getSelectedIndex();
             if (index == -1) return;
+            
             Component panelAktiboa = tabs.getSelectedComponent();
             String titulua = tabs.getTitleAt(index);
 
-            // 1. Kudeatu ComboBox-aren ikusgarritasuna
+            // Kudeatu ComboBox-aren ikusgarritasuna (Hau berdin utzi)
             if (panelAktiboa instanceof PanelPresi) {
                 labelDenboraldia.setVisible(false);
                 cbDenboraldiak.setVisible(false);
@@ -82,13 +82,27 @@ public class APP extends JFrame {
                 cbDenboraldiak.setVisible(true);
             }
 
-            // 2. KUDEATU SAILKAPENAREN EGUNERAKETA
-            if (titulua.equals("Sailkapena")) {
-                Denboraldia aukeratutakoa = (Denboraldia) cbDenboraldiak.getSelectedItem();
-                if (aukeratutakoa != null) {
+            // --- FRESKATZE LOGIKA ---
+            Denboraldia aukeratutakoa = (Denboraldia) cbDenboraldiak.getSelectedItem();
+            if (aukeratutakoa != null) {
+
+                if (titulua.equals("Sailkapena")) {
+                    // Sailkapena birkalkulatu
                     ArrayList<DenboraldiTalde> sailkapenBerria = aukeratutakoa.getSailkapena();
                     PanelSailkapena pBerria = new PanelSailkapena(sailkapenBerria, aukeratutakoa.getUrtea());
                     tabs.setComponentAt(index, pBerria);
+                }
+                else if (titulua.equals("Taldeak")) {
+                    // Taldeak freskatu (fitxaketa berriak ikusteko)
+                    PanelTaldeak pTaldeakBerria = new PanelTaldeak(aukeratutakoa.getLigakoTaldeak(), aukeratutakoa.getUrtea());
+                    tabs.setComponentAt(index, pTaldeakBerria);
+                }
+                // --- HAU DA GEHITU BEHAR DUZUNA ---
+                else if (titulua.equals("Jardunaldiak")) {
+                    // Emaitza berriak kargatzeko panel berria sortu
+                    // Ziurtatu zure PanelJardunaldiak klaseak eraikitzaile hau duela:
+                    PanelJardunaldiak pJardunaldiakBerria = new PanelJardunaldiak(aukeratutakoa);
+                    tabs.setComponentAt(index, pJardunaldiakBerria);
                 }
             }
         });
@@ -123,13 +137,20 @@ public class APP extends JFrame {
 
             // PANEL BEREZIAK (Erabiltzailearen arabera)
             if (erabAktiboa instanceof ErabiltzaileAdministraria) {
-                tabs.addTab("Admin - Kudeaketa", new PanelAdmin(erabAktiboa, aukeratutakoa.getLigakoTaldeak()));
+                
+                ArrayList<Talde> taldeakEditatzeko;
+                if (!federazioa.getDenboraldiak().isEmpty()) {
+                    Denboraldia azkena = federazioa.getDenboraldiak().get(federazioa.getDenboraldiak().size() - 1);
+                    taldeakEditatzeko = azkena.getLigakoTaldeak();
+                } else {
+                    taldeakEditatzeko = federazioa.getTaldeGuztiak();
+                }
+
+                tabs.addTab("Admin - Jokalariak", new PanelAdmin(erabAktiboa, federazioa, taldeakEditatzeko, this));
 
             } else if (erabAktiboa instanceof ErabiltzaileEpaile) {
                 boolean isUnekoDenboraldia = (aukeratutakoa == federazioa.getUnekoDenboraldia());
-                
-                // --- ALDAKETA GARRANTZITSUA HEMEN ---
-                // 'this' pasatzen diogu PanelEpailea-ri, aldaketak daudela abisatu ahal izateko
+
                 tabs.addTab("Epailea - Sartu Emaitzak", 
                         new PanelEpailea(aukeratutakoa, (ErabiltzaileEpaile) erabAktiboa, isUnekoDenboraldia, this));
 
