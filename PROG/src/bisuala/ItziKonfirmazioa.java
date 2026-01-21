@@ -24,10 +24,14 @@ public class ItziKonfirmazioa extends WindowAdapter {
 
 			if (aukera == JOptionPane.YES_OPTION) {
 				DatuKarga.gordeFederazioa(federazioa);
+				utils.LogKudeatzailea.gehituLog("Datuak gordeta (.ser) eta aplikazioa itxita.");
 				XmlKudeatzailea xmlKudeatzailea = new XmlKudeatzailea();
 				Boolean xlmOndoBoolean = xmlKudeatzailea.esportatuXML(federazioa, "src/data/federazioa.xml");
 				if (!xlmOndoBoolean) {
+					utils.LogKudeatzailea.gehituErrorea("Huts egin du XML fitxategia esportatzean.");
 					JOptionPane.showMessageDialog(null, "Errorea inprimatzean: ", "Error", JOptionPane.ERROR_MESSAGE);
+				} else {
+					utils.LogKudeatzailea.gehituLog("XML esportazioa zuzena.");
 				}
 				app.dispose();
 				System.exit(0);

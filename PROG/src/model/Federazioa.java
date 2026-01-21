@@ -11,12 +11,21 @@ public class Federazioa implements Serializable {
 
     // 2. DENBORALDIAK (Historiala)
     private ArrayList<Denboraldia> denboraldiak;
+    private ArrayList <Erabiltzaile> erabiltzaileak;
     
     public Federazioa() {
         this.taldeGuztiak = new ArrayList<>();
         this.denboraldiak = new ArrayList<>();
+        this.erabiltzaileak = new ArrayList<>();
     }
 
+    
+    public ArrayList<Erabiltzaile> getErabiltzaileak() {
+        if (this.erabiltzaileak == null) {
+            this.erabiltzaileak = new ArrayList<>();
+        }
+        return this.erabiltzaileak;
+    }
     
     // --- KUDEAKETA METODOAK ---
     

@@ -51,20 +51,10 @@
                     <Abizena>Yepes</Abizena>
                     <Posizioa>Pibota</Posizioa>
                 </Jokalari>
-                <Jokalari dortsala="99">
-                    <Izena>Erick</Izena>
-                    <Abizena>Mendonça</Abizena>
-                    <Posizioa>Unibertsala</Posizioa>
-                </Jokalari>
                 <Jokalari dortsala="1">
                     <Izena>Edu</Izena>
                     <Abizena>Sousa</Abizena>
                     <Posizioa>Atezaina</Posizioa>
-                </Jokalari>
-                <Jokalari dortsala="96">
-                    <Izena>Artem</Izena>
-                    <Abizena>Niyazov</Abizena>
-                    <Posizioa>Hegala</Posizioa>
                 </Jokalari>
             </Jokalariak>
         </Talde>
@@ -112,6 +102,16 @@
                     <Izena>Ricardo</Izena>
                     <Abizena>Mayor</Abizena>
                     <Posizioa>Itxiera</Posizioa>
+                </Jokalari>
+                <Jokalari dortsala="99">
+                    <Izena>Erick</Izena>
+                    <Abizena>Mendonça</Abizena>
+                    <Posizioa>Unibertsala</Posizioa>
+                </Jokalari>
+                <Jokalari dortsala="96">
+                    <Izena>Artem</Izena>
+                    <Abizena>Niyazov</Abizena>
+                    <Posizioa>Hegala</Posizioa>
                 </Jokalari>
             </Jokalariak>
         </Talde>
@@ -739,20 +739,10 @@
                             <Abizena>Yepes</Abizena>
                             <Posizioa>Pibota</Posizioa>
                         </Jokalari>
-                        <Jokalari dortsala="99">
-                            <Izena>Erick</Izena>
-                            <Abizena>Mendonça</Abizena>
-                            <Posizioa>Unibertsala</Posizioa>
-                        </Jokalari>
                         <Jokalari dortsala="1">
                             <Izena>Edu</Izena>
                             <Abizena>Sousa</Abizena>
                             <Posizioa>Atezaina</Posizioa>
-                        </Jokalari>
-                        <Jokalari dortsala="96">
-                            <Izena>Artem</Izena>
-                            <Abizena>Niyazov</Abizena>
-                            <Posizioa>Hegala</Posizioa>
                         </Jokalari>
                     </Jokalariak>
                 </Talde>
@@ -800,6 +790,16 @@
                             <Izena>Ricardo</Izena>
                             <Abizena>Mayor</Abizena>
                             <Posizioa>Itxiera</Posizioa>
+                        </Jokalari>
+                        <Jokalari dortsala="99">
+                            <Izena>Erick</Izena>
+                            <Abizena>Mendonça</Abizena>
+                            <Posizioa>Unibertsala</Posizioa>
+                        </Jokalari>
+                        <Jokalari dortsala="96">
+                            <Izena>Artem</Izena>
+                            <Abizena>Niyazov</Abizena>
+                            <Posizioa>Hegala</Posizioa>
                         </Jokalari>
                     </Jokalariak>
                 </Talde>
@@ -1391,20 +1391,10 @@
                             <Abizena>Yepes</Abizena>
                             <Posizioa>Pibota</Posizioa>
                         </Jokalari>
-                        <Jokalari dortsala="99">
-                            <Izena>Erick</Izena>
-                            <Abizena>Mendonça</Abizena>
-                            <Posizioa>Unibertsala</Posizioa>
-                        </Jokalari>
                         <Jokalari dortsala="1">
                             <Izena>Edu</Izena>
                             <Abizena>Sousa</Abizena>
                             <Posizioa>Atezaina</Posizioa>
-                        </Jokalari>
-                        <Jokalari dortsala="96">
-                            <Izena>Artem</Izena>
-                            <Abizena>Niyazov</Abizena>
-                            <Posizioa>Hegala</Posizioa>
                         </Jokalari>
                     </Jokalariak>
                 </Talde>
@@ -1452,6 +1442,16 @@
                             <Izena>Ricardo</Izena>
                             <Abizena>Mayor</Abizena>
                             <Posizioa>Itxiera</Posizioa>
+                        </Jokalari>
+                        <Jokalari dortsala="99">
+                            <Izena>Erick</Izena>
+                            <Abizena>Mendonça</Abizena>
+                            <Posizioa>Unibertsala</Posizioa>
+                        </Jokalari>
+                        <Jokalari dortsala="96">
+                            <Izena>Artem</Izena>
+                            <Abizena>Niyazov</Abizena>
+                            <Posizioa>Hegala</Posizioa>
                         </Jokalari>
                     </Jokalariak>
                 </Talde>
@@ -1687,27 +1687,27 @@
             <Sailkapena>
                 <Lerroa>
                     <Posizioa>1</Posizioa>
-                    <Taldea>Barça Futsal</Taldea>
-                    <Ezkutua>barcelona</Ezkutua>
+                    <Taldea>Inter Movistar</Taldea>
+                    <Ezkutua>inter</Ezkutua>
                     <Puntuak>3</Puntuak>
                     <Jokatuak>1</Jokatuak>
                     <Irabaziak>1</Irabaziak>
                     <Berdinduak>0</Berdinduak>
                     <Galduak>0</Galduak>
-                    <AldekoGolak>2</AldekoGolak>
-                    <AurkakoGolak>1</AurkakoGolak>
+                    <AldekoGolak>5</AldekoGolak>
+                    <AurkakoGolak>2</AurkakoGolak>
                 </Lerroa>
                 <Lerroa>
                     <Posizioa>2</Posizioa>
-                    <Taldea>Jaén Paraíso Interior</Taldea>
-                    <Ezkutua>jaen</Ezkutua>
+                    <Taldea>Barça Futsal</Taldea>
+                    <Ezkutua>barcelona</Ezkutua>
                     <Puntuak>1</Puntuak>
                     <Jokatuak>1</Jokatuak>
                     <Irabaziak>0</Irabaziak>
                     <Berdinduak>1</Berdinduak>
                     <Galduak>0</Galduak>
-                    <AldekoGolak>3</AldekoGolak>
-                    <AurkakoGolak>3</AurkakoGolak>
+                    <AldekoGolak>1</AldekoGolak>
+                    <AurkakoGolak>1</AurkakoGolak>
                 </Lerroa>
                 <Lerroa>
                     <Posizioa>3</Posizioa>
@@ -1718,8 +1718,8 @@
                     <Irabaziak>0</Irabaziak>
                     <Berdinduak>1</Berdinduak>
                     <Galduak>0</Galduak>
-                    <AldekoGolak>4</AldekoGolak>
-                    <AurkakoGolak>4</AurkakoGolak>
+                    <AldekoGolak>3</AldekoGolak>
+                    <AurkakoGolak>3</AurkakoGolak>
                 </Lerroa>
                 <Lerroa>
                     <Posizioa>4</Posizioa>
@@ -1730,32 +1730,32 @@
                     <Irabaziak>0</Irabaziak>
                     <Berdinduak>1</Berdinduak>
                     <Galduak>0</Galduak>
-                    <AldekoGolak>4</AldekoGolak>
-                    <AurkakoGolak>4</AurkakoGolak>
+                    <AldekoGolak>3</AldekoGolak>
+                    <AurkakoGolak>3</AurkakoGolak>
                 </Lerroa>
                 <Lerroa>
                     <Posizioa>5</Posizioa>
-                    <Taldea>Inter Movistar</Taldea>
-                    <Ezkutua>inter</Ezkutua>
+                    <Taldea>Mallorca Palma Futsal</Taldea>
+                    <Ezkutua>baleares</Ezkutua>
                     <Puntuak>1</Puntuak>
                     <Jokatuak>1</Jokatuak>
                     <Irabaziak>0</Irabaziak>
                     <Berdinduak>1</Berdinduak>
                     <Galduak>0</Galduak>
-                    <AldekoGolak>3</AldekoGolak>
-                    <AurkakoGolak>3</AurkakoGolak>
+                    <AldekoGolak>1</AldekoGolak>
+                    <AurkakoGolak>1</AurkakoGolak>
                 </Lerroa>
                 <Lerroa>
                     <Posizioa>6</Posizioa>
-                    <Taldea>Mallorca Palma Futsal</Taldea>
-                    <Ezkutua>baleares</Ezkutua>
+                    <Taldea>Jaén Paraíso Interior</Taldea>
+                    <Ezkutua>jaen</Ezkutua>
                     <Puntuak>0</Puntuak>
                     <Jokatuak>1</Jokatuak>
                     <Irabaziak>0</Irabaziak>
                     <Berdinduak>0</Berdinduak>
                     <Galduak>1</Galduak>
-                    <AldekoGolak>1</AldekoGolak>
-                    <AurkakoGolak>2</AurkakoGolak>
+                    <AldekoGolak>2</AldekoGolak>
+                    <AurkakoGolak>5</AurkakoGolak>
                 </Lerroa>
             </Sailkapena>
             <Jardunaldiak>
@@ -1765,21 +1765,21 @@
                         <EtxekoEzkutua>barcelona</EtxekoEzkutua>
                         <KanpokoTaldea>Mallorca Palma Futsal</KanpokoTaldea>
                         <KanpokoEzkutua>baleares</KanpokoEzkutua>
-                        <Emaitza etxekoGolak="2" kanpokoGolak="1"/>
+                        <Emaitza etxekoGolak="1" kanpokoGolak="1"/>
                     </Partidua>
                     <Partidua id="32">
                         <EtxekoTaldea>Jaén Paraíso Interior</EtxekoTaldea>
                         <EtxekoEzkutua>jaen</EtxekoEzkutua>
                         <KanpokoTaldea>Inter Movistar</KanpokoTaldea>
                         <KanpokoEzkutua>inter</KanpokoEzkutua>
-                        <Emaitza etxekoGolak="3" kanpokoGolak="3"/>
+                        <Emaitza etxekoGolak="2" kanpokoGolak="5"/>
                     </Partidua>
                     <Partidua id="33">
                         <EtxekoTaldea>ElPozo Murcia</EtxekoTaldea>
                         <EtxekoEzkutua>elpozo</EtxekoEzkutua>
                         <KanpokoTaldea>Viña Albali Valdepeñas</KanpokoTaldea>
                         <KanpokoEzkutua>valdepenas</KanpokoEzkutua>
-                        <Emaitza etxekoGolak="4" kanpokoGolak="4"/>
+                        <Emaitza etxekoGolak="3" kanpokoGolak="3"/>
                     </Partidua>
                 </Jardunaldi>
                 <Jardunaldi zenbakia="2">
