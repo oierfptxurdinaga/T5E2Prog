@@ -5,6 +5,8 @@ import java.util.ArrayList;
 import java.util.Objects;
 
 public class Talde implements Serializable{
+	
+	/** Objektuaren bertsioa serializazioan kontrolatzeko identifikatzailea */
 	private static final long serialVersionUID = 1L;
 	private String izena;
 	private String ezkutua;

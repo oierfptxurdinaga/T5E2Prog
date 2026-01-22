@@ -2,15 +2,27 @@ package model;
 
 import javax.swing.JOptionPane;
 
+/**
+ * Administratzaile motako erabiltzailea.
+ * Erabiltzaile honek jokalariak talde
+ * batetik bestera transferitu ahal ditu.
+ */
 public class ErabiltzaileAdministraria extends Erabiltzaile {
-
+	
+	/** Objektuaren bertsioa serializazioan kontrolatzeko identifikatzailea */
 	private static final long serialVersionUID = 1L;
 
+	/**
+     * Erabiltzaile Administratzailearen eraikitzailea.
+     * 
+     * @param erabiltzaile Erabiltzaile-izena (login egiteko).
+     * @param pasahitza    Sarbide-pasahitza.
+     */
 	public ErabiltzaileAdministraria(String erabiltzaile, String pasahitza) {
 		super(erabiltzaile, pasahitza);
 	}
 
-	// getters and setters
+	// Getterrak eta setterrak
 	public String getErabiltzaile() {
 		return erabiltzaile;
 	}

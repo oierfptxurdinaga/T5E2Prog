@@ -5,8 +5,17 @@ import java.util.ArrayList;
 import java.util.HashMap; // <--- Hau gehitu
 import java.util.Map;     // <--- Hau gehitu
 
+/**
+ * Liga bateko denboraldi bat irudikatzen duen klasea.
+ *
+ * Denboraldiak urte bati lotuta daude, eta barnean
+ * ligako taldeak eta jardunaldiak kudeatzen ditu.
+ * Partiduen egoeraren arabera, denboraldia hasita
+ * edo amaituta dagoen zehaztu daiteke.
+ */
 public class Denboraldia implements Serializable {
 
+	/** Objektuaren bertsioa serializazioan kontrolatzeko identifikatzailea */
     private static final long serialVersionUID = 1L;
     private int urtea;
     private ArrayList<Talde> ligakoTaldeak;
@@ -18,7 +27,7 @@ public class Denboraldia implements Serializable {
         this.ligakoJardunaldi = new ArrayList<>();
     }
 
-    // --- GETTERS & SETTERS ---
+    // Getterrak eta setterrak
     public int getUrtea() { return urtea; }
     public ArrayList<Talde> getLigakoTaldeak() { return ligakoTaldeak; }
     public void setLigakoTaldeak(ArrayList<Talde> ligakoTaldeak) { this.ligakoTaldeak = ligakoTaldeak; }
@@ -29,8 +38,13 @@ public class Denboraldia implements Serializable {
     public void gehituTaldea(Talde t) { this.ligakoTaldeak.add(t); }
 
     /**
-     * Denboraldia HASITA dago gutxienez PARTIDU BAT (1) jokatuta badago.
-     * Ez da itxaron behar jardunaldi osoa amaitu arte.
+     * Denboraldia hasita dagoen ala ez adierazten du.
+     *
+     * Gutxienez partida bat jokatu bada, denboraldia
+     * hasitzat jotzen da, jardunaldia osorik amaitu
+     * ez bada ere.
+     *
+     * @return {@code true} denboraldia hasita badago; bestela {@code false}
      */
     public boolean isHasiDa() {
         if (this.ligakoJardunaldi == null || this.ligakoJardunaldi.isEmpty()) {
@@ -49,7 +63,12 @@ public class Denboraldia implements Serializable {
     }
 
     /**
-     * Denboraldia AMAITUTA dago partidu GUZTIAK (absolutuki denak) jokatu badira.
+     * Denboraldia amaituta dagoen ala ez adierazten du.
+     *
+     * Jardunaldi guztietako partida guztiak jokatu badira,
+     * denboraldia amaitutzat hartzen da.
+     *
+     * @return {@code true} denboraldia amaituta badago; bestela {@code false}
      */
     public boolean isAmaituta() {
         if (this.ligakoJardunaldi == null || this.ligakoJardunaldi.isEmpty()) {
@@ -67,7 +86,11 @@ public class Denboraldia implements Serializable {
         return true;
     }
     
-    // PanelAdmin-ekin bateragarritasuna mantentzeko
+    /**
+     * PanelAdmin-ekin bateragarritasuna mantentzeko erabilitako metodoa.
+     *
+     * @return {@link #isHasiDa()} metodoaren emaitza
+     */
     public boolean isDenboraldiaHasiDa() {
         return isHasiDa();
     }
@@ -76,12 +99,15 @@ public class Denboraldia implements Serializable {
     public String toString() {
         return String.valueOf(urtea);
     }
-
-    // --- METODO BERRIA: SAILKAPENA KALKULATU ---
     
     /**
-     * Sailkapena momentuan kalkulatzen du partiduetako emaitzetan oinarrituta.
-     * @return DenboraldiTalde zerrenda estatistikekin eguneratuta.
+     * Uneko sailkapena kalkulatzen du jokatutako partiduen emaitzetan oinarrituta.
+     *
+     * Talde bakoitzerako estatistikak hasieratzen dira eta
+     * jokatutako partida bakoitzaren emaitzen arabera
+     * eguneratzen dira.
+     *
+     * @return denboraldiko sailkapena adierazten duen zerrenda
      */
     public ArrayList<DenboraldiTalde> getSailkapena() {
         Map<String, DenboraldiTalde> statsMap = new HashMap<>();

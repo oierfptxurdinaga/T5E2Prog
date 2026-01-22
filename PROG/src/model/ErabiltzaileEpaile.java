@@ -1,9 +1,21 @@
 package model;
 
+/**
+ * Epaile motako erabiltzailea.
+ * Erabiltzaile honek jokatutako partiduen emaitzak 
+ * sisteman sartu ahal ditu.
+ */
 public class ErabiltzaileEpaile extends Erabiltzaile {
-
+	
+	/** Objektuaren bertsioa serializazioan kontrolatzeko identifikatzailea */
 	private static final long serialVersionUID = 1L;
 
+	 /**
+     * Epaile motako erabiltzaile berri bat sortzen du.
+     *
+     * @param erabiltzaile erabiltzailearen izena
+     * @param pasahitza erabiltzailearen pasahitza
+     */
 	public ErabiltzaileEpaile(String erabiltzaile, String pasahitza) {
 		super(erabiltzaile, pasahitza);
 	}
@@ -23,17 +35,14 @@ public class ErabiltzaileEpaile extends Erabiltzaile {
 	}
 
 	/**
-	 * Klase honekin nahi duzun partidoen emaitzak sartzen dira
-	 * 
-	 * @param denboraldia   zein da denboraldikoa da sartuko duzun partidoa
-	 * @param etxekoTaldea  partidoan parte artsen duen etxeko taldea
-	 * @param kanpokoTaldea partidoan parte artsen duen kanpoko taldea partida
-	 *                      biltzeko
-	 * @param etxekoGolak   zenbat gol sartu dituen partidoan etxeko taldeak emaitza
-	 *                      sartzeko
-	 * @param kanpokoGolak  zenbat gol sartu dituen partidoan kanpoko taldeak
-	 *                      emaitza sartzeko
-	 */
+     * Partidu baten emaitza sisteman erregistratzen du.
+     * 
+     * @param denboraldia   Partidua dagokion denboraldia.
+     * @param etxekoTaldea  Etxeko taldea.
+     * @param kanpokoTaldea Kanpoko taldea.
+     * @param etxekoGolak   Etxeko taldeak sartutako gol kopurua.
+     * @param kanpokoGolak  Kanpoko taldeak sartutako gol kopurua.
+     */
 	public void sartuEmaitza(Denboraldia denboraldia, Talde etxekoTaldea, Talde kanpokoTaldea, int etxekoGolak,
 			int kanpokoGolak) {
 		for (int i = 0; i < denboraldia.getLigakoJardunaldi().size(); i++) {

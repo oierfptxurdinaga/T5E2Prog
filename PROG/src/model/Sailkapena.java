@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 public class Sailkapena implements Serializable{
 
+	/** Objektuaren bertsioa serializazioan kontrolatzeko identifikatzailea */
 	private static final long serialVersionUID = 1L;
 	private ArrayList<Talde> taldeak;
     private ArrayList<Integer> puntuak;

@@ -4,6 +4,7 @@ import java.io.Serializable;
 
 public class Partidua implements Serializable {
 
+	/** Objektuaren bertsioa serializazioan kontrolatzeko identifikatzailea */
 	private static final long serialVersionUID = 1L;
 	private Talde etxekoTaldea;
 	private Talde kanpokoTaldea;
