@@ -27,16 +27,13 @@ public class Federazioa implements Serializable {
         this.erabiltzaileak = new ArrayList<>();
     }
 
-<<<<<<< HEAD
     /**
      * Talde berri bat federazioan gehitzen du.
      * 
      * Taldea jada existitzen bada, ez da errepikatuko.
      *
      * @param t gehitu nahi den taldea
-     */
-=======
-    
+     */  
     public ArrayList<Erabiltzaile> getErabiltzaileak() {
         if (this.erabiltzaileak == null) {
             this.erabiltzaileak = new ArrayList<>();
@@ -46,7 +43,7 @@ public class Federazioa implements Serializable {
     
     // --- KUDEAKETA METODOAK ---
     
->>>>>>> 9bdcd71367c83a46850ab561908e2a9155e93b2b
+
     public void gehituTaldea(Talde t) {
         if (!taldeGuztiak.contains(t)) {
             taldeGuztiak.add(t);
