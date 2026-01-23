@@ -73,7 +73,7 @@ public class APP extends JFrame {
             Component panelAktiboa = tabs.getSelectedComponent();
             String titulua = tabs.getTitleAt(index);
 
-            // Kudeatu ComboBox-aren ikusgarritasuna (Hau berdin utzi)
+            // Kudeatu ComboBox-aren ikusgarritasuna
             if (panelAktiboa instanceof PanelPresi) {
                 labelDenboraldia.setVisible(false);
                 cbDenboraldiak.setVisible(false);
@@ -99,8 +99,6 @@ public class APP extends JFrame {
                 }
                 // --- HAU DA GEHITU BEHAR DUZUNA ---
                 else if (titulua.equals("Jardunaldiak")) {
-                    // Emaitza berriak kargatzeko panel berria sortu
-                    // Ziurtatu zure PanelJardunaldiak klaseak eraikitzaile hau duela:
                     PanelJardunaldiak pJardunaldiakBerria = new PanelJardunaldiak(aukeratutakoa);
                     tabs.setComponentAt(index, pJardunaldiakBerria);
                 }
@@ -174,8 +172,6 @@ public class APP extends JFrame {
     }
 
     public void interfazeaFreskatu() {
-        // OHARRA: Hemen 'true' uzten dugu freskatzean zerbait aldatu dela adierazteko,
-        // baina PanelPresi-k gordeDatuak() deitzen badu lehenago, gero 'false' jarriko da berriro gordetzean.
         this.aldaketakDauden = true;
         
         ActionListener[] listeners = cbDenboraldiak.getActionListeners();
@@ -200,11 +196,10 @@ public class APP extends JFrame {
     public boolean isAldaketakDauden() { return aldaketakDauden; }
     public void setAldaketakDauden(boolean aldaketakDauden) { this.aldaketakDauden = aldaketakDauden; }
 
-    // --- METODO BERRIA: DISKOAN GORDE ---
-    // Hau PanelPresi-k edo ItziKonfirmazioa-k erabiliko dute
+
     public void gordeDatuak() {
         DatuKarga.gordeFederazioa(federazioa);
-        this.aldaketakDauden = false; // Dena gordeta dago, banderatxoa jaitsi
+        this.aldaketakDauden = false;
     }
 
     // --- IRTEERA KUDEAKETA ---
@@ -214,7 +209,6 @@ public class APP extends JFrame {
                     "Gorde aldaketak", JOptionPane.YES_NO_CANCEL_OPTION, JOptionPane.WARNING_MESSAGE);
             
             if (aukera == JOptionPane.YES_OPTION) {
-                // Hemen gure metodo berria erabiltzen dugu
                 gordeDatuak();
                 exekutatuIrteera(isLogout);
             } else if (aukera == JOptionPane.NO_OPTION) {

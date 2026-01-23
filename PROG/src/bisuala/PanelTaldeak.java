@@ -25,8 +25,6 @@ public class PanelTaldeak extends JPanel {
         JPanel panelNorteContainer = new JPanel();
         panelNorteContainer.setLayout(new BoxLayout(panelNorteContainer, BoxLayout.Y_AXIS));
         panelNorteContainer.setBackground(Color.WHITE);
-
-        // A. SELECTOR (ComboBox)
         JPanel panelCombo = new JPanel(new FlowLayout(FlowLayout.LEFT));
         panelCombo.setBackground(Color.WHITE);
         panelCombo.setBorder(new EmptyBorder(15, 15, 5, 15));
@@ -102,7 +100,7 @@ public class PanelTaldeak extends JPanel {
     private void eguneratuTaldeInfo(Talde t) {
         panelInfoTaldea.removeAll();
 
-        // 1. ESCUDO (t.getEskutua() erabiliz)
+        // 1. EZKUTUA
         JLabel lblEscudo = new JLabel();
         lblEscudo.setPreferredSize(new Dimension(80, 80));
         lblEscudo.setHorizontalAlignment(SwingConstants.CENTER);
@@ -152,7 +150,7 @@ public class PanelTaldeak extends JPanel {
         panelInfoTaldea.repaint();
     }
 
-    // --- JOKALARI KARTA (AVATAR GENERADO) ---
+    // --- JOKALARI KARTA ---
     private JPanel sortuJokalariKarta(Jokalari j) {
         JPanel karta = new JPanel(new BorderLayout());
         karta.setBackground(new Color(250, 250, 252));

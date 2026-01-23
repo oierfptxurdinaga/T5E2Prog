@@ -14,7 +14,7 @@ public class PanelPresi extends JPanel {
     private final Color LIGHTRED = new Color(219, 175, 175);
     private final Color LIGHTGREEN = new Color(218, 245, 213);
     private APP aplikazioNagusia;
-    private Federazioa federazioa; // Federazioa klase mailan gorde behar dugu botoientzako
+    private Federazioa federazioa; 
 
     public PanelPresi(Erabiltzaile erab, Federazioa federazioa, Denboraldia unekoDenboraldia, APP app) {
         this.aplikazioNagusia = app;

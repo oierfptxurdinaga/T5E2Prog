@@ -110,9 +110,7 @@ public class Login extends JFrame {
             
             // Federazioan gorde
             federazioa.getErabiltzaileak().add(admin);
-            
-            // GARRANTZITSUA: Aldaketa hau diskoan gorde, bestela hurrengoan berriro eskatuko du
-            // Hemen DatuKarga erabili dezakezu zuzenean gordetzeko
+           
             DatuKarga.gordeFederazioa(federazioa);
             
             System.out.println("Admin lehenetsia sortu da (presi/presi).");

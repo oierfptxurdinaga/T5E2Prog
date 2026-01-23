@@ -72,9 +72,6 @@ public class PanelEpailea extends JPanel {
 		datuakKargatu();
 	}
 
-	// ... (denboraldiaAldatu eta datuakKargatu berdin mantentzen dira) ...
-	// ... (eguneratuPartiduak metodoa berdin mantentzen da) ...
-
 	/**
 	 * Datuak kargatu, etc. (Metodo hauek berdin jarraitzen dute, kopiatu aurreko
 	 * kodea hemen, ez dago aldaketarik datuakKargatu edo eguneratuPartiduak-en)
@@ -186,7 +183,6 @@ public class PanelEpailea extends JPanel {
         }
 
         btnGorde.addActionListener(e -> {
-            // ... (Kodea berdina da) ...
             try {
                 String strEtxekoa = txtEtxekoa.getText().trim();
                 String strKanpokoa = txtKanpokoa.getText().trim();
@@ -237,19 +233,16 @@ public class PanelEpailea extends JPanel {
         return panelErrenkada;
     }
 
-	// ... (sortuTaldePanela berdin) ...
+
 	private JPanel sortuTaldePanela(Talde t, int alineazioa) {
-        // Usamos BorderLayout para "anclar" los elementos a los lados
         JPanel p = new JPanel(new BorderLayout(10, 0)); 
         p.setBackground(Color.WHITE);
-        // Aumentamos un poco el ancho para nombres largos (de 180 a 200 o 220)
         p.setPreferredSize(new Dimension(220, 50)); 
 
         JLabel lblIzena = new JLabel(t.getIzena());
         lblIzena.setFont(new Font("Segoe UI", Font.PLAIN, 15));
         
         JLabel lblEzkutua = new JLabel();
-        // Cargar imagen
         if (t.getEzkutua() != null) {
             URL url = getClass().getResource(t.getEzkutua());
             if (url != null) {
@@ -259,14 +252,11 @@ public class PanelEpailea extends JPanel {
             }
         }
 
-        // LOGICA DE ALINEACIÓN SIMÉTRICA
         if (alineazioa == SwingConstants.RIGHT) { 
-            // CASO ETXEKOA (LOCAL): [ Texto   Escudo ] |
             lblIzena.setHorizontalAlignment(SwingConstants.RIGHT);
             p.add(lblIzena, BorderLayout.CENTER);
             p.add(lblEzkutua, BorderLayout.EAST);
         } else {
-            // CASO KANPOKOA (VISITANTE): | [ Escudo   Texto ]
             lblIzena.setHorizontalAlignment(SwingConstants.LEFT);
             p.add(lblEzkutua, BorderLayout.WEST);
             p.add(lblIzena, BorderLayout.CENTER);

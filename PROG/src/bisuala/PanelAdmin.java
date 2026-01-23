@@ -27,7 +27,6 @@ public class PanelAdmin extends JPanel {
     private JButton btnMugituEskuinera;
     private JButton btnMugituEzkerrera;
 
-    // 1. CONSTRUCTOR: Pedimos TODO (Federazioa + Lista actual)
     public PanelAdmin(Erabiltzaile erab, Federazioa federazioa, ArrayList<Talde> taldeAktiboak, APP app) {
         this.app = app;
         this.federazioa = federazioa;
@@ -97,7 +96,6 @@ public class PanelAdmin extends JPanel {
     // --- METODO LAGUNTZAILEAK ---
     private JComboBox<Talde> sortuTaldeCombo() {
         JComboBox<Talde> combo = new JComboBox<>();
-        // GARRANTZITSUA: Aktiboak erabiltzen ditugu ComboBoxean
         for (Talde t : taldeAktiboak) {
             combo.addItem(t);
         }
