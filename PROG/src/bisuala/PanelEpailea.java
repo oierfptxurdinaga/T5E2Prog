@@ -200,6 +200,11 @@ public class PanelEpailea extends JPanel {
                     JOptionPane.showMessageDialog(this, "Emaitzak ezin dira negatiboak izan.");
                     return;
                 }
+                
+                if (golEtxekoa > 99 || golKanpokoa > 99) {
+                    JOptionPane.showMessageDialog(this, "Zenbakia 0-99 tartean egon behar da");
+                    return;
+                }
 
                 if (epaileAktiboa != null) {
                     epaileAktiboa.sartuEmaitza(denboraldia, p.getEtxekoTaldea(), p.getKanpokoTaldea(), golEtxekoa, golKanpokoa);

@@ -36,7 +36,6 @@ public class ItziKonfirmazioa extends WindowAdapter {
 				app.dispose();
 				System.exit(0);
 			} else if (aukera == JOptionPane.NO_OPTION) {
-				System.out.println("Ez dira aldaketak gorde.");
 				app.dispose();
 				System.exit(0);
 			}

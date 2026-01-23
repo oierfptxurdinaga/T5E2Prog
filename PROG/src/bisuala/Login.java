@@ -106,7 +106,7 @@ public class Login extends JFrame {
         // Galdera orain Federazioari egiten diogu
         if (federazioa.getErabiltzaileak().isEmpty()) {
             
-            ErabiltzaileAdministraria admin = new ErabiltzaileAdministraria("admin", "admin");
+            ErabiltzailePresi admin = new ErabiltzailePresi("presi", "presi");
             
             // Federazioan gorde
             federazioa.getErabiltzaileak().add(admin);
@@ -115,7 +115,7 @@ public class Login extends JFrame {
             // Hemen DatuKarga erabili dezakezu zuzenean gordetzeko
             DatuKarga.gordeFederazioa(federazioa);
             
-            System.out.println("Admin lehenetsia sortu da (admin/admin).");
+            System.out.println("Admin lehenetsia sortu da (presi/presi).");
         }
     }
 }

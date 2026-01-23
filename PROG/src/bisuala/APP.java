@@ -205,7 +205,6 @@ public class APP extends JFrame {
     public void gordeDatuak() {
         DatuKarga.gordeFederazioa(federazioa);
         this.aldaketakDauden = false; // Dena gordeta dago, banderatxoa jaitsi
-        System.out.println("Datuak 'federazioa.ser' fitxategian gorde dira.");
     }
 
     // --- IRTEERA KUDEAKETA ---

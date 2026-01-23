@@ -85,8 +85,6 @@ public class PanelPresi extends JPanel {
             if (leihoa.isOndoSortuDa()) {
                 aplikazioNagusia.interfazeaFreskatu();
                 aplikazioNagusia.setAldaketakDauden(true); 
-            } else {
-                System.out.println("Ez da denboraldirik sortu.");
             }
         });
         pnlBotoiak.add(btnHasi);

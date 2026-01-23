@@ -136,14 +136,12 @@ public class LeihoaDenboraldiBerria extends JDialog {
             lblKontagailua.setForeground(Color.RED); // Gorria (Txarto)
         }
 
-        // 3. Logika: Muga (6) iritsi bada, markatu gabeak DESGAITU
+
         boolean mugaIritsia = (aukeratuak >= MAX_TALDEAK);
 
         for (JCheckBox chk : checkTaldeak) {
             if (!chk.isSelected()) {
-                // Markatu gabe badago:
-                // Muga iritsi bada -> Desgaitu (false)
-                // Muga ez bada iritsi -> Gaitu (true)
+
                 chk.setEnabled(!mugaIritsia);
             }
         }

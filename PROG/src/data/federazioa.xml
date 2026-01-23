@@ -6,16 +6,6 @@
             <Hiria>Barcelona</Hiria>
             <Ezkutua>barcelona</Ezkutua>
             <Jokalariak>
-                <Jokalari dortsala="9">
-                    <Izena>Sergio</Izena>
-                    <Abizena>Lozano</Abizena>
-                    <Posizioa>Hegala</Posizioa>
-                </Jokalari>
-                <Jokalari dortsala="10">
-                    <Izena>Jean Pierre</Izena>
-                    <Abizena>Pito</Abizena>
-                    <Posizioa>Pibota</Posizioa>
-                </Jokalari>
                 <Jokalari dortsala="8">
                     <Izena>Adolfo</Izena>
                     <Abizena>Fernández</Abizena>
@@ -51,10 +41,10 @@
                     <Abizena>Yepes</Abizena>
                     <Posizioa>Pibota</Posizioa>
                 </Jokalari>
-                <Jokalari dortsala="1">
-                    <Izena>Edu</Izena>
-                    <Abizena>Sousa</Abizena>
-                    <Posizioa>Atezaina</Posizioa>
+                <Jokalari dortsala="99">
+                    <Izena>Erick</Izena>
+                    <Abizena>Mendonça</Abizena>
+                    <Posizioa>Unibertsala</Posizioa>
                 </Jokalari>
             </Jokalariak>
         </Talde>
@@ -88,10 +78,20 @@
                     <Abizena>Marques</Abizena>
                     <Posizioa>Hegala</Posizioa>
                 </Jokalari>
+                <Jokalari dortsala="1">
+                    <Izena>Edu</Izena>
+                    <Abizena>Sousa</Abizena>
+                    <Posizioa>Atezaina</Posizioa>
+                </Jokalari>
                 <Jokalari dortsala="9">
                     <Izena>Bruno</Izena>
                     <Abizena>Taffy</Abizena>
                     <Posizioa>Pibota</Posizioa>
+                </Jokalari>
+                <Jokalari dortsala="96">
+                    <Izena>Artem</Izena>
+                    <Abizena>Niyazov</Abizena>
+                    <Posizioa>Hegala</Posizioa>
                 </Jokalari>
                 <Jokalari dortsala="8">
                     <Izena>David</Izena>
@@ -103,15 +103,15 @@
                     <Abizena>Mayor</Abizena>
                     <Posizioa>Itxiera</Posizioa>
                 </Jokalari>
-                <Jokalari dortsala="99">
-                    <Izena>Erick</Izena>
-                    <Abizena>Mendonça</Abizena>
-                    <Posizioa>Unibertsala</Posizioa>
-                </Jokalari>
-                <Jokalari dortsala="96">
-                    <Izena>Artem</Izena>
-                    <Abizena>Niyazov</Abizena>
+                <Jokalari dortsala="9">
+                    <Izena>Sergio</Izena>
+                    <Abizena>Lozano</Abizena>
                     <Posizioa>Hegala</Posizioa>
+                </Jokalari>
+                <Jokalari dortsala="10">
+                    <Izena>Jean Pierre</Izena>
+                    <Abizena>Pito</Abizena>
+                    <Posizioa>Pibota</Posizioa>
                 </Jokalari>
             </Jokalariak>
         </Talde>
@@ -694,16 +694,6 @@
                     <Hiria>Barcelona</Hiria>
                     <Ezkutua>barcelona</Ezkutua>
                     <Jokalariak>
-                        <Jokalari dortsala="9">
-                            <Izena>Sergio</Izena>
-                            <Abizena>Lozano</Abizena>
-                            <Posizioa>Hegala</Posizioa>
-                        </Jokalari>
-                        <Jokalari dortsala="10">
-                            <Izena>Jean Pierre</Izena>
-                            <Abizena>Pito</Abizena>
-                            <Posizioa>Pibota</Posizioa>
-                        </Jokalari>
                         <Jokalari dortsala="8">
                             <Izena>Adolfo</Izena>
                             <Abizena>Fernández</Abizena>
@@ -739,10 +729,10 @@
                             <Abizena>Yepes</Abizena>
                             <Posizioa>Pibota</Posizioa>
                         </Jokalari>
-                        <Jokalari dortsala="1">
-                            <Izena>Edu</Izena>
-                            <Abizena>Sousa</Abizena>
-                            <Posizioa>Atezaina</Posizioa>
+                        <Jokalari dortsala="99">
+                            <Izena>Erick</Izena>
+                            <Abizena>Mendonça</Abizena>
+                            <Posizioa>Unibertsala</Posizioa>
                         </Jokalari>
                     </Jokalariak>
                 </Talde>
@@ -776,10 +766,20 @@
                             <Abizena>Marques</Abizena>
                             <Posizioa>Hegala</Posizioa>
                         </Jokalari>
+                        <Jokalari dortsala="1">
+                            <Izena>Edu</Izena>
+                            <Abizena>Sousa</Abizena>
+                            <Posizioa>Atezaina</Posizioa>
+                        </Jokalari>
                         <Jokalari dortsala="9">
                             <Izena>Bruno</Izena>
                             <Abizena>Taffy</Abizena>
                             <Posizioa>Pibota</Posizioa>
+                        </Jokalari>
+                        <Jokalari dortsala="96">
+                            <Izena>Artem</Izena>
+                            <Abizena>Niyazov</Abizena>
+                            <Posizioa>Hegala</Posizioa>
                         </Jokalari>
                         <Jokalari dortsala="8">
                             <Izena>David</Izena>
@@ -791,15 +791,15 @@
                             <Abizena>Mayor</Abizena>
                             <Posizioa>Itxiera</Posizioa>
                         </Jokalari>
-                        <Jokalari dortsala="99">
-                            <Izena>Erick</Izena>
-                            <Abizena>Mendonça</Abizena>
-                            <Posizioa>Unibertsala</Posizioa>
-                        </Jokalari>
-                        <Jokalari dortsala="96">
-                            <Izena>Artem</Izena>
-                            <Abizena>Niyazov</Abizena>
+                        <Jokalari dortsala="9">
+                            <Izena>Sergio</Izena>
+                            <Abizena>Lozano</Abizena>
                             <Posizioa>Hegala</Posizioa>
+                        </Jokalari>
+                        <Jokalari dortsala="10">
+                            <Izena>Jean Pierre</Izena>
+                            <Abizena>Pito</Abizena>
+                            <Posizioa>Pibota</Posizioa>
                         </Jokalari>
                     </Jokalariak>
                 </Talde>
@@ -1346,16 +1346,6 @@
                     <Hiria>Barcelona</Hiria>
                     <Ezkutua>barcelona</Ezkutua>
                     <Jokalariak>
-                        <Jokalari dortsala="9">
-                            <Izena>Sergio</Izena>
-                            <Abizena>Lozano</Abizena>
-                            <Posizioa>Hegala</Posizioa>
-                        </Jokalari>
-                        <Jokalari dortsala="10">
-                            <Izena>Jean Pierre</Izena>
-                            <Abizena>Pito</Abizena>
-                            <Posizioa>Pibota</Posizioa>
-                        </Jokalari>
                         <Jokalari dortsala="8">
                             <Izena>Adolfo</Izena>
                             <Abizena>Fernández</Abizena>
@@ -1391,10 +1381,10 @@
                             <Abizena>Yepes</Abizena>
                             <Posizioa>Pibota</Posizioa>
                         </Jokalari>
-                        <Jokalari dortsala="1">
-                            <Izena>Edu</Izena>
-                            <Abizena>Sousa</Abizena>
-                            <Posizioa>Atezaina</Posizioa>
+                        <Jokalari dortsala="99">
+                            <Izena>Erick</Izena>
+                            <Abizena>Mendonça</Abizena>
+                            <Posizioa>Unibertsala</Posizioa>
                         </Jokalari>
                     </Jokalariak>
                 </Talde>
@@ -1428,10 +1418,20 @@
                             <Abizena>Marques</Abizena>
                             <Posizioa>Hegala</Posizioa>
                         </Jokalari>
+                        <Jokalari dortsala="1">
+                            <Izena>Edu</Izena>
+                            <Abizena>Sousa</Abizena>
+                            <Posizioa>Atezaina</Posizioa>
+                        </Jokalari>
                         <Jokalari dortsala="9">
                             <Izena>Bruno</Izena>
                             <Abizena>Taffy</Abizena>
                             <Posizioa>Pibota</Posizioa>
+                        </Jokalari>
+                        <Jokalari dortsala="96">
+                            <Izena>Artem</Izena>
+                            <Abizena>Niyazov</Abizena>
+                            <Posizioa>Hegala</Posizioa>
                         </Jokalari>
                         <Jokalari dortsala="8">
                             <Izena>David</Izena>
@@ -1443,15 +1443,15 @@
                             <Abizena>Mayor</Abizena>
                             <Posizioa>Itxiera</Posizioa>
                         </Jokalari>
-                        <Jokalari dortsala="99">
-                            <Izena>Erick</Izena>
-                            <Abizena>Mendonça</Abizena>
-                            <Posizioa>Unibertsala</Posizioa>
-                        </Jokalari>
-                        <Jokalari dortsala="96">
-                            <Izena>Artem</Izena>
-                            <Abizena>Niyazov</Abizena>
+                        <Jokalari dortsala="9">
+                            <Izena>Sergio</Izena>
+                            <Abizena>Lozano</Abizena>
                             <Posizioa>Hegala</Posizioa>
+                        </Jokalari>
+                        <Jokalari dortsala="10">
+                            <Izena>Jean Pierre</Izena>
+                            <Abizena>Pito</Abizena>
+                            <Posizioa>Pibota</Posizioa>
                         </Jokalari>
                     </Jokalariak>
                 </Talde>
@@ -1687,279 +1687,276 @@
             <Sailkapena>
                 <Lerroa>
                     <Posizioa>1</Posizioa>
-                    <Taldea>Inter Movistar</Taldea>
-                    <Ezkutua>inter</Ezkutua>
-                    <Puntuak>3</Puntuak>
-                    <Jokatuak>1</Jokatuak>
-                    <Irabaziak>1</Irabaziak>
+                    <Taldea>Barça Futsal</Taldea>
+                    <Ezkutua>barcelona</Ezkutua>
+                    <Puntuak>0</Puntuak>
+                    <Jokatuak>0</Jokatuak>
+                    <Irabaziak>0</Irabaziak>
                     <Berdinduak>0</Berdinduak>
                     <Galduak>0</Galduak>
-                    <AldekoGolak>5</AldekoGolak>
-                    <AurkakoGolak>2</AurkakoGolak>
+                    <AldekoGolak>0</AldekoGolak>
+                    <AurkakoGolak>0</AurkakoGolak>
                 </Lerroa>
                 <Lerroa>
                     <Posizioa>2</Posizioa>
-                    <Taldea>Barça Futsal</Taldea>
-                    <Ezkutua>barcelona</Ezkutua>
-                    <Puntuak>1</Puntuak>
-                    <Jokatuak>1</Jokatuak>
+                    <Taldea>Jaén Paraíso Interior</Taldea>
+                    <Ezkutua>jaen</Ezkutua>
+                    <Puntuak>0</Puntuak>
+                    <Jokatuak>0</Jokatuak>
                     <Irabaziak>0</Irabaziak>
-                    <Berdinduak>1</Berdinduak>
+                    <Berdinduak>0</Berdinduak>
                     <Galduak>0</Galduak>
-                    <AldekoGolak>1</AldekoGolak>
-                    <AurkakoGolak>1</AurkakoGolak>
+                    <AldekoGolak>0</AldekoGolak>
+                    <AurkakoGolak>0</AurkakoGolak>
                 </Lerroa>
                 <Lerroa>
                     <Posizioa>3</Posizioa>
                     <Taldea>Viña Albali Valdepeñas</Taldea>
                     <Ezkutua>valdepenas</Ezkutua>
-                    <Puntuak>1</Puntuak>
-                    <Jokatuak>1</Jokatuak>
+                    <Puntuak>0</Puntuak>
+                    <Jokatuak>0</Jokatuak>
                     <Irabaziak>0</Irabaziak>
-                    <Berdinduak>1</Berdinduak>
+                    <Berdinduak>0</Berdinduak>
                     <Galduak>0</Galduak>
-                    <AldekoGolak>3</AldekoGolak>
-                    <AurkakoGolak>3</AurkakoGolak>
+                    <AldekoGolak>0</AldekoGolak>
+                    <AurkakoGolak>0</AurkakoGolak>
                 </Lerroa>
                 <Lerroa>
                     <Posizioa>4</Posizioa>
                     <Taldea>ElPozo Murcia</Taldea>
                     <Ezkutua>elpozo</Ezkutua>
-                    <Puntuak>1</Puntuak>
-                    <Jokatuak>1</Jokatuak>
+                    <Puntuak>0</Puntuak>
+                    <Jokatuak>0</Jokatuak>
                     <Irabaziak>0</Irabaziak>
-                    <Berdinduak>1</Berdinduak>
+                    <Berdinduak>0</Berdinduak>
                     <Galduak>0</Galduak>
-                    <AldekoGolak>3</AldekoGolak>
-                    <AurkakoGolak>3</AurkakoGolak>
+                    <AldekoGolak>0</AldekoGolak>
+                    <AurkakoGolak>0</AurkakoGolak>
                 </Lerroa>
                 <Lerroa>
                     <Posizioa>5</Posizioa>
-                    <Taldea>Mallorca Palma Futsal</Taldea>
-                    <Ezkutua>baleares</Ezkutua>
-                    <Puntuak>1</Puntuak>
-                    <Jokatuak>1</Jokatuak>
+                    <Taldea>Inter Movistar</Taldea>
+                    <Ezkutua>inter</Ezkutua>
+                    <Puntuak>0</Puntuak>
+                    <Jokatuak>0</Jokatuak>
                     <Irabaziak>0</Irabaziak>
-                    <Berdinduak>1</Berdinduak>
+                    <Berdinduak>0</Berdinduak>
                     <Galduak>0</Galduak>
-                    <AldekoGolak>1</AldekoGolak>
-                    <AurkakoGolak>1</AurkakoGolak>
+                    <AldekoGolak>0</AldekoGolak>
+                    <AurkakoGolak>0</AurkakoGolak>
                 </Lerroa>
                 <Lerroa>
                     <Posizioa>6</Posizioa>
-                    <Taldea>Jaén Paraíso Interior</Taldea>
-                    <Ezkutua>jaen</Ezkutua>
+                    <Taldea>Mallorca Palma Futsal</Taldea>
+                    <Ezkutua>baleares</Ezkutua>
                     <Puntuak>0</Puntuak>
-                    <Jokatuak>1</Jokatuak>
+                    <Jokatuak>0</Jokatuak>
                     <Irabaziak>0</Irabaziak>
                     <Berdinduak>0</Berdinduak>
-                    <Galduak>1</Galduak>
-                    <AldekoGolak>2</AldekoGolak>
-                    <AurkakoGolak>5</AurkakoGolak>
+                    <Galduak>0</Galduak>
+                    <AldekoGolak>0</AldekoGolak>
+                    <AurkakoGolak>0</AurkakoGolak>
                 </Lerroa>
             </Sailkapena>
             <Jardunaldiak>
                 <Jardunaldi zenbakia="1">
-                    <Partidua id="31">
+                    <Partidua egoera="JokatuGabe" id="31">
                         <EtxekoTaldea>Barça Futsal</EtxekoTaldea>
                         <EtxekoEzkutua>barcelona</EtxekoEzkutua>
-                        <KanpokoTaldea>Mallorca Palma Futsal</KanpokoTaldea>
-                        <KanpokoEzkutua>baleares</KanpokoEzkutua>
-                        <Emaitza etxekoGolak="1" kanpokoGolak="1"/>
-                    </Partidua>
-                    <Partidua id="32">
-                        <EtxekoTaldea>Jaén Paraíso Interior</EtxekoTaldea>
-                        <EtxekoEzkutua>jaen</EtxekoEzkutua>
-                        <KanpokoTaldea>Inter Movistar</KanpokoTaldea>
-                        <KanpokoEzkutua>inter</KanpokoEzkutua>
-                        <Emaitza etxekoGolak="2" kanpokoGolak="5"/>
-                    </Partidua>
-                    <Partidua id="33">
-                        <EtxekoTaldea>ElPozo Murcia</EtxekoTaldea>
-                        <EtxekoEzkutua>elpozo</EtxekoEzkutua>
                         <KanpokoTaldea>Viña Albali Valdepeñas</KanpokoTaldea>
                         <KanpokoEzkutua>valdepenas</KanpokoEzkutua>
-                        <Emaitza etxekoGolak="3" kanpokoGolak="3"/>
+                    </Partidua>
+                    <Partidua egoera="JokatuGabe" id="32">
+                        <EtxekoTaldea>Inter Movistar</EtxekoTaldea>
+                        <EtxekoEzkutua>inter</EtxekoEzkutua>
+                        <KanpokoTaldea>ElPozo Murcia</KanpokoTaldea>
+                        <KanpokoEzkutua>elpozo</KanpokoEzkutua>
+                    </Partidua>
+                    <Partidua egoera="JokatuGabe" id="33">
+                        <EtxekoTaldea>Jaén Paraíso Interior</EtxekoTaldea>
+                        <EtxekoEzkutua>jaen</EtxekoEzkutua>
+                        <KanpokoTaldea>Mallorca Palma Futsal</KanpokoTaldea>
+                        <KanpokoEzkutua>baleares</KanpokoEzkutua>
                     </Partidua>
                 </Jardunaldi>
                 <Jardunaldi zenbakia="2">
                     <Partidua egoera="JokatuGabe" id="34">
                         <EtxekoTaldea>Barça Futsal</EtxekoTaldea>
                         <EtxekoEzkutua>barcelona</EtxekoEzkutua>
-                        <KanpokoTaldea>Inter Movistar</KanpokoTaldea>
-                        <KanpokoEzkutua>inter</KanpokoEzkutua>
-                    </Partidua>
-                    <Partidua egoera="JokatuGabe" id="35">
-                        <EtxekoTaldea>Mallorca Palma Futsal</EtxekoTaldea>
-                        <EtxekoEzkutua>baleares</EtxekoEzkutua>
-                        <KanpokoTaldea>Viña Albali Valdepeñas</KanpokoTaldea>
-                        <KanpokoEzkutua>valdepenas</KanpokoEzkutua>
-                    </Partidua>
-                    <Partidua egoera="JokatuGabe" id="36">
-                        <EtxekoTaldea>Jaén Paraíso Interior</EtxekoTaldea>
-                        <EtxekoEzkutua>jaen</EtxekoEzkutua>
                         <KanpokoTaldea>ElPozo Murcia</KanpokoTaldea>
                         <KanpokoEzkutua>elpozo</KanpokoEzkutua>
+                    </Partidua>
+                    <Partidua egoera="JokatuGabe" id="35">
+                        <EtxekoTaldea>Viña Albali Valdepeñas</EtxekoTaldea>
+                        <EtxekoEzkutua>valdepenas</EtxekoEzkutua>
+                        <KanpokoTaldea>Mallorca Palma Futsal</KanpokoTaldea>
+                        <KanpokoEzkutua>baleares</KanpokoEzkutua>
+                    </Partidua>
+                    <Partidua egoera="JokatuGabe" id="36">
+                        <EtxekoTaldea>Inter Movistar</EtxekoTaldea>
+                        <EtxekoEzkutua>inter</EtxekoEzkutua>
+                        <KanpokoTaldea>Jaén Paraíso Interior</KanpokoTaldea>
+                        <KanpokoEzkutua>jaen</KanpokoEzkutua>
                     </Partidua>
                 </Jardunaldi>
                 <Jardunaldi zenbakia="3">
                     <Partidua egoera="JokatuGabe" id="37">
                         <EtxekoTaldea>Barça Futsal</EtxekoTaldea>
                         <EtxekoEzkutua>barcelona</EtxekoEzkutua>
-                        <KanpokoTaldea>Viña Albali Valdepeñas</KanpokoTaldea>
-                        <KanpokoEzkutua>valdepenas</KanpokoEzkutua>
+                        <KanpokoTaldea>Mallorca Palma Futsal</KanpokoTaldea>
+                        <KanpokoEzkutua>baleares</KanpokoEzkutua>
                     </Partidua>
                     <Partidua egoera="JokatuGabe" id="38">
-                        <EtxekoTaldea>Inter Movistar</EtxekoTaldea>
-                        <EtxekoEzkutua>inter</EtxekoEzkutua>
-                        <KanpokoTaldea>ElPozo Murcia</KanpokoTaldea>
-                        <KanpokoEzkutua>elpozo</KanpokoEzkutua>
-                    </Partidua>
-                    <Partidua egoera="JokatuGabe" id="39">
-                        <EtxekoTaldea>Mallorca Palma Futsal</EtxekoTaldea>
-                        <EtxekoEzkutua>baleares</EtxekoEzkutua>
+                        <EtxekoTaldea>ElPozo Murcia</EtxekoTaldea>
+                        <EtxekoEzkutua>elpozo</EtxekoEzkutua>
                         <KanpokoTaldea>Jaén Paraíso Interior</KanpokoTaldea>
                         <KanpokoEzkutua>jaen</KanpokoEzkutua>
+                    </Partidua>
+                    <Partidua egoera="JokatuGabe" id="39">
+                        <EtxekoTaldea>Viña Albali Valdepeñas</EtxekoTaldea>
+                        <EtxekoEzkutua>valdepenas</EtxekoEzkutua>
+                        <KanpokoTaldea>Inter Movistar</KanpokoTaldea>
+                        <KanpokoEzkutua>inter</KanpokoEzkutua>
                     </Partidua>
                 </Jardunaldi>
                 <Jardunaldi zenbakia="4">
                     <Partidua egoera="JokatuGabe" id="40">
                         <EtxekoTaldea>Barça Futsal</EtxekoTaldea>
                         <EtxekoEzkutua>barcelona</EtxekoEzkutua>
-                        <KanpokoTaldea>ElPozo Murcia</KanpokoTaldea>
-                        <KanpokoEzkutua>elpozo</KanpokoEzkutua>
-                    </Partidua>
-                    <Partidua egoera="JokatuGabe" id="41">
-                        <EtxekoTaldea>Viña Albali Valdepeñas</EtxekoTaldea>
-                        <EtxekoEzkutua>valdepenas</EtxekoEzkutua>
                         <KanpokoTaldea>Jaén Paraíso Interior</KanpokoTaldea>
                         <KanpokoEzkutua>jaen</KanpokoEzkutua>
                     </Partidua>
+                    <Partidua egoera="JokatuGabe" id="41">
+                        <EtxekoTaldea>Mallorca Palma Futsal</EtxekoTaldea>
+                        <EtxekoEzkutua>baleares</EtxekoEzkutua>
+                        <KanpokoTaldea>Inter Movistar</KanpokoTaldea>
+                        <KanpokoEzkutua>inter</KanpokoEzkutua>
+                    </Partidua>
                     <Partidua egoera="JokatuGabe" id="42">
-                        <EtxekoTaldea>Inter Movistar</EtxekoTaldea>
-                        <EtxekoEzkutua>inter</EtxekoEzkutua>
-                        <KanpokoTaldea>Mallorca Palma Futsal</KanpokoTaldea>
-                        <KanpokoEzkutua>baleares</KanpokoEzkutua>
+                        <EtxekoTaldea>ElPozo Murcia</EtxekoTaldea>
+                        <EtxekoEzkutua>elpozo</EtxekoEzkutua>
+                        <KanpokoTaldea>Viña Albali Valdepeñas</KanpokoTaldea>
+                        <KanpokoEzkutua>valdepenas</KanpokoEzkutua>
                     </Partidua>
                 </Jardunaldi>
                 <Jardunaldi zenbakia="5">
                     <Partidua egoera="JokatuGabe" id="43">
                         <EtxekoTaldea>Barça Futsal</EtxekoTaldea>
                         <EtxekoEzkutua>barcelona</EtxekoEzkutua>
-                        <KanpokoTaldea>Jaén Paraíso Interior</KanpokoTaldea>
-                        <KanpokoEzkutua>jaen</KanpokoEzkutua>
-                    </Partidua>
-                    <Partidua egoera="JokatuGabe" id="44">
-                        <EtxekoTaldea>ElPozo Murcia</EtxekoTaldea>
-                        <EtxekoEzkutua>elpozo</EtxekoEzkutua>
-                        <KanpokoTaldea>Mallorca Palma Futsal</KanpokoTaldea>
-                        <KanpokoEzkutua>baleares</KanpokoEzkutua>
-                    </Partidua>
-                    <Partidua egoera="JokatuGabe" id="45">
-                        <EtxekoTaldea>Viña Albali Valdepeñas</EtxekoTaldea>
-                        <EtxekoEzkutua>valdepenas</EtxekoEzkutua>
                         <KanpokoTaldea>Inter Movistar</KanpokoTaldea>
                         <KanpokoEzkutua>inter</KanpokoEzkutua>
+                    </Partidua>
+                    <Partidua egoera="JokatuGabe" id="44">
+                        <EtxekoTaldea>Jaén Paraíso Interior</EtxekoTaldea>
+                        <EtxekoEzkutua>jaen</EtxekoEzkutua>
+                        <KanpokoTaldea>Viña Albali Valdepeñas</KanpokoTaldea>
+                        <KanpokoEzkutua>valdepenas</KanpokoEzkutua>
+                    </Partidua>
+                    <Partidua egoera="JokatuGabe" id="45">
+                        <EtxekoTaldea>Mallorca Palma Futsal</EtxekoTaldea>
+                        <EtxekoEzkutua>baleares</EtxekoEzkutua>
+                        <KanpokoTaldea>ElPozo Murcia</KanpokoTaldea>
+                        <KanpokoEzkutua>elpozo</KanpokoEzkutua>
                     </Partidua>
                 </Jardunaldi>
                 <Jardunaldi zenbakia="6">
                     <Partidua egoera="JokatuGabe" id="46">
-                        <EtxekoTaldea>Mallorca Palma Futsal</EtxekoTaldea>
-                        <EtxekoEzkutua>baleares</EtxekoEzkutua>
+                        <EtxekoTaldea>Viña Albali Valdepeñas</EtxekoTaldea>
+                        <EtxekoEzkutua>valdepenas</EtxekoEzkutua>
                         <KanpokoTaldea>Barça Futsal</KanpokoTaldea>
                         <KanpokoEzkutua>barcelona</KanpokoEzkutua>
                     </Partidua>
                     <Partidua egoera="JokatuGabe" id="47">
-                        <EtxekoTaldea>Inter Movistar</EtxekoTaldea>
-                        <EtxekoEzkutua>inter</EtxekoEzkutua>
-                        <KanpokoTaldea>Jaén Paraíso Interior</KanpokoTaldea>
-                        <KanpokoEzkutua>jaen</KanpokoEzkutua>
+                        <EtxekoTaldea>ElPozo Murcia</EtxekoTaldea>
+                        <EtxekoEzkutua>elpozo</EtxekoEzkutua>
+                        <KanpokoTaldea>Inter Movistar</KanpokoTaldea>
+                        <KanpokoEzkutua>inter</KanpokoEzkutua>
                     </Partidua>
                     <Partidua egoera="JokatuGabe" id="48">
-                        <EtxekoTaldea>Viña Albali Valdepeñas</EtxekoTaldea>
-                        <EtxekoEzkutua>valdepenas</EtxekoEzkutua>
-                        <KanpokoTaldea>ElPozo Murcia</KanpokoTaldea>
-                        <KanpokoEzkutua>elpozo</KanpokoEzkutua>
+                        <EtxekoTaldea>Mallorca Palma Futsal</EtxekoTaldea>
+                        <EtxekoEzkutua>baleares</EtxekoEzkutua>
+                        <KanpokoTaldea>Jaén Paraíso Interior</KanpokoTaldea>
+                        <KanpokoEzkutua>jaen</KanpokoEzkutua>
                     </Partidua>
                 </Jardunaldi>
                 <Jardunaldi zenbakia="7">
                     <Partidua egoera="JokatuGabe" id="49">
-                        <EtxekoTaldea>Inter Movistar</EtxekoTaldea>
-                        <EtxekoEzkutua>inter</EtxekoEzkutua>
+                        <EtxekoTaldea>ElPozo Murcia</EtxekoTaldea>
+                        <EtxekoEzkutua>elpozo</EtxekoEzkutua>
                         <KanpokoTaldea>Barça Futsal</KanpokoTaldea>
                         <KanpokoEzkutua>barcelona</KanpokoEzkutua>
                     </Partidua>
                     <Partidua egoera="JokatuGabe" id="50">
-                        <EtxekoTaldea>Viña Albali Valdepeñas</EtxekoTaldea>
-                        <EtxekoEzkutua>valdepenas</EtxekoEzkutua>
-                        <KanpokoTaldea>Mallorca Palma Futsal</KanpokoTaldea>
-                        <KanpokoEzkutua>baleares</KanpokoEzkutua>
+                        <EtxekoTaldea>Mallorca Palma Futsal</EtxekoTaldea>
+                        <EtxekoEzkutua>baleares</EtxekoEzkutua>
+                        <KanpokoTaldea>Viña Albali Valdepeñas</KanpokoTaldea>
+                        <KanpokoEzkutua>valdepenas</KanpokoEzkutua>
                     </Partidua>
                     <Partidua egoera="JokatuGabe" id="51">
-                        <EtxekoTaldea>ElPozo Murcia</EtxekoTaldea>
-                        <EtxekoEzkutua>elpozo</EtxekoEzkutua>
-                        <KanpokoTaldea>Jaén Paraíso Interior</KanpokoTaldea>
-                        <KanpokoEzkutua>jaen</KanpokoEzkutua>
+                        <EtxekoTaldea>Jaén Paraíso Interior</EtxekoTaldea>
+                        <EtxekoEzkutua>jaen</EtxekoEzkutua>
+                        <KanpokoTaldea>Inter Movistar</KanpokoTaldea>
+                        <KanpokoEzkutua>inter</KanpokoEzkutua>
                     </Partidua>
                 </Jardunaldi>
                 <Jardunaldi zenbakia="8">
                     <Partidua egoera="JokatuGabe" id="52">
-                        <EtxekoTaldea>Viña Albali Valdepeñas</EtxekoTaldea>
-                        <EtxekoEzkutua>valdepenas</EtxekoEzkutua>
+                        <EtxekoTaldea>Mallorca Palma Futsal</EtxekoTaldea>
+                        <EtxekoEzkutua>baleares</EtxekoEzkutua>
                         <KanpokoTaldea>Barça Futsal</KanpokoTaldea>
                         <KanpokoEzkutua>barcelona</KanpokoEzkutua>
                     </Partidua>
                     <Partidua egoera="JokatuGabe" id="53">
-                        <EtxekoTaldea>ElPozo Murcia</EtxekoTaldea>
-                        <EtxekoEzkutua>elpozo</EtxekoEzkutua>
-                        <KanpokoTaldea>Inter Movistar</KanpokoTaldea>
-                        <KanpokoEzkutua>inter</KanpokoEzkutua>
-                    </Partidua>
-                    <Partidua egoera="JokatuGabe" id="54">
                         <EtxekoTaldea>Jaén Paraíso Interior</EtxekoTaldea>
                         <EtxekoEzkutua>jaen</EtxekoEzkutua>
-                        <KanpokoTaldea>Mallorca Palma Futsal</KanpokoTaldea>
-                        <KanpokoEzkutua>baleares</KanpokoEzkutua>
-                    </Partidua>
-                </Jardunaldi>
-                <Jardunaldi zenbakia="9">
-                    <Partidua egoera="JokatuGabe" id="55">
-                        <EtxekoTaldea>ElPozo Murcia</EtxekoTaldea>
-                        <EtxekoEzkutua>elpozo</EtxekoEzkutua>
-                        <KanpokoTaldea>Barça Futsal</KanpokoTaldea>
-                        <KanpokoEzkutua>barcelona</KanpokoEzkutua>
-                    </Partidua>
-                    <Partidua egoera="JokatuGabe" id="56">
-                        <EtxekoTaldea>Jaén Paraíso Interior</EtxekoTaldea>
-                        <EtxekoEzkutua>jaen</EtxekoEzkutua>
-                        <KanpokoTaldea>Viña Albali Valdepeñas</KanpokoTaldea>
-                        <KanpokoEzkutua>valdepenas</KanpokoEzkutua>
-                    </Partidua>
-                    <Partidua egoera="JokatuGabe" id="57">
-                        <EtxekoTaldea>Mallorca Palma Futsal</EtxekoTaldea>
-                        <EtxekoEzkutua>baleares</EtxekoEzkutua>
-                        <KanpokoTaldea>Inter Movistar</KanpokoTaldea>
-                        <KanpokoEzkutua>inter</KanpokoEzkutua>
-                    </Partidua>
-                </Jardunaldi>
-                <Jardunaldi zenbakia="10">
-                    <Partidua egoera="JokatuGabe" id="58">
-                        <EtxekoTaldea>Jaén Paraíso Interior</EtxekoTaldea>
-                        <EtxekoEzkutua>jaen</EtxekoEzkutua>
-                        <KanpokoTaldea>Barça Futsal</KanpokoTaldea>
-                        <KanpokoEzkutua>barcelona</KanpokoEzkutua>
-                    </Partidua>
-                    <Partidua egoera="JokatuGabe" id="59">
-                        <EtxekoTaldea>Mallorca Palma Futsal</EtxekoTaldea>
-                        <EtxekoEzkutua>baleares</EtxekoEzkutua>
                         <KanpokoTaldea>ElPozo Murcia</KanpokoTaldea>
                         <KanpokoEzkutua>elpozo</KanpokoEzkutua>
                     </Partidua>
-                    <Partidua egoera="JokatuGabe" id="60">
+                    <Partidua egoera="JokatuGabe" id="54">
                         <EtxekoTaldea>Inter Movistar</EtxekoTaldea>
                         <EtxekoEzkutua>inter</EtxekoEzkutua>
                         <KanpokoTaldea>Viña Albali Valdepeñas</KanpokoTaldea>
                         <KanpokoEzkutua>valdepenas</KanpokoEzkutua>
+                    </Partidua>
+                </Jardunaldi>
+                <Jardunaldi zenbakia="9">
+                    <Partidua egoera="JokatuGabe" id="55">
+                        <EtxekoTaldea>Jaén Paraíso Interior</EtxekoTaldea>
+                        <EtxekoEzkutua>jaen</EtxekoEzkutua>
+                        <KanpokoTaldea>Barça Futsal</KanpokoTaldea>
+                        <KanpokoEzkutua>barcelona</KanpokoEzkutua>
+                    </Partidua>
+                    <Partidua egoera="JokatuGabe" id="56">
+                        <EtxekoTaldea>Inter Movistar</EtxekoTaldea>
+                        <EtxekoEzkutua>inter</EtxekoEzkutua>
+                        <KanpokoTaldea>Mallorca Palma Futsal</KanpokoTaldea>
+                        <KanpokoEzkutua>baleares</KanpokoEzkutua>
+                    </Partidua>
+                    <Partidua egoera="JokatuGabe" id="57">
+                        <EtxekoTaldea>Viña Albali Valdepeñas</EtxekoTaldea>
+                        <EtxekoEzkutua>valdepenas</EtxekoEzkutua>
+                        <KanpokoTaldea>ElPozo Murcia</KanpokoTaldea>
+                        <KanpokoEzkutua>elpozo</KanpokoEzkutua>
+                    </Partidua>
+                </Jardunaldi>
+                <Jardunaldi zenbakia="10">
+                    <Partidua egoera="JokatuGabe" id="58">
+                        <EtxekoTaldea>Inter Movistar</EtxekoTaldea>
+                        <EtxekoEzkutua>inter</EtxekoEzkutua>
+                        <KanpokoTaldea>Barça Futsal</KanpokoTaldea>
+                        <KanpokoEzkutua>barcelona</KanpokoEzkutua>
+                    </Partidua>
+                    <Partidua egoera="JokatuGabe" id="59">
+                        <EtxekoTaldea>Viña Albali Valdepeñas</EtxekoTaldea>
+                        <EtxekoEzkutua>valdepenas</EtxekoEzkutua>
+                        <KanpokoTaldea>Jaén Paraíso Interior</KanpokoTaldea>
+                        <KanpokoEzkutua>jaen</KanpokoEzkutua>
+                    </Partidua>
+                    <Partidua egoera="JokatuGabe" id="60">
+                        <EtxekoTaldea>ElPozo Murcia</EtxekoTaldea>
+                        <EtxekoEzkutua>elpozo</EtxekoEzkutua>
+                        <KanpokoTaldea>Mallorca Palma Futsal</KanpokoTaldea>
+                        <KanpokoEzkutua>baleares</KanpokoEzkutua>
                     </Partidua>
                 </Jardunaldi>
             </Jardunaldiak>

@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Federazioa implements Serializable {
     private static final long serialVersionUID = 1L;
 
-    // 1. TALDE GUZTIAK (Masterra: Hemen 10ak egongo dira)
+    // 1. TALDE GUZTIAK (Masterra: Hemen 12ak egongo dira)
     private ArrayList<Talde> taldeGuztiak; 
 
     // 2. DENBORALDIAK (Historiala)
