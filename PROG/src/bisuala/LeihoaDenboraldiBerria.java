@@ -174,6 +174,12 @@ public class LeihoaDenboraldiBerria extends JDialog {
             
             federazioa.gehituDenboraldia(d);
             
+         // --- LOG ---
+            utils.LogKudeatzailea.gehituLog("Denboraldi berria sortu da: " + urtea + " (" + taldeAukeratuak.size() + " talde)");
+            // -----------
+
+            this.ondoSortuDa = true;
+            
             this.ondoSortuDa = true;
             
             JOptionPane.showMessageDialog(this, "Denboraldia (" + urtea + ") ondo sortu da!");

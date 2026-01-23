@@ -19,12 +19,15 @@ public class Federazioa implements Serializable {
 
     // 2. DENBORALDIAK (Historiala)
     private ArrayList<Denboraldia> denboraldiak;
+    private ArrayList <Erabiltzaile> erabiltzaileak;
     
     public Federazioa() {
         this.taldeGuztiak = new ArrayList<>();
         this.denboraldiak = new ArrayList<>();
+        this.erabiltzaileak = new ArrayList<>();
     }
 
+<<<<<<< HEAD
     /**
      * Talde berri bat federazioan gehitzen du.
      * 
@@ -32,6 +35,18 @@ public class Federazioa implements Serializable {
      *
      * @param t gehitu nahi den taldea
      */
+=======
+    
+    public ArrayList<Erabiltzaile> getErabiltzaileak() {
+        if (this.erabiltzaileak == null) {
+            this.erabiltzaileak = new ArrayList<>();
+        }
+        return this.erabiltzaileak;
+    }
+    
+    // --- KUDEAKETA METODOAK ---
+    
+>>>>>>> 9bdcd71367c83a46850ab561908e2a9155e93b2b
     public void gehituTaldea(Talde t) {
         if (!taldeGuztiak.contains(t)) {
             taldeGuztiak.add(t);

@@ -206,6 +206,10 @@ public class PanelEpailea extends JPanel {
                     if (app != null) {
                         app.setAldaketakDauden(true); 
                     }
+                    
+                    utils.LogKudeatzailea.gehituLog("Emaitza Eguneratua: " + 
+                            p.getEtxekoTaldea().getIzena() + " " + golEtxekoa + " - " + 
+                            golKanpokoa + " " + p.getKanpokoTaldea().getIzena());
                     btnGorde.setBackground(new Color(46, 139, 87));
                     btnGorde.setText("OK");
                 }

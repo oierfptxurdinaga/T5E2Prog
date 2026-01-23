@@ -198,9 +198,16 @@ public class PanelAdmin extends JPanel {
 
             // 3. Mugimendua egin zerrenda nagusian
             if(masterJok != null) {
+            	// 1. Ezabatu jatorrizkotik
                 masterOrig.getJokalariak().remove(masterJok);
-                masterDest.sartuJokalaria(masterJok);
-                System.out.println("LOG: Jokalaria Federazioaren zerrenda nagusian ere mugitu da.");
+                // 2. Gehitu berrira
+                masterDest.getJokalariak().add(masterJok);
+
+                // --- LOG ---
+                String logMezua = "FITXAKETA: " + masterJok.getIzena() + " " + masterJok.getAbizena() + 
+                                  " mugitu da (" + masterOrig.getIzena() + " -> " + masterDest.getIzena() + ")";
+                utils.LogKudeatzailea.gehituLog(logMezua);
+                // -----------
             }
         }
     }

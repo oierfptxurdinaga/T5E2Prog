@@ -41,15 +41,13 @@ public class DatuKargatzailea {
         federazioa.gehituDenboraldia(denboraldia);
 
         // 7. ERABILTZAILEAK
-        List<Erabiltzaile> erabiltzaileZerrenda = new ArrayList<>();
-        erabiltzaileZerrenda.add(new ErabiltzaileAdministraria("admin", "admin"));
-        erabiltzaileZerrenda.add(new ErabiltzaileEpaile("epaile", "epaile"));
-        erabiltzaileZerrenda.add(new ErabiltzailePresi("presi", "presi"));
+        federazioa.getErabiltzaileak().add(new ErabiltzaileAdministraria("admin", "admin"));
+        federazioa.getErabiltzaileak().add(new ErabiltzaileEpaile("epaile", "epaile"));
+        federazioa.getErabiltzaileak().add(new ErabiltzailePresi("presi", "presi"));
 
         // 8. DATUAK GORDE
         gordeObjektua(federazioa, "src/data/federazioa.ser");
-        gordeObjektua(erabiltzaileZerrenda, "src/data/erabiltzaileak.ser");
-
+        
         System.out.println("Datuak ondo sortu eta gorde dira.");
     }
 

@@ -2,19 +2,19 @@ package bisuala;
 
 import javax.swing.*;
 import java.awt.*; 
-import java.awt.event.*;
-import java.io.*; // FileInputStream erabiltzeko
 import java.util.ArrayList;
 import model.*;
 import utils.DatuKarga; 
 
 public class Login extends JFrame {
-	private static final long serialVersionUID = 1L;
-	private JTextField txtUser;
+    private static final long serialVersionUID = 1L;
+    
+    private JTextField txtUser;
     private JPasswordField txtPass;
     
-    private ArrayList<Erabiltzaile> erabiltzaileak;
-    private Federazioa federazioa; // ALDAKETA: Objektu nagusia
+    // ALDAKETA: Kendu 'private ArrayList<Erabiltzaile> erabiltzaileak;' soltea.
+    // Orain dena federazioaren barruan dago.
+    private Federazioa federazioa; 
 
     public static void main(String[] args) {
         EventQueue.invokeLater(() -> {
@@ -28,101 +28,94 @@ public class Login extends JFrame {
     }
 
     public Login() {
-        // 1. Datuak kargatu
-        erabiltzaileak = DatuKarga.kargatuErabiltzaileak();
-        
-        // Federazioa kargatu (.ser fitxategitik)
-        federazioa = kargatuFederazioa(); 
+        // 1. Datuak kargatu (SOILIK FEDERAZIOA)
+        // DatuKarga.kargatuErabiltzaileak() ez dugu gehiago behar
+        federazioa = DatuKarga.kargatuFederazioa(); 
 
+        // Federazioa null bada (fitxategia ez da existitzen), sortu berria
+        if (federazioa == null) {
+            federazioa = new Federazioa();
+        }
+
+        // 2. Egiaztatu erabiltzaileak dauden, bestela Admin sortu
         datuakHasieratuBeharBada();
 
-        // 2. Leihoaren konfigurazioa
+        // 3. Leihoaren konfigurazioa
         setTitle("Saioa Hasi");
         setLayout(null);
         setBounds(100, 100, 400, 300);
-        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter() {
-			@Override
-			public void windowClosing(WindowEvent e) {
-				int aukera = JOptionPane.showConfirmDialog(Login.this, "Ziur zaude programa itxi nahi duzula?", "Irten",
-						JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
 
-				if (aukera == JOptionPane.YES_OPTION) {
-					dispose();
-					System.exit(0);
-				}
-			}
-		});
-
-        // Osagaiak
+        // --- UI OSAGAIAK ---
         JLabel lblUser = new JLabel("Erabiltzailea:");
-        lblUser.setBounds(50, 50, 100, 30);
+        lblUser.setBounds(50, 50, 100, 25);
+        add(lblUser);
+
         txtUser = new JTextField();
-        txtUser.setBounds(150, 50, 150, 30);
+        txtUser.setBounds(150, 50, 150, 25);
+        add(txtUser);
 
         JLabel lblPass = new JLabel("Pasahitza:");
-        lblPass.setBounds(50, 100, 100, 30);
+        lblPass.setBounds(50, 100, 100, 25);
+        add(lblPass);
+
         txtPass = new JPasswordField();
-        txtPass.setBounds(150, 100, 150, 30);
+        txtPass.setBounds(150, 100, 150, 25);
+        add(txtPass);
 
         JButton btnLogin = new JButton("Sartu");
         btnLogin.setBounds(150, 160, 100, 30);
+        btnLogin.setBackground(new Color(70, 130, 180));
+        btnLogin.setForeground(Color.WHITE);
+        add(btnLogin);
         this.getRootPane().setDefaultButton(btnLogin);
 
-        add(lblUser);
-        add(txtUser);
-        add(lblPass);
-        add(txtPass);
-        add(btnLogin);
-
-
+        // --- LOGIKA ---
         btnLogin.addActionListener(e -> {
-            String u = txtUser.getText().trim();
-            String p = new String(txtPass.getPassword()).trim();
-
-            if (u.isEmpty() || p.isEmpty()) {
-                JOptionPane.showMessageDialog(null, "Mesedez, sartu erabiltzailea eta pasahitza.", "Errorea",
-                        JOptionPane.ERROR_MESSAGE);
-                return;
-            }
-
+            String u = txtUser.getText();
+            String p = new String(txtPass.getPassword());
+            
+            // Orain erabiltzaileak FEDERAZIOATIK lortzen ditugu
+            ArrayList<Erabiltzaile> erabiltzaileak = federazioa.getErabiltzaileak();
+            
             boolean aurkitua = false;
-            for (Erabiltzaile user : erabiltzaileak) {
-                if (user.getErabiltzaile().equals(u) && user.getPasahitza().equals(p)) {
-                    new APP(user, federazioa).setVisible(true);
-                    dispose();
-                    aurkitua = true;
-                    break;
+            
+            if (erabiltzaileak != null) {
+                for (Erabiltzaile user : erabiltzaileak) {
+                	if (user.getErabiltzaile().equals(u) && user.getPasahitza().equals(p)) {
+                	    
+                	    utils.LogKudeatzailea.gehituLog("Saioa hasi da: " + user.getErabiltzaile() + " (" + user.getClass().getSimpleName() + ")");
+
+                	    new APP(user, federazioa).setVisible(true);
+                	    dispose();
+                	    aurkitua = true;
+                	    break;
+                	}
                 }
             }
 
             if (!aurkitua) {
-                JOptionPane.showMessageDialog(null, "Datu okerrak, saiatu berriro.", "Errorea",
-                        JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Datu okerrak, saiatu berriro.", "Errorea", JOptionPane.ERROR_MESSAGE);
             }
         });
     }
 
-    // Metodo laguntzailea Federazioa kargatzeko (DatuKarga-n egon beharko luke, baina hemen jarriko dugu orain)
-    private Federazioa kargatuFederazioa() {
-        File f = new File("src/data/federazioa.ser");
-        if (f.exists()) {
-            try (ObjectInputStream ois = new ObjectInputStream(new FileInputStream(f))) {
-                return (Federazioa) ois.readObject();
-            } catch (Exception e) {
-                e.printStackTrace();
-            }
-        }
-        return null;
-    }
-
     private void datuakHasieratuBeharBada() {
-        if (erabiltzaileak.isEmpty()) {
-            erabiltzaileak.add(new ErabiltzaileAdministraria("admin", "admin"));
-        }
-        if (federazioa == null) {
-            System.out.println("Federazioa hutsa sortzen...");
-            federazioa = new Federazioa();
+        // Galdera orain Federazioari egiten diogu
+        if (federazioa.getErabiltzaileak().isEmpty()) {
+            
+            ErabiltzaileAdministraria admin = new ErabiltzaileAdministraria("admin", "admin");
+            
+            // Federazioan gorde
+            federazioa.getErabiltzaileak().add(admin);
+            
+            // GARRANTZITSUA: Aldaketa hau diskoan gorde, bestela hurrengoan berriro eskatuko du
+            // Hemen DatuKarga erabili dezakezu zuzenean gordetzeko
+            DatuKarga.gordeFederazioa(federazioa);
+            
+            System.out.println("Admin lehenetsia sortu da (admin/admin).");
         }
     }
 }
