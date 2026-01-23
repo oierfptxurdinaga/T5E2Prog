@@ -4,7 +4,19 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Objects;
 
+/**
+ * Liga edo federazio bateko talde bat irudikatzen duen klasea.
+ * 
+ * Talde batek bere identitatea (izena, hiria, zelaia, ezkutua) eta
+ * jokalarien zerrenda gordetzen ditu, baita denboraldi batean
+ * aktiboa dagoen ala ez adierazten duen egoera ere.
+ * 
+ * Klase honek jokalariak gehitzeko, ezkutua aldatzeko eta
+ * taldearen kopia sakona sortzeko funtzionalitateak eskaintzen ditu.
+ */
 public class Talde implements Serializable{
+	
+	/** Objektuaren bertsioa serializazioan kontrolatzeko identifikatzailea */
 	private static final long serialVersionUID = 1L;
 	private String izena;
 	private String ezkutua;
@@ -22,6 +34,11 @@ public class Talde implements Serializable{
 		this.aktiboaDago = aktiboaDago;
 	}
 	
+	/**
+     * Beste talde baten kopiatik talde berri bat sortzen du.
+     *
+     * @param taldea kopiatu nahi den taldea
+     */
 	public Talde(Talde taldea) {
 		this.izena = taldea.izena;
 		this.ezkutua = taldea.ezkutua;
@@ -33,7 +50,7 @@ public class Talde implements Serializable{
 	public Talde() {
 		
 	}
-	//getters and setters
+	// Getterrak eta setterrak
 	
 	public String getIzena() {
 		return izena;
@@ -83,11 +100,26 @@ public class Talde implements Serializable{
 		this.aktiboaDago = aktiboaDago;
 	}
 	
+	/**
+     * Taldearen ezkutua aldatzen du.
+     * 
+     * Ezkutu berria egungoa ez bada soilik eguneratzen da.
+     *
+     * @param ezkutua ezkutu berriaren identifikatzailea edo bidea
+     */
 	public void aldatuEzkutua(String ezkutua) {
 		if(this.ezkutua!=ezkutua) {
 			this.ezkutua=ezkutua;
 		}
 	}
+	
+	/**
+     * Jokalari berri bat taldean sartzen du.
+     * 
+     * Jokalari zerrenda hutsik badago, automatikoki hasieratzen da.
+     * 
+     * @param j gehitu nahi den jokalaria
+     */
 	public void sartuJokalaria (Jokalari j) {
 		if (this.jokalariak == null) {
             this.jokalariak = new ArrayList<>();
@@ -102,7 +134,15 @@ public class Talde implements Serializable{
 	public int hashCode() {
 		return Objects.hash(izena);
 	}
-
+	
+	/**
+     * Bi talde berdinak diren konparatzen du.
+     * 
+     * Taldeak berdintzat hartzen dira izen bera badute.
+     * 
+     * @param obj konparatu beharreko objektua
+     * @return {@code true} berdinak badira; bestela {@code false}
+     */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -115,6 +155,14 @@ public class Talde implements Serializable{
 		return Objects.equals(izena, other.izena);
 	}
 
+	/**
+     * Talde honen kopia sakona sortzen du.
+     * 
+     * Jokalari guztiak ere banan-banan kopiatzen dira,
+     * jatorrizko taldearekin erreferentziak partekatu gabe.
+     * 
+     * @return taldearen kopia berria
+     */
 	public Talde kopiatu() {
 	    // 1. Sortu zerrenda berri eta huts bat jokalarientzat
 	    ArrayList<Jokalari> jokalariKopiak = new ArrayList<>();
