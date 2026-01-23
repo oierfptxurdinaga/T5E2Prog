@@ -1,1 +1,4 @@
-Hemen programa sartuko dugu
+Erabiltzaileak:
+presi-presi
+admin-admin
+epaile-epaile
