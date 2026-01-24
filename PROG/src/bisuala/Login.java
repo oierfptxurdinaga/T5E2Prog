@@ -1,139 +1,119 @@
 package bisuala;
 
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-
-import model.*;
-
-import java.awt.FlowLayout;
-import java.awt.BorderLayout;
-import java.awt.GridLayout;
-import javax.swing.BoxLayout;
-import javax.swing.GroupLayout;
-import javax.swing.GroupLayout.Alignment;
-import javax.swing.JTextField;
-import javax.swing.JPasswordField;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
+import javax.swing.*;
+import java.awt.*; 
 import java.util.ArrayList;
-import java.awt.event.ActionEvent;
-import javax.swing.JComboBox;
+import model.*;
+import utils.DatuKarga; 
 
 public class Login extends JFrame {
+    private static final long serialVersionUID = 1L;
+    
+    private JTextField txtUser;
+    private JPasswordField txtPass;
+    
+    // ALDAKETA: Kendu 'private ArrayList<Erabiltzaile> erabiltzaileak;' soltea.
+    // Orain dena federazioaren barruan dago.
+    private Federazioa federazioa; 
 
-	private static final long serialVersionUID = 1L;
-	private JPanel contentPane;
-	private JTextField txtErabiltsaileIzena;
-	private JPasswordField passwordField;
+    public static void main(String[] args) {
+        EventQueue.invokeLater(() -> {
+            try {
+                Login frame = new Login();
+                frame.setVisible(true);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        });
+    }
 
-	public Login() {
+    public Login() {
+        // 1. Datuak kargatu (SOILIK FEDERAZIOA)
+        // DatuKarga.kargatuErabiltzaileak() ez dugu gehiago behar
+        federazioa = DatuKarga.kargatuFederazioa(); 
 
-		Erabiltzaile erabiltzailea = null;
+        // Federazioa null bada (fitxategia ez da existitzen), sortu berria
+        if (federazioa == null) {
+            federazioa = new Federazioa();
+        }
 
-		ErabiltzaileArrunta arrunt1 = new ErabiltzaileArrunta("Gonbidatua");
-		ErabiltzaileEpaile epaile1 = new ErabiltzaileEpaile("Jose", "kk");
-		ErabiltzailePrezi prezi1 = new ErabiltzailePrezi("Juan", "12345");
-		ArrayList<Erabiltzaile> erabiltzaileak = new ArrayList<>();
-		erabiltzaileak.add(prezi1);
-		erabiltzaileak.add(epaile1);
-		erabiltzaileak.add(arrunt1);
+        // 2. Egiaztatu erabiltzaileak dauden, bestela Admin sortu
+        datuakHasieratuBeharBada();
 
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 450, 300);
-		contentPane = new JPanel();
-		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
-		setContentPane(contentPane);
-		contentPane.setLayout(null);
+        // 3. Leihoaren konfigurazioa
+        setTitle("Saioa Hasi");
+        setLayout(null);
+        setBounds(100, 100, 400, 300);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setLocationRelativeTo(null);
+        setResizable(false);
 
-		txtErabiltsaileIzena = new JTextField();
-		txtErabiltsaileIzena.setBounds(203, 69, 160, 30);
-		contentPane.add(txtErabiltsaileIzena);
-		txtErabiltsaileIzena.setColumns(10);
+        // --- UI OSAGAIAK ---
+        JLabel lblUser = new JLabel("Erabiltzailea:");
+        lblUser.setBounds(50, 50, 100, 25);
+        add(lblUser);
 
-		passwordField = new JPasswordField();
-		passwordField.setBounds(203, 109, 160, 30);
-		contentPane.add(passwordField);
+        txtUser = new JTextField();
+        txtUser.setBounds(150, 50, 150, 25);
+        add(txtUser);
 
-		JLabel lblNewLabel = new JLabel("Erabiltzaile izena:");
-		lblNewLabel.setBounds(65, 69, 128, 28);
-		contentPane.add(lblNewLabel);
+        JLabel lblPass = new JLabel("Pasahitza:");
+        lblPass.setBounds(50, 100, 100, 25);
+        add(lblPass);
 
-		JLabel lblPasahitza = new JLabel("Pasahitza:");
-		lblPasahitza.setBounds(98, 109, 95, 28);
-		contentPane.add(lblPasahitza);
+        txtPass = new JPasswordField();
+        txtPass.setBounds(150, 100, 150, 25);
+        add(txtPass);
 
-		JButton btnSaioaHasi = new JButton("Saioa Hasi");
-		btnSaioaHasi.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+        JButton btnLogin = new JButton("Sartu");
+        btnLogin.setBounds(150, 160, 100, 30);
+        btnLogin.setBackground(new Color(70, 130, 180));
+        btnLogin.setForeground(Color.WHITE);
+        add(btnLogin);
+        this.getRootPane().setDefaultButton(btnLogin);
 
-				final Erabiltzaile[] erabiltzaile = new Erabiltzaile[1];
-				boolean error = true;
-				for (int i = 0; i < erabiltzaileak.size(); i++) {
-					if (erabiltzaileak.get(i).getErabiltzaile().equals(txtErabiltsaileIzena.getText())) {
+        // --- LOGIKA ---
+        btnLogin.addActionListener(e -> {
+            String u = txtUser.getText();
+            String p = new String(txtPass.getPassword());
+            
+            // Orain erabiltzaileak FEDERAZIOATIK lortzen ditugu
+            ArrayList<Erabiltzaile> erabiltzaileak = federazioa.getErabiltzaileak();
+            
+            boolean aurkitua = false;
+            
+            if (erabiltzaileak != null) {
+                for (Erabiltzaile user : erabiltzaileak) {
+                	if (user.getErabiltzaile().equals(u) && user.getPasahitza().equals(p)) {
+                	    
+                	    utils.LogKudeatzailea.gehituLog("Saioa hasi da: " + user.getErabiltzaile() + " (" + user.getClass().getSimpleName() + ")");
 
-						if (erabiltzaileak.get(i) instanceof ErabiltzaileEpaile) {
-							ErabiltzaileEpaile epaile = (ErabiltzaileEpaile) erabiltzaileak.get(i);
-							if (epaile.getPasahitza().equals(passwordField.getText())) {
-								error = false;
-								erabiltzaile[0] = erabiltzaileak.get(i);
-							}
-						} else if (erabiltzaileak.get(i) instanceof ErabiltzailePrezi) {
-							ErabiltzailePrezi prezi = (ErabiltzailePrezi) erabiltzaileak.get(i);
-							if (prezi.getPasahitza().equals(passwordField.getText())) {
-								error = false;
-								erabiltzaile[0] = erabiltzaileak.get(i);
-							}
-						}
-					}
-				}
+                	    new APP(user, federazioa).setVisible(true);
+                	    dispose();
+                	    aurkitua = true;
+                	    break;
+                	}
+                }
+            }
 
-				if (error) {
-					JOptionPane.showMessageDialog(null, "ERROREA", "Erabiltzailea edo Pashitza EZ da zuzena",
-							JOptionPane.ERROR_MESSAGE);
-				} else {
-					EventQueue.invokeLater(new Runnable() {
-						public void run() {
-							try {
-								APP frame = new APP(erabiltzaile[0]);
-								frame.setVisible(true);
-								dispose();
-							} catch (Exception e) {
-								e.printStackTrace();
-							}
-						}
-					});
-				}
-			}
-		});
-		btnSaioaHasi.setBounds(179, 162, 105, 30);
-		contentPane.add(btnSaioaHasi);
+            if (!aurkitua) {
+                JOptionPane.showMessageDialog(null, "Datu okerrak, saiatu berriro.", "Errorea", JOptionPane.ERROR_MESSAGE);
+            }
+        });
+    }
 
-		JButton btnGonbidatu = new JButton("Sartu Gonbidatu Bezala");
-		btnGonbidatu.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				final Erabiltzaile[] erabiltzaile = new Erabiltzaile[1];
-				erabiltzaile[0] = arrunt1;
-				EventQueue.invokeLater(new Runnable() {
-					public void run() {
-						try {
-							APP frame = new APP(erabiltzaile[0]);
-							frame.setVisible(true);
-							dispose();
-						} catch (Exception e) {
-							e.printStackTrace();
-						}
-					}
-
-				});
-
-			}
-		});
-		btnGonbidatu.setBounds(148, 202, 171, 30);
-		contentPane.add(btnGonbidatu);
-	}
+    private void datuakHasieratuBeharBada() {
+        // Galdera orain Federazioari egiten diogu
+        if (federazioa.getErabiltzaileak().isEmpty()) {
+            
+            ErabiltzailePresi admin = new ErabiltzailePresi("presi", "presi");
+            
+            // Federazioan gorde
+            federazioa.getErabiltzaileak().add(admin);
+           
+            DatuKarga.gordeFederazioa(federazioa);
+            
+            System.out.println("Admin lehenetsia sortu da (presi/presi).");
+        }
+    }
 }

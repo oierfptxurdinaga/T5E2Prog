@@ -1,44 +1,56 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Objects;
 
-public class Talde {
+/**
+ * Liga edo federazio bateko talde bat irudikatzen duen klasea.
+ * 
+ * Talde batek bere identitatea (izena, hiria, zelaia, ezkutua) eta
+ * jokalarien zerrenda gordetzen ditu, baita denboraldi batean
+ * aktiboa dagoen ala ez adierazten duen egoera ere.
+ * 
+ * Klase honek jokalariak gehitzeko, ezkutua aldatzeko eta
+ * taldearen kopia sakona sortzeko funtzionalitateak eskaintzen ditu.
+ */
+public class Talde implements Serializable{
 	
+	/** Objektuaren bertsioa serializazioan kontrolatzeko identifikatzailea */
+	private static final long serialVersionUID = 1L;
 	private String izena;
-	private String eskutua;
+	private String ezkutua;
 	private String futbolZelaia;
 	private ArrayList<Jokalari> jokalariak;
-	private int sorreraUrtea;
-	private int ligakoPuntuak;
-	private int aldekoGolak;
-	private int kontrakoGolak;
+	private String hiria;
 	private boolean aktiboaDago;
 	
-	public Talde(String izena, String eskutua, String futbolZelaia, ArrayList<Jokalari> jokalariak, int sorreraUrtea,
-			int ligakoPuntuak, int aldekoGolak, int kontrakoGolak, boolean aktiboaDago) {
+	public Talde(String izena, String eskutua, String futbolZelaia, ArrayList<Jokalari> jokalariak, String hiria, boolean aktiboaDago) {
 		this.izena = izena;
-		this.eskutua = eskutua;
+		this.ezkutua = eskutua;
 		this.futbolZelaia = futbolZelaia;
 		this.jokalariak = jokalariak;
-		this.sorreraUrtea = sorreraUrtea;
-		this.ligakoPuntuak = ligakoPuntuak;
-		this.aldekoGolak = aldekoGolak;
-		this.kontrakoGolak = kontrakoGolak;
+		this.hiria = hiria;
 		this.aktiboaDago = aktiboaDago;
 	}
 	
-	//getters and setters
-	public void set(Talde taldea) {
+	/**
+     * Beste talde baten kopiatik talde berri bat sortzen du.
+     *
+     * @param taldea kopiatu nahi den taldea
+     */
+	public Talde(Talde taldea) {
 		this.izena = taldea.izena;
-		this.eskutua = taldea.eskutua;
+		this.ezkutua = taldea.ezkutua;
 		this.futbolZelaia = taldea.futbolZelaia;
 		this.jokalariak = taldea.jokalariak;
-		this.sorreraUrtea = taldea.sorreraUrtea;
-		this.ligakoPuntuak = taldea.ligakoPuntuak;
-		this.aldekoGolak = taldea.aldekoGolak;
-		this.kontrakoGolak = taldea.kontrakoGolak;
+		this.hiria = taldea.hiria;
 		this.aktiboaDago = taldea.aktiboaDago;
 	}
+	public Talde() {
+		
+	}
+	// Getterrak eta setterrak
 	
 	public String getIzena() {
 		return izena;
@@ -48,12 +60,12 @@ public class Talde {
 		this.izena = izena;
 	}
 
-	public String getEskutua() {
-		return eskutua;
+	public String getEzkutua() {
+		return ezkutua;
 	}
 
-	public void setEskutua(String eskutua) {
-		this.eskutua = eskutua;
+	public void setEzkutua(String eskutua) {
+		this.ezkutua = eskutua;
 	}
 
 	public String getFutbolZelaia() {
@@ -72,36 +84,12 @@ public class Talde {
 		this.jokalariak = jokalariak;
 	}
 
-	public int getSorreraUrtea() {
-		return sorreraUrtea;
+	public String getHiria() {
+		return hiria;
 	}
 
-	public void setSorreraUrtea(int sorreraUrtea) {
-		this.sorreraUrtea = sorreraUrtea;
-	}
-
-	public int getLigakoPuntuak() {
-		return ligakoPuntuak;
-	}
-
-	public void setLigakoPuntuak(int ligakoPuntuak) {
-		this.ligakoPuntuak = ligakoPuntuak;
-	}
-
-	public int getAldekoGolak() {
-		return aldekoGolak;
-	}
-
-	public void setAldekoGolak(int aldekoGolak) {
-		this.aldekoGolak = aldekoGolak;
-	}
-
-	public int getKontrakoGolak() {
-		return kontrakoGolak;
-	}
-
-	public void setKontrakoGolak(int kontrakoGolak) {
-		this.kontrakoGolak = kontrakoGolak;
+	public void setHiria(String hiria) {
+		this.hiria = hiria;
 	}
 
 	public boolean isAktiboaDago() {
@@ -112,9 +100,88 @@ public class Talde {
 		this.aktiboaDago = aktiboaDago;
 	}
 	
-	public void aldatuEskutua(String Eskutua) {
-		if(this.eskutua!=Eskutua) {
-			this.eskutua=Eskutua;
+	/**
+     * Taldearen ezkutua aldatzen du.
+     * 
+     * Ezkutu berria egungoa ez bada soilik eguneratzen da.
+     *
+     * @param ezkutua ezkutu berriaren identifikatzailea edo bidea
+     */
+	public void aldatuEzkutua(String ezkutua) {
+		if(this.ezkutua!=ezkutua) {
+			this.ezkutua=ezkutua;
 		}
+	}
+	
+	/**
+     * Jokalari berri bat taldean sartzen du.
+     * 
+     * Jokalari zerrenda hutsik badago, automatikoki hasieratzen da.
+     * 
+     * @param j gehitu nahi den jokalaria
+     */
+	public void sartuJokalaria (Jokalari j) {
+		if (this.jokalariak == null) {
+            this.jokalariak = new ArrayList<>();
+        }
+        this.jokalariak.add(j);
+	}
+	@Override
+	public String toString() {
+	    return this.izena; 
+	}
+	@Override
+	public int hashCode() {
+		return Objects.hash(izena);
+	}
+	
+	/**
+     * Bi talde berdinak diren konparatzen du.
+     * 
+     * Taldeak berdintzat hartzen dira izen bera badute.
+     * 
+     * @param obj konparatu beharreko objektua
+     * @return {@code true} berdinak badira; bestela {@code false}
+     */
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Talde other = (Talde) obj;
+		return Objects.equals(izena, other.izena);
+	}
+
+	/**
+     * Talde honen kopia sakona sortzen du.
+     * 
+     * Jokalari guztiak ere banan-banan kopiatzen dira,
+     * jatorrizko taldearekin erreferentziak partekatu gabe.
+     * 
+     * @return taldearen kopia berria
+     */
+	public Talde kopiatu() {
+	    // 1. Sortu zerrenda berri eta huts bat jokalarientzat
+	    ArrayList<Jokalari> jokalariKopiak = new ArrayList<>();
+	    
+	    // 2. Jatorrizko taldeko jokalari bakoitza kopiatu eta zerrenda berrira gehitu
+	    if (this.jokalariak != null) {
+	        for (Jokalari j : this.jokalariak) {
+	            jokalariKopiak.add(j.kopiatu()); // HEMEN DAGO GAKOA
+	        }
+	    }
+	    
+	    // 3. Talde berria itzuli, jokalari zerrenda BERRIAREKIN
+	    return new Talde(
+	        this.izena,
+	        this.ezkutua,
+	        this.futbolZelaia,
+	        jokalariKopiak,
+	        this.hiria,
+	        this.aktiboaDago
+	    );
 	}
 }

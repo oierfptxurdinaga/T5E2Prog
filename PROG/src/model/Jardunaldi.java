@@ -1,9 +1,20 @@
 package model;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Jardunaldi {
-	
+/**
+ * Liga edo denboraldi bateko jardunaldi bat irudikatzen duen klasea.
+ * 
+ * Jardunaldiak zenbaki baten bidez identifikatzen dira eta barnean
+ * partida guztiak gordetzen ditu.
+ * 
+ * Partidak gehitzeko eta kudeatzeko metodoak eskaintzen ditu.
+ */
+public class Jardunaldi implements Serializable{
+
+	/** Objektuaren bertsioa serializazioan kontrolatzeko identifikatzailea */
+	private static final long serialVersionUID = 1L;
 	private int jardunaldiZbk;
 	private ArrayList<Partidua> partiduak;
 	
@@ -11,6 +22,10 @@ public class Jardunaldi {
 		this.jardunaldiZbk = jardunaldiZbk;
 		this.partiduak = partiduak;
 	}
+	public Jardunaldi(int jardunaldiZbk) {
+        this.jardunaldiZbk = jardunaldiZbk;
+        this.partiduak = new ArrayList<>(); 
+    }
 	
 	//getters and setters
 	public int getJardunaldiZbk() {
@@ -26,4 +41,18 @@ public class Jardunaldi {
 		this.partiduak = partiduak;
 	}
 
+	/**
+     * Partida berri bat jardunaldian gehitzen du.
+     * 
+     * Barneko lista automatikoki sortzen da {@code null} bada.
+     *
+     * @param p gehitu nahi den partida
+     */
+	public void addPartidua(Partidua p) {
+        if (this.partiduak == null) {
+            this.partiduak = new ArrayList<>();
+        }
+
+        this.partiduak.add(p);
+    }
 }

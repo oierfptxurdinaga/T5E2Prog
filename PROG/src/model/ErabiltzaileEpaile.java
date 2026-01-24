@@ -1,39 +1,59 @@
 package model;
 
-public class ErabiltzaileEpaile extends Erabiltzaile{
+/**
+ * Epaile motako erabiltzailea.
+ * Erabiltzaile honek jokatutako partiduen emaitzak 
+ * sisteman sartu ahal ditu.
+ */
+public class ErabiltzaileEpaile extends Erabiltzaile {
 	
-	private String pasahitza;
+	/** Objektuaren bertsioa serializazioan kontrolatzeko identifikatzailea */
+	private static final long serialVersionUID = 1L;
 
+	 /**
+     * Epaile motako erabiltzaile berri bat sortzen du.
+     *
+     * @param erabiltzaile erabiltzailearen izena
+     * @param pasahitza erabiltzailearen pasahitza
+     */
 	public ErabiltzaileEpaile(String erabiltzaile, String pasahitza) {
-		super(erabiltzaile);
-		this.pasahitza = pasahitza;
+		super(erabiltzaile, pasahitza);
 	}
 
-	//getters and setters
+	// getters and setters
+	public String getErabiltzaile() {
+		return erabiltzaile;
+	}
+	public void setErabiltzaile(String erabiltzaile) {
+		this.erabiltzaile = erabiltzaile;
+	}
 	public String getPasahitza() {
 		return pasahitza;
 	}
-
 	public void setPasahitza(String pasahitza) {
 		this.pasahitza = pasahitza;
 	}
-	
+
 	/**
-	 * Klase honekin nahi duzun partidoen emaitzak sartzen dira
-	 * @param denboraldia zein da denboraldikoa da sartuko duzun partidoa
-	 * @param etxekoTaldea partidoan parte artsen duen etxeko taldea
-	 * @param kanpokoTaldea partidoan parte artsen duen kanpoko taldea partida biltzeko
-	 * @param etxekoGolak zenbat gol sartu dituen partidoan etxeko taldeak emaitza sartzeko
-	 * @param kanpokoGolak zenbat gol sartu dituen partidoan kanpoko taldeak emaitza sartzeko
-	 */
-	public void sartuEmaitza(Denboraldia denboraldia, Talde etxekoTaldea, Talde kanpokoTaldea, int etxekoGolak, int kanpokoGolak) {
-		for(int i=0;i<denboraldia.getLigakoJardunaldi().size();i++){
-			for(int j=0;j<denboraldia.getLigakoJardunaldi().get(i).getPartiduak().size();j++){
-				if(denboraldia.getLigakoJardunaldi().get(i).getPartiduak().get(j).getEtxekoTaldea().equals(etxekoTaldea)&&
-					denboraldia.getLigakoJardunaldi().get(i).getPartiduak().get(j).getKanpokoTaldea().equals(kanpokoTaldea)) {
+     * Partidu baten emaitza sisteman erregistratzen du.
+     * 
+     * @param denboraldia   Partidua dagokion denboraldia.
+     * @param etxekoTaldea  Etxeko taldea.
+     * @param kanpokoTaldea Kanpoko taldea.
+     * @param etxekoGolak   Etxeko taldeak sartutako gol kopurua.
+     * @param kanpokoGolak  Kanpoko taldeak sartutako gol kopurua.
+     */
+	public void sartuEmaitza(Denboraldia denboraldia, Talde etxekoTaldea, Talde kanpokoTaldea, int etxekoGolak,
+			int kanpokoGolak) {
+		for (int i = 0; i < denboraldia.getLigakoJardunaldi().size(); i++) {
+			for (int j = 0; j < denboraldia.getLigakoJardunaldi().get(i).getPartiduak().size(); j++) {
+				if (denboraldia.getLigakoJardunaldi().get(i).getPartiduak().get(j).getEtxekoTaldea()
+						.equals(etxekoTaldea)
+						&& denboraldia.getLigakoJardunaldi().get(i).getPartiduak().get(j).getKanpokoTaldea()
+								.equals(kanpokoTaldea)) {
 					denboraldia.getLigakoJardunaldi().get(i).getPartiduak().get(j).setEtxekoGolak(etxekoGolak);
 					denboraldia.getLigakoJardunaldi().get(i).getPartiduak().get(j).setKanpokoGolak(kanpokoGolak);
-					break;
+					return;
 				}
 			}
 		}

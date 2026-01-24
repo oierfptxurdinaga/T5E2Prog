@@ -1,10 +1,23 @@
 package model;
 
-public class Jokalari {
+import java.io.Serializable;
 
+/**
+ * Futbol edo kirol jokalari bat irudikatzen duen klasea.
+ * 
+ * Jokalariak izena, abizena, jaiotze urtea, dortsal zenbakia, posizioa
+ * eta denboraldi batean aktiboa dagoen ala ez gordetzen ditu.
+ * 
+ * Gainera, jokalari baten kopia sortzeko eta irudi automatiko bat sortzeko
+ * metodoak eskaintzen ditu.
+ */
+public class Jokalari implements Serializable{
+
+	/** Objektuaren bertsioa serializazioan kontrolatzeko identifikatzailea */
+	private static final long serialVersionUID = 1L;
 	private String izena;
 	private String abizena;
-	private int jaiotseUrtea;
+	private int jaiotzeUrtea;
 	private int dortsala;
 	private String posizio;
 	private boolean aktiboaDago;
@@ -12,13 +25,17 @@ public class Jokalari {
 	public Jokalari(String izena, String abizena, int jaiotseUrtea, int dortsala, String posizio, boolean aktiboaDago) {
 		this.izena = izena;
 		this.abizena = abizena;
-		this.jaiotseUrtea = jaiotseUrtea;
+		this.jaiotzeUrtea = jaiotseUrtea;
 		this.dortsala = dortsala;
 		this.posizio = posizio;
 		this.aktiboaDago = aktiboaDago;
 	}
 	
-	//getters and setters
+	public Jokalari() {
+		super();
+	}
+
+	// Getterrak eta setterrak
 	public String getIzena() {
 		return izena;
 	}
@@ -31,11 +48,11 @@ public class Jokalari {
 	public void setAbizena(String abizena) {
 		this.abizena = abizena;
 	}
-	public int getJaiotseUrtea() {
-		return jaiotseUrtea;
+	public int getJaiotzeUrtea() {
+		return jaiotzeUrtea;
 	}
-	public void setJaiotseUrtea(int adina) {
-		this.jaiotseUrtea = adina;
+	public void setJaiotzeUrtea(int adina) {
+		this.jaiotzeUrtea = adina;
 	}
 	public int getDortsala() {
 		return dortsala;
@@ -56,5 +73,36 @@ public class Jokalari {
 		this.aktiboaDago = aktiboaDago;
 	}
 	
+	/**
+     * Jokalari honen kopia sortzen du.
+     * 
+     * Joko edo liga kudeaketetan aldagai originala aldatu gabe
+     * kopia bat erabiltzeko erabilgarria.
+     *
+     * @return jokalari honen kopia berria
+     */
+	public Jokalari kopiatu() {
+	    return new Jokalari(
+	        this.izena, 
+	        this.abizena, 
+	        this.jaiotzeUrtea, 
+	        this.dortsala, 
+	        this.posizio, 
+	        this.aktiboaDago
+	    );
+	}
 	
+	/**
+     * Jokalariaren irudi automatikoaren URL bat sortzen du.
+     * 
+     * Urte bateko "seed"-aren arabera irudia generatzen da
+     * Dicebear API erabiliz.
+     *
+     * @param urtea urtea, irudiaren seed-era gehitzeko
+     * @return jokalariaren irudiaren URL-a
+     */
+	public String getIrudiaUrl(int urtea) {
+	     String seed = this.izena.replaceAll(" ", "") + urtea;
+	     return "https://api.dicebear.com/7.x/avataaars/png?seed=" + seed;
+	}
 }
